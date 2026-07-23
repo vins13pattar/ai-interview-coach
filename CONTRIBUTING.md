@@ -9,6 +9,7 @@ Thanks for helping build Interview Coach.
 3. Run `pnpm install`.
 4. Run `pnpm dev` for the application.
 5. Run `pnpm check` before opening a pull request.
+6. Run the Compose stack and `pnpm test:e2e` for browser-facing changes.
 
 The local demo must remain keyless and deterministic. Tests must not call paid
 providers unless they are explicitly marked and excluded from default CI.

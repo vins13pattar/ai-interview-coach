@@ -7,7 +7,13 @@ import {
   type RecruiterReportRequest,
 } from "@interview-coach/contracts";
 import { ChatOpenAI } from "@langchain/openai";
-import { END, START, StateGraph, StateSchema } from "@langchain/langgraph";
+import {
+  END,
+  START,
+  StateGraph,
+  StateSchema,
+  type BaseCheckpointSaver,
+} from "@langchain/langgraph";
 import { createAgent, toolStrategy } from "langchain";
 import { z } from "zod";
 
@@ -63,7 +69,10 @@ function createOpenAiEvaluator(apiKey: string): Evaluator {
   };
 }
 
-function createInterviewGraph(evaluate: Evaluator) {
+function createInterviewGraph(
+  evaluate: Evaluator,
+  checkpointer?: BaseCheckpointSaver,
+) {
   const assess: typeof GraphState.Node = async (state) => ({
     evaluation: await evaluate(state.turn),
   });
@@ -108,19 +117,31 @@ function createInterviewGraph(evaluate: Evaluator) {
     .addEdge("assess_answer", "adapt_difficulty")
     .addEdge("adapt_difficulty", "prepare_next_question")
     .addEdge("prepare_next_question", END)
-    .compile();
+    .compile(checkpointer ? { checkpointer } : undefined);
 }
 
 export async function runInterviewTurn(
   turn: InterviewTurn,
   apiKey?: string,
+  persistence?: {
+    checkpointer: BaseCheckpointSaver;
+    threadId: string;
+  },
 ): Promise<InterviewTurnResult> {
   const evaluator =
     turn.provider === "openai" && apiKey
       ? createOpenAiEvaluator(apiKey)
       : async (input: InterviewTurn) => evaluateDeterministically(input);
-  const graph = createInterviewGraph(evaluator);
-  const state = await graph.invoke({ turn }, { recursionLimit: 8 });
+  const graph = createInterviewGraph(evaluator, persistence?.checkpointer);
+  const state = await graph.invoke(
+    { turn },
+    {
+      recursionLimit: 8,
+      ...(persistence
+        ? { configurable: { thread_id: persistence.threadId } }
+        : {}),
+    },
+  );
 
   return InterviewTurnResultSchema.parse({
     evaluation: state.evaluation,

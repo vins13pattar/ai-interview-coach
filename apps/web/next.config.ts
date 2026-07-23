@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
   transpilePackages: [
     "@interview-coach/contracts",
+    "@interview-coach/database",
     "@interview-coach/interview-engine",
   ],
   async headers() {

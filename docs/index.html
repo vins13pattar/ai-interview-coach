@@ -177,8 +177,9 @@
           <h2>One typed contract. Browser to graph to report.</h2>
           <p>
             LangGraph.js owns the adaptive turn loop. Shared Zod contracts keep
-            the interface honest. Provider-specific behavior stays behind
-            evaluator adapters, so local development and CI remain keyless.
+            the interface honest. PostgreSQL preserves interview and checkpoint
+            state, while provider-specific behavior stays behind evaluator
+            adapters so local development and CI remain keyless.
           </p>
           <a
             class="underlined-link"
@@ -199,11 +200,14 @@
           <div class="map-row map-row-bottom">
             <span>Local evaluator</span>
             <span>OpenAI adapter</span>
-            <span>Evidence report</span>
+            <span>PostgreSQL</span>
           </div>
           <div class="map-note">
             <strong>Keys stay out of graph state.</strong>
-            <span>Tab-scoped BYOK or server-only environment secrets.</span>
+            <span
+              >Tab-scoped BYOK, encrypted opt-in storage, or server-only
+              secrets.</span
+            >
           </div>
         </div>
       </section>
@@ -211,7 +215,7 @@
       <section class="status section">
         <div class="status-heading reveal">
           <p class="eyebrow">Build in public</p>
-          <h2>An honest alpha, with production standards.</h2>
+          <h2>A durable alpha, verified end to end.</h2>
         </div>
         <div class="status-board reveal">
           <div class="status-column">
@@ -224,7 +228,9 @@
               <li>Optional OpenAI evaluation</li>
               <li>Evidence-backed dimension scores</li>
               <li>Recruiter-style final report</li>
-              <li>One-command container runtime</li>
+              <li>Restart-safe PostgreSQL sessions</li>
+              <li>Pause, resume, export, and deletion</li>
+              <li>One-command three-service runtime</li>
             </ul>
           </div>
           <div class="status-column">
@@ -232,12 +238,12 @@
               <i class="status-next" aria-hidden="true"></i> Next milestones
             </p>
             <ul>
-              <li>Durable PostgreSQL sessions</li>
-              <li>Authentication and tenant isolation</li>
               <li>Real-time voice and barge-in</li>
+              <li>Registered accounts and organizations</li>
               <li>Calibrated role packs</li>
               <li>Bias and score-stability study</li>
               <li>WCAG 2.2 AA audit</li>
+              <li>Hosted reliability evidence</li>
             </ul>
           </div>
         </div>
@@ -248,8 +254,9 @@
           <p class="eyebrow">Your machine. Your keys.</p>
           <h2>Boot the complete app with one command.</h2>
           <p>
-            The production container runs as an unprivileged user with a
-            read-only filesystem, health checks, and no required API key.
+            Compose starts PostgreSQL, applies idempotent migrations, and runs
+            the production web image as an unprivileged user with a read-only
+            filesystem. No API key is required.
           </p>
         </div>
         <div class="terminal reveal" aria-label="Docker quick start command">
@@ -325,9 +332,23 @@
           </a>
           <a
             class="doc-link reveal"
-            href="https://github.com/vins13pattar/ai-interview-coach/blob/main/docs/LICENSING.md"
+            href="https://github.com/vins13pattar/ai-interview-coach/blob/main/docs/RUBRIC_CARD.md"
           >
             <span class="doc-number">04</span>
+            <span>
+              <strong>Alpha rubric card</strong>
+              <small
+                >Score evidence, interruption policy, public fixtures, and known
+                calibration gaps.</small
+              >
+            </span>
+            <i aria-hidden="true">↗</i>
+          </a>
+          <a
+            class="doc-link reveal"
+            href="https://github.com/vins13pattar/ai-interview-coach/blob/main/docs/LICENSING.md"
+          >
+            <span class="doc-number">05</span>
             <span>
               <strong>Licensing decision</strong>
               <small

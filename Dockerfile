@@ -16,6 +16,7 @@ FROM base AS dependencies
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY apps/web/package.json apps/web/package.json
 COPY packages/contracts/package.json packages/contracts/package.json
+COPY packages/database/package.json packages/database/package.json
 COPY packages/interview-engine/package.json packages/interview-engine/package.json
 
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store \
@@ -27,6 +28,15 @@ COPY --from=dependencies /app/ ./
 COPY . .
 
 RUN pnpm --filter @interview-coach/web build
+
+FROM base AS migrations
+
+COPY --from=dependencies /app/ ./
+COPY tsconfig.base.json tsconfig.base.json
+COPY packages/contracts packages/contracts
+COPY packages/database packages/database
+
+CMD ["pnpm", "--filter", "@interview-coach/database", "migrate"]
 
 FROM node:22-alpine@sha256:16e22a550f3863206a3f701448c45f7912c6896a62de43add43bb9c86130c3e2 AS runtime
 

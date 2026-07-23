@@ -12,7 +12,8 @@ flowchart LR
     G --> E{"Evaluator adapter"}
     E --> D["Deterministic demo"]
     E --> O["OpenAI via LangChain.js"]
-    G --> P["PostgreSQL checkpointer (production)"]
+    G --> P["LangGraph PostgreSQL checkpointer"]
+    API --> DB["Tenant-scoped PostgreSQL repositories"]
     G --> R["Evidence and report service"]
     V["Voice provider via WebRTC"] --> B
     B -->|"transcript events"| API
@@ -22,9 +23,10 @@ flowchart LR
 
 - `apps/web`: UI, HTTP boundary, provider-key forwarding, security headers.
 - `packages/contracts`: stable Zod schemas and inferred TypeScript types.
+- `packages/database`: SQL migrations, tenant-scoped repositories, encrypted
+  provider connections, and the LangGraph checkpointer.
 - `packages/interview-engine`: graph, scorer adapters, difficulty logic, reports.
-- Future `packages/database`: schema, tenant-scoped repositories, migrations.
-- Future `packages/evaluation`: datasets, rubric graders, calibration reports.
+- `evaluation`: public deterministic fixtures and expected score bounds.
 - Future `packages/voice`: ephemeral credentials and provider-neutral events.
 
 ## Interview graph
@@ -39,23 +41,40 @@ flowchart LR
     Q --> E["END"]
 ```
 
-Production adds load/persist nodes, interruption policy, time budgets, coverage
-planning, and a final report branch. Nodes return partial state updates. Graph
-state must never contain provider API keys.
+The durable alpha compiles this graph with `PostgresSaver`; repository writes
+remain explicit around the graph so authorization, idempotency, export, and
+deletion are independently testable. Future voice work adds interruption
+policy, time budgets, and coverage planning. Nodes return partial state updates.
+Graph state never contains provider API keys.
 
 ## Persistence
 
-The alpha passes the complete transcript state with each turn and is stateless
-on the server. Production must:
+The durable path:
 
-- compile the graph with `PostgresSaver`;
-- use the stable interview session ID as LangGraph `thread_id`;
-- store transcript/evidence in tenant-scoped relational tables;
-- use an idempotency key per candidate turn;
-- store runtime provider keys outside checkpoints;
-- support explicit deletion across product and checkpoint tables.
+- compiles the graph with `PostgresSaver`;
+- uses the stable interview session ID as LangGraph `thread_id`;
+- stores transcript and evidence in tenant- and user-scoped relational tables;
+- reserves an idempotency key before evaluating every candidate turn;
+- persists the validated response with an optimistic session-version check;
+- stores runtime provider keys outside checkpoints;
+- deletes both product rows and LangGraph checkpoint rows on user request.
 
 `MemorySaver` is acceptable only in tests and local experiments.
+
+The legacy stateless API remains available when `DATABASE_URL` is absent, so
+contributors can still run the keyless demo without PostgreSQL.
+
+## Identity and request integrity
+
+The durable alpha creates a private guest tenant and user behind a random opaque
+cookie. Only a SHA-256 digest is stored in PostgreSQL. The cookie is `HttpOnly`,
+`SameSite=Lax`, and secure in production. Every repository query scopes by both
+tenant and user. Mutation routes require same-origin requests and the
+`x-interview-coach-client` header.
+
+This is durable pseudonymous identity, not a complete account system. Registered
+accounts, recovery, organization membership, and an external identity provider
+remain future work.
 
 ## Provider key boundary
 
@@ -64,10 +83,15 @@ a key can technically observe it. The UI must say this plainly.
 
 Preferred trust order:
 
-1. local self-host with server-managed secret;
-2. provider ephemeral token minted by the self-hosted backend;
-3. tab-scoped key forwarded over TLS and discarded;
-4. never: query string, analytics property, log field, checkpoint, or database.
+1. local self-host with a server environment secret;
+2. explicitly opted-in per-user secret encrypted with AES-256-GCM;
+3. provider ephemeral token minted by the self-hosted backend;
+4. tab-scoped key forwarded over TLS and discarded;
+5. never: query string, analytics property, log field, or checkpoint.
+
+Encrypted storage requires a 32-byte operator-managed
+`PROVIDER_ENCRYPTION_KEY`. The database stores ciphertext, nonce, authentication
+tag, and key version; list APIs expose metadata only.
 
 ## Voice
 
@@ -97,8 +121,10 @@ audit—not the media plane.
 - `Cache-Control: no-store` on assessment responses.
 - Error logging by error class, never raw provider response or request headers.
 - Bounded LangGraph recursion and provider retries.
-- Rate limiting, authentication, origin validation, CSRF, and tenant guards are
-  required before hosted production.
+- Opaque guest authentication, origin validation, CSRF defense, and tenant
+  guards on durable objects.
+- Rate limiting and an external identity provider remain required before a
+  general internet-facing hosted service.
 
 ## Testing strategy
 
@@ -107,14 +133,16 @@ audit—not the media plane.
 - Graph: state transition and retry fixtures.
 - API: invalid input, missing key, idempotency, redaction.
 - Browser: setup, five-turn interview, report, keyboard-only, reduced motion.
-- Evaluation: golden transcript dataset scored against calibrated human labels.
+- Evaluation: public fixtures today; calibrated human labels before public v1.
 - Operations: load, provider outage, database failover, backup/restore, deletion.
 
 ## Container runtime
 
-The current alpha is packaged as one Next.js standalone container because it
-has no required database or queue. `compose.yaml` is the canonical local
-orchestration entry point.
+`compose.yaml` is the canonical local orchestration entry point. It starts:
+
+1. pinned PostgreSQL with a persistent named volume;
+2. a one-shot migration image that also installs LangGraph checkpoint tables;
+3. the Next.js standalone web image after migrations succeed.
 
 Runtime controls:
 
@@ -124,7 +152,8 @@ Runtime controls:
 - `no-new-privileges`;
 - application and Docker health checks at `/api/health`;
 - provider credentials injected only through runtime environment variables.
+- database-aware liveness at `/api/health`.
 
-When durable sessions are implemented, PostgreSQL will become a second Compose
-service for local development. Production deployments should use a managed
-PostgreSQL service and keep database credentials outside the image.
+Production deployments should use a managed PostgreSQL service, TLS, a secret
+manager, rate limiting, backup/restore procedures, and monitored migration
+rollouts.

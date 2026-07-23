@@ -1,14 +1,14 @@
 # Product Requirements Document: Interview Coach
 
-| Field                 | Value                                        |
-| --------------------- | -------------------------------------------- |
-| Product               | Interview Coach                              |
-| Status                | Alpha foundation / proposed production scope |
-| Version               | 0.1                                          |
-| Last updated          | 2026-07-23                                   |
-| Product model         | Open source, self-hostable, BYOK             |
-| Application languages | TypeScript and JavaScript only               |
-| AI orchestration      | LangChain.js 1.x and LangGraph 1.x           |
+| Field                 | Value                                     |
+| --------------------- | ----------------------------------------- |
+| Product               | Interview Coach                           |
+| Status                | Durable alpha / proposed production scope |
+| Version               | 0.2                                       |
+| Last updated          | 2026-07-24                                |
+| Product model         | Open source, self-hostable, BYOK          |
+| Application languages | TypeScript and JavaScript only            |
+| AI orchestration      | LangChain.js 1.x and LangGraph 1.x        |
 
 ## 1. Executive summary
 
@@ -453,20 +453,25 @@ Retention classes:
 
 ## 12. API surface
 
-All APIs are versioned under `/api/v1` in production. The alpha vertical slice
-uses unversioned routes while contracts stabilize.
+Durable APIs are versioned under `/api/v1`. The unversioned deterministic turn
+and report routes remain as a database-free contributor fallback.
 
-| Method | Route                         | Purpose                                   |
-| ------ | ----------------------------- | ----------------------------------------- |
-| POST   | `/api/v1/sessions`            | Create a configured interview session     |
-| POST   | `/api/v1/sessions/:id/turns`  | Submit transcript/audio turn idempotently |
-| GET    | `/api/v1/sessions/:id/events` | SSE graph and transcript events           |
-| POST   | `/api/v1/sessions/:id/pause`  | Pause durable execution                   |
-| POST   | `/api/v1/sessions/:id/resume` | Resume durable execution                  |
-| POST   | `/api/v1/sessions/:id/end`    | Finalize session and report               |
-| GET    | `/api/v1/reports/:id`         | Retrieve an authorized report             |
-| DELETE | `/api/v1/sessions/:id`        | Delete session data                       |
-| POST   | `/api/v1/voice/token`         | Mint a scoped ephemeral voice token       |
+| Method | Route                            | Purpose                                   |
+| ------ | -------------------------------- | ----------------------------------------- |
+| GET    | `/api/v1/sessions`               | List authorized interview sessions        |
+| POST   | `/api/v1/sessions`               | Create a configured interview session     |
+| GET    | `/api/v1/sessions/:id`           | Retrieve transcript and report            |
+| POST   | `/api/v1/sessions/:id/turns`     | Submit a transcript turn idempotently     |
+| POST   | `/api/v1/sessions/:id/pause`     | Pause durable execution                   |
+| POST   | `/api/v1/sessions/:id/resume`    | Resume durable execution                  |
+| GET    | `/api/v1/sessions/:id/export`    | Export authorized session data            |
+| DELETE | `/api/v1/sessions/:id`           | Delete product and checkpoint data        |
+| GET    | `/api/v1/provider-connections`   | List redacted connection metadata         |
+| PUT    | `/api/v1/provider-connections`   | Encrypt and save an opted-in provider key |
+| DELETE | `/api/v1/provider-connections?…` | Delete an authorized provider connection  |
+
+SSE events, explicit early-finalization, report sharing, and voice-token routes
+remain beta/public-v1 scope.
 
 ## 13. Non-functional requirements
 
@@ -604,13 +609,16 @@ Implemented in the initial repository:
 
 ### Phase 1 — Durable alpha
 
-- authentication;
-- PostgreSQL schema and migrations;
-- production LangGraph checkpointer;
+Implemented:
+
+- opaque guest authentication and tenant isolation;
+- PostgreSQL schema and idempotent migrations;
+- production LangGraph checkpointer with stable session threads;
 - session API versioning and idempotency;
-- encrypted provider connections;
-- export/delete controls;
-- baseline evaluation dataset.
+- optional AES-256-GCM provider connections;
+- pause, resume, export, and verified deletion controls;
+- baseline evaluation dataset and rubric card;
+- Compose restart and Playwright browser acceptance coverage.
 
 ### Phase 2 — Real-time voice beta
 

@@ -15,19 +15,24 @@ This roadmap separates a working alpha from production claims.
 - [x] Product, architecture, security, and contributor documentation
 - [ ] Select and add an open-source license
 
-## Next — durable alpha
+## Delivered — durable alpha
 
-- [ ] Authentication and tenant isolation
-- [ ] PostgreSQL schema and migrations
-- [ ] LangGraph PostgreSQL checkpointer
-- [ ] Versioned, idempotent session APIs
-- [ ] Resume, pause, delete, and export
-- [ ] Encrypted server-managed provider connections
-- [ ] CI browser tests and secret scanning
-- [ ] Initial evaluation dataset and rubric card
+- [x] Guest authentication and tenant isolation
+- [x] PostgreSQL schema and idempotent migrations
+- [x] LangGraph PostgreSQL checkpointer
+- [x] Versioned, idempotent session APIs
+- [x] Resume, pause, delete, and export
+- [x] Optional encrypted server-managed provider connections
+- [x] CI browser tests and secret scanning
+- [x] Initial evaluation dataset and [rubric card](RUBRIC_CARD.md)
 
 Exit criteria: sessions survive restart; deletion is verified; authorization
 tests cover every object; deterministic and provider contract suites pass.
+
+Evidence: repository integration tests cover cross-tenant session and provider
+connection access, Playwright covers the complete durable candidate journey,
+and the Compose runtime applies migrations before admitting web traffic.
+Registered accounts and an external identity provider remain public-v1 work.
 
 ## Beta — real-time voice
 

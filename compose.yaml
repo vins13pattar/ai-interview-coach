@@ -1,6 +1,41 @@
 name: ai-interview-coach
 
 services:
+  database:
+    image: postgres:17-alpine@sha256:742f40ea20b9ff2ff31db5458d127452988a2164df9e17441e191f3b72252193
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-interview_coach}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-interview_coach}
+      POSTGRES_USER: ${POSTGRES_USER:-interview_coach}
+    volumes:
+      - interview-coach-data:/var/lib/postgresql/data
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+      - /run/postgresql:size=16m,mode=3775
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${POSTGRES_USER:-interview_coach} -d ${POSTGRES_DB:-interview_coach}",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  migrate:
+    image: ai-interview-coach-migrations:${IMAGE_TAG:-local}
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: migrations
+    restart: "no"
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-interview_coach}:${POSTGRES_PASSWORD:-interview_coach}@database:5432/${POSTGRES_DB:-interview_coach}
+    depends_on:
+      database:
+        condition: service_healthy
+
   web:
     image: ai-interview-coach:${IMAGE_TAG:-local}
     build:
@@ -13,11 +48,19 @@ services:
     ports:
       - "${PORT:-3000}:3000"
     environment:
+      APP_ORIGIN: ${APP_ORIGIN:-http://localhost:3000}
       ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      DATABASE_POOL_MAX: ${DATABASE_POOL_MAX:-10}
+      DATABASE_URL: postgresql://${POSTGRES_USER:-interview_coach}:${POSTGRES_PASSWORD:-interview_coach}@database:5432/${POSTGRES_DB:-interview_coach}
       LANGSMITH_API_KEY: ${LANGSMITH_API_KEY:-}
       LANGSMITH_PROJECT: ${LANGSMITH_PROJECT:-ai-interview-coach}
       LANGSMITH_TRACING: ${LANGSMITH_TRACING:-false}
       OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      PROVIDER_ENCRYPTION_KEY: ${PROVIDER_ENCRYPTION_KEY:-}
+      SESSION_COOKIE_SECURE: ${SESSION_COOKIE_SECURE:-false}
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
     read_only: true
     tmpfs:
       - /tmp:size=64m,mode=1777
@@ -37,3 +80,6 @@ services:
       timeout: 5s
       start_period: 10s
       retries: 3
+
+volumes:
+  interview-coach-data:

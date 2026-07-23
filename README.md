@@ -12,10 +12,11 @@ difficulty, redirects rambling answers, scores observable evidence, and produces
 a recruiter-style report. The current vertical slice is deliberately usable
 without an API key and supports an optional bring-your-own OpenAI key.
 
-> Project status: **alpha foundation**. The text interview, adaptive scoring
-> loop, and report are implemented. Production voice-to-voice interruption,
-> durable accounts, calibrated pronunciation scoring, and hiring-grade
-> validation remain roadmap items. See the [PRD](docs/PRD.md) and
+> Project status: **durable alpha**. Adaptive interviews now persist in
+> PostgreSQL, survive restarts, resume safely, and support export and verified
+> deletion. Production voice-to-voice interruption, registered accounts,
+> calibrated pronunciation scoring, and hiring-grade validation remain roadmap
+> items. See the [PRD](docs/PRD.md) and
 > [roadmap](docs/ROADMAP.md).
 
 ## Why this is different
@@ -34,8 +35,8 @@ without an API key and supports an optional bring-your-own OpenAI key.
 - Zod contracts shared across UI, API, and engine
 - pnpm workspaces and Turborepo
 - Vitest for deterministic engine tests
-- PostgreSQL and the LangGraph Postgres checkpointer are the planned durable
-  runtime; they are not required for the current local demo
+- PostgreSQL repositories, SQL migrations, and LangGraph Postgres checkpoints
+- Playwright browser journeys and Vitest unit/integration suites
 
 ## Quick start
 
@@ -54,22 +55,23 @@ Open [http://localhost:3000](http://localhost:3000) and choose **Local demo**.
 No API key is required.
 
 To use model-backed evaluation, select **OpenAI** in the setup form and provide
-your own key. The key is kept only in page memory, sent in a request header, and
-not persisted by this application. Self-hosters may instead set
-`OPENAI_API_KEY` in a server-only environment.
+your own key. The key is tab-scoped by default, sent in a request header, and
+not persisted. Self-hosters may instead set `OPENAI_API_KEY` in a server-only
+environment or explicitly enable encrypted per-user connections.
 
 ## Run with Docker
 
-Docker is the simplest way to boot the complete current application. No local
-Node.js installation or API key is required:
+Docker is the simplest way to boot the complete application. No local Node.js
+installation or API key is required:
 
 ```bash
 docker compose up --build --detach --wait
 ```
 
 Open [http://localhost:3000](http://localhost:3000). The command builds the
-production image, starts the service, and waits for `/api/health` to become
-healthy.
+production images, starts PostgreSQL, applies idempotent migrations, starts the
+web service, and waits for `/api/health` to report a database-backed healthy
+state. The named database volume survives `docker compose down`.
 
 Useful operations:
 
@@ -78,13 +80,17 @@ docker compose logs --follow web
 docker compose down
 ```
 
-To use a different host port or a server-managed provider key, create an
-untracked `.env` file:
+To use a different host port or provider integration, create an untracked
+`.env` file:
 
 ```dotenv
 PORT=8080
 OPENAI_API_KEY=your-key
+PROVIDER_ENCRYPTION_KEY=base64-encoded-32-byte-key
 ```
+
+Generate the optional storage key with `openssl rand -base64 32`. Keep it in a
+secret manager; losing it makes stored provider connections unreadable.
 
 Then run the same `docker compose up --build --detach --wait` command and open
 `http://localhost:8080`.
@@ -96,6 +102,8 @@ The runtime container:
 - uses a read-only filesystem with an isolated temporary directory;
 - includes only Next.js standalone production output;
 - exposes a Docker health check.
+- stores interview state and LangGraph checkpoints in PostgreSQL;
+- runs migrations as a one-shot service before the web container starts.
 
 ## Repository map
 
@@ -104,7 +112,10 @@ apps/
   web/                  Next.js product UI and API boundary
 packages/
   contracts/            Shared Zod schemas and TypeScript types
+  database/             Tenant-scoped repositories, migrations, checkpointer
   interview-engine/     LangGraph orchestration, scoring, report logic
+evaluation/
+  alpha-v1.json         Public deterministic regression fixtures
 docs/
   PRD.md                Detailed product requirements
   ARCHITECTURE.md       Runtime design and security boundaries
@@ -117,6 +128,7 @@ docs/
 pnpm lint
 pnpm typecheck
 pnpm test
+pnpm test:e2e
 pnpm build
 pnpm check
 ```
