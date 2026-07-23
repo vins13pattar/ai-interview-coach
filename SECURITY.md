@@ -28,7 +28,14 @@ before public disclosure.
 ## Security boundaries
 
 - Browser-provided API keys are visible to the backend that forwards them.
-- The alpha is not ready for sensitive hiring data or untrusted multi-tenancy.
+- Durable objects are tenant- and user-scoped behind an opaque, hashed guest
+  session cookie. A production identity provider and account recovery are not
+  implemented.
+- Stored provider connections are optional, encrypted with AES-256-GCM, and
+  unavailable unless the operator supplies `PROVIDER_ENCRYPTION_KEY`.
+- Origin validation and a required client header protect mutation routes;
+  internet-facing deployments still require TLS, rate limiting, and edge abuse
+  controls.
 - Browser speech recognition may use a browser vendor service.
 - Do not deploy the alpha as an autonomous employment decision system.
 

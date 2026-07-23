@@ -1,0 +1,69 @@
+{
+  "datasetVersion": "alpha-v1",
+  "rubricVersion": "alpha-v1",
+  "cases": [
+    {
+      "id": "concrete-system-design",
+      "description": "A structured answer with technical trade-offs and a measured result.",
+      "turn": {
+        "questionId": "eval-q-1",
+        "question": "How did you design the service?",
+        "answer": "First, I measured API latency and database throughput. We added an index and cache, tested failure retries, and reduced p95 latency by 42 percent. The main trade-off was extra state, so we added observability and an idempotent rebuild path.",
+        "role": "Backend Engineer",
+        "seniority": "Senior",
+        "focusAreas": ["distributed systems"],
+        "difficulty": "intermediate",
+        "provider": "demo",
+        "turnNumber": 1
+      },
+      "expected": {
+        "confidence": { "min": 65, "max": 100 },
+        "communication": { "min": 65, "max": 100 },
+        "technicalDepth": { "min": 70, "max": 100 },
+        "shouldInterrupt": false
+      }
+    },
+    {
+      "id": "unsupported-generalities",
+      "description": "A short generic answer without evidence or design detail.",
+      "turn": {
+        "questionId": "eval-q-2",
+        "question": "How did you design the service?",
+        "answer": "I worked with the team and made sure the solution was good for everyone. We discussed it and then implemented the best option.",
+        "role": "Backend Engineer",
+        "seniority": "Senior",
+        "focusAreas": ["distributed systems"],
+        "difficulty": "intermediate",
+        "provider": "demo",
+        "turnNumber": 1
+      },
+      "expected": {
+        "confidence": { "min": 45, "max": 70 },
+        "communication": { "min": 40, "max": 65 },
+        "technicalDepth": { "min": 35, "max": 55 },
+        "shouldInterrupt": false
+      }
+    },
+    {
+      "id": "filler-heavy-ramble",
+      "description": "A long, repetitive answer that should trigger a redirect.",
+      "turn": {
+        "questionId": "eval-q-3",
+        "question": "What trade-off did you make?",
+        "answer": "Um, basically, I think we started by talking about the service and, you know, there were many things involved. Like, the team had ideas and actually we discussed those ideas for a while. Um, I was involved and, you know, people asked questions. Basically, we had meetings and sort of considered what might happen. Like, there were different opinions and actually each opinion had some merit. Um, after that we continued talking, and you know, we eventually selected an approach. Basically, it worked in the end. Like, the stakeholders were there and actually they listened. Um, I remember that the work took some time and, you know, the team kept making progress. Sort of, the main thing was collaboration. Basically, everyone participated and like we communicated often. Um, that is how we made the decision, and actually I think it was a good experience for the team overall.",
+        "role": "Backend Engineer",
+        "seniority": "Senior",
+        "focusAreas": ["distributed systems"],
+        "difficulty": "intermediate",
+        "provider": "demo",
+        "turnNumber": 1
+      },
+      "expected": {
+        "confidence": { "min": 0, "max": 55 },
+        "communication": { "min": 0, "max": 45 },
+        "technicalDepth": { "min": 35, "max": 55 },
+        "shouldInterrupt": true
+      }
+    }
+  ]
+}

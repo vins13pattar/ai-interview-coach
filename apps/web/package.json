@@ -7,11 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --max-warnings=0",
-    "test": "vitest run --passWithNoTests",
+    "test": "vitest run --passWithNoTests --exclude 'e2e/**'",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@interview-coach/contracts": "workspace:*",
+    "@interview-coach/database": "workspace:*",
     "@interview-coach/interview-engine": "workspace:*",
     "next": "16.2.11",
     "react": "19.2.4",
