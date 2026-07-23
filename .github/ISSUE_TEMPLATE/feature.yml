@@ -1,0 +1,25 @@
+name: Feature request
+description: Propose a user-facing or contributor-facing improvement.
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: User problem
+      description: Who has this problem and what outcome do they need?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+    validations:
+      required: true
+  - type: textarea
+    id: safety
+    attributes:
+      label: Privacy, fairness, and security impact
+      description: Explain impact or state why it is not applicable.
+    validations:
+      required: true

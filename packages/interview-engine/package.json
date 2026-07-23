@@ -1,0 +1,28 @@
+{
+  "name": "@interview-coach/interview-engine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "build": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@interview-coach/contracts": "workspace:*",
+    "@langchain/core": "^1.2.3",
+    "@langchain/langgraph": "^1.4.8",
+    "@langchain/openai": "^1.5.5",
+    "langchain": "^1.5.3",
+    "langsmith": "^0.4.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  }
+}

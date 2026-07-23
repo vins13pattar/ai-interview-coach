@@ -1,0 +1,11 @@
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Generated and dependency directories are excluded from source scans."
+paths = [
+  '''(^|/)node_modules/''',
+  '''(^|/)\.next/''',
+  '''(^|/)\.turbo/''',
+  '''(^|/)coverage/''',
+]
