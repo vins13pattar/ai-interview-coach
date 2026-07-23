@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Interview Coach is an open-source, adaptive AI interview practice platform with evidence-backed scoring and recruiter-style reports."
+    />
+    <meta name="theme-color" content="#f2efe6" />
+    <meta
+      property="og:title"
+      content="Interview Coach — The interview that listens back"
+    />
+    <meta
+      property="og:description"
+      content="Natural, adaptive interview practice with evidence-backed scoring. Self-host it, bring your own API keys, and inspect every decision."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://vinodspattar.in/ai-interview-coach/"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>Interview Coach — Open-source adaptive interview practice</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header">
+      <a class="wordmark" href="#top" aria-label="Interview Coach home">
+        <span class="wordmark-mark" aria-hidden="true"></span>
+        <span>Interview Coach</span>
+      </a>
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="primary-navigation"
+      >
+        <span>Menu</span>
+        <i aria-hidden="true"></i>
+      </button>
+      <nav id="primary-navigation" aria-label="Primary navigation">
+        <a href="#difference">Why it works</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#documentation">Documentation</a>
+        <a
+          class="nav-github"
+          href="https://github.com/vins13pattar/ai-interview-coach"
+        >
+          GitHub <span aria-hidden="true">↗</span>
+        </a>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <section class="hero" id="top">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">
+            <span aria-hidden="true">●</span>
+            Open source · Adaptive · Evidence-backed
+          </p>
+          <h1>
+            The interview
+            <em>that listens back.</em>
+          </h1>
+          <p class="hero-lede">
+            A production-minded AI interview coach that follows the answer—not a
+            script. It challenges assumptions, changes difficulty, and turns
+            observable evidence into feedback a serious recruiter could use.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-dark" href="#quick-start">
+              Run it locally <span aria-hidden="true">↘</span>
+            </a>
+            <a class="underlined-link" href="#documentation"
+              >Read the specification</a
+            >
+          </div>
+          <ul class="hero-facts" aria-label="Project facts">
+            <li><strong>100%</strong><span>TypeScript orchestration</span></li>
+            <li><strong>0</strong><span>keys required for demo mode</span></li>
+            <li>
+              <strong>BYOK</strong><span>for model-backed evaluation</span>
+            </li>
+          </ul>
+        </div>
+
+        <div
+          class="interview-signal reveal reveal-late"
+          aria-label="Example adaptive interview"
+        >
+          <div class="signal-header">
+            <span class="live-label"
+              ><i aria-hidden="true"></i> Live interview</span
+            >
+            <span>07:42</span>
+          </div>
+          <p class="signal-role">Principal engineer · Systems design</p>
+          <blockquote>
+            “Why choose an event stream here instead of a simpler queue?”
+          </blockquote>
+          <div class="waveform" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i
+            ><i></i> <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i
+            ><i></i><i></i> <i></i><i></i><i></i><i></i><i></i><i></i><i></i
+            ><i></i><i></i><i></i>
+          </div>
+          <div class="signal-change">
+            <span>Difficulty changed</span>
+            <strong>Advanced ↑</strong>
+          </div>
+          <div class="coach-interrupt">
+            <span>Coach interruption</span>
+            <p>Pause there. What failed first under load?</p>
+          </div>
+          <span class="signal-stamp" aria-hidden="true"
+            >adaptive<br />not scripted</span
+          >
+        </div>
+      </section>
+
+      <section class="manifesto" aria-label="Product principles">
+        <p>Not a question playlist.</p>
+        <p>Not a keyword counter.</p>
+        <p>Not a black-box score.</p>
+      </section>
+
+      <section class="difference section" id="difference">
+        <div class="section-heading reveal">
+          <p class="eyebrow">A better signal</p>
+          <h2>Every score needs receipts.</h2>
+          <p>
+            The coach separates what can be observed from what cannot. Every
+            assessment points back to an answer, and text-only sessions never
+            invent a pronunciation score.
+          </p>
+        </div>
+        <div class="score-grid">
+          <article class="score-card reveal">
+            <span>01</span>
+            <h3>Confidence</h3>
+            <p>How decisively choices, assumptions, and outcomes are framed.</p>
+          </article>
+          <article class="score-card reveal">
+            <span>02</span>
+            <h3>Communication</h3>
+            <p>
+              Structure, clarity, relevance, concision, and audience awareness.
+            </p>
+          </article>
+          <article class="score-card reveal">
+            <span>03</span>
+            <h3>Technical depth</h3>
+            <p>
+              Reasoning, constraints, trade-offs, failure modes, and evidence.
+            </p>
+          </article>
+          <article class="score-card score-card-accent reveal">
+            <span>04</span>
+            <h3>Pronunciation</h3>
+            <p>
+              Only evaluated when acoustic evidence is available. Never
+              fabricated.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="architecture section" id="architecture">
+        <div class="architecture-copy reveal">
+          <p class="eyebrow">Inspectable by design</p>
+          <h2>One typed contract. Browser to graph to report.</h2>
+          <p>
+            LangGraph.js owns the adaptive turn loop. Shared Zod contracts keep
+            the interface honest. Provider-specific behavior stays behind
+            evaluator adapters, so local development and CI remain keyless.
+          </p>
+          <a
+            class="underlined-link"
+            href="https://github.com/vins13pattar/ai-interview-coach/blob/main/docs/ARCHITECTURE.md"
+          >
+            Explore the architecture <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <div class="system-map reveal" aria-label="System architecture flow">
+          <div class="map-row map-row-top">
+            <span>Browser UI</span>
+            <i aria-hidden="true">→</i>
+            <span>Next.js API</span>
+            <i aria-hidden="true">→</i>
+            <span class="map-primary">LangGraph.js</span>
+          </div>
+          <div class="map-branch" aria-hidden="true"></div>
+          <div class="map-row map-row-bottom">
+            <span>Local evaluator</span>
+            <span>OpenAI adapter</span>
+            <span>Evidence report</span>
+          </div>
+          <div class="map-note">
+            <strong>Keys stay out of graph state.</strong>
+            <span>Tab-scoped BYOK or server-only environment secrets.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="status section">
+        <div class="status-heading reveal">
+          <p class="eyebrow">Build in public</p>
+          <h2>An honest alpha, with production standards.</h2>
+        </div>
+        <div class="status-board reveal">
+          <div class="status-column">
+            <p class="status-label">
+              <i class="status-done" aria-hidden="true"></i> Works today
+            </p>
+            <ul>
+              <li>Five-turn adaptive interview</li>
+              <li>Deterministic keyless evaluator</li>
+              <li>Optional OpenAI evaluation</li>
+              <li>Evidence-backed dimension scores</li>
+              <li>Recruiter-style final report</li>
+              <li>One-command container runtime</li>
+            </ul>
+          </div>
+          <div class="status-column">
+            <p class="status-label">
+              <i class="status-next" aria-hidden="true"></i> Next milestones
+            </p>
+            <ul>
+              <li>Durable PostgreSQL sessions</li>
+              <li>Authentication and tenant isolation</li>
+              <li>Real-time voice and barge-in</li>
+              <li>Calibrated role packs</li>
+              <li>Bias and score-stability study</li>
+              <li>WCAG 2.2 AA audit</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="quick-start section" id="quick-start">
+        <div class="quick-copy reveal">
+          <p class="eyebrow">Your machine. Your keys.</p>
+          <h2>Boot the complete app with one command.</h2>
+          <p>
+            The production container runs as an unprivileged user with a
+            read-only filesystem, health checks, and no required API key.
+          </p>
+        </div>
+        <div class="terminal reveal" aria-label="Docker quick start command">
+          <div class="terminal-bar">
+            <span><i></i><i></i><i></i></span>
+            <span>terminal · project root</span>
+            <button class="copy-button" type="button" data-copy-command>
+              Copy
+            </button>
+          </div>
+          <pre><code><span>$</span> docker compose up --build --detach --wait</code></pre>
+          <div class="terminal-result">
+            <span class="terminal-check">✓</span>
+            <p>
+              Interview Coach is healthy<br />
+              <a href="http://localhost:3000">http://localhost:3000</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="documentation section" id="documentation">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Read before building</p>
+          <h2>The project has a point of view—and a plan.</h2>
+          <p>
+            Product boundaries, architecture decisions, risk controls, and
+            delivery gates are written down before they become code.
+          </p>
+        </div>
+        <div class="doc-list">
+          <a
+            class="doc-link reveal"
+            href="https://github.com/vins13pattar/ai-interview-coach/blob/main/docs/PRD.md"
+          >
+            <span class="doc-number">01</span>
+            <span>
+              <strong>Product requirements</strong>
+              <small
+                >Personas, journeys, requirements, scoring, safety, and success
+                metrics.</small
+              >
+            </span>
+            <i aria-hidden="true">↗</i>
+          </a>
+          <a
+            class="doc-link reveal"
+            href="https://github.com/vins13pattar/ai-interview-coach/blob/main/docs/ARCHITECTURE.md"
+          >
+            <span class="doc-number">02</span>
+            <span>
+              <strong>Architecture</strong>
+              <small
+                >System boundaries, graph design, key handling, voice, and
+                testing.</small
+              >
+            </span>
+            <i aria-hidden="true">↗</i>
+          </a>
+          <a
+            class="doc-link reveal"
+            href="https://github.com/vins13pattar/ai-interview-coach/blob/main/docs/ROADMAP.md"
+          >
+            <span class="doc-number">03</span>
+            <span>
+              <strong>Delivery roadmap</strong>
+              <small
+                >Alpha, durable sessions, real-time voice, and public-v1 exit
+                criteria.</small
+              >
+            </span>
+            <i aria-hidden="true">↗</i>
+          </a>
+          <a
+            class="doc-link reveal"
+            href="https://github.com/vins13pattar/ai-interview-coach/blob/main/docs/LICENSING.md"
+          >
+            <span class="doc-number">04</span>
+            <span>
+              <strong>Licensing decision</strong>
+              <small
+                >The current license status and options still requiring a
+                maintainer choice.</small
+              >
+            </span>
+            <i aria-hidden="true">↗</i>
+          </a>
+        </div>
+      </section>
+
+      <section class="closing">
+        <div class="closing-copy reveal">
+          <p class="eyebrow">Better practice. Better evidence.</p>
+          <h2>Help build the interview coach scripted apps promised.</h2>
+          <p>
+            Study the specification, run the alpha, and contribute a verifiable
+            slice. The repository is public; the implementation decisions are,
+            too.
+          </p>
+          <div class="hero-actions">
+            <a
+              class="button button-acid"
+              href="https://github.com/vins13pattar/ai-interview-coach"
+            >
+              View on GitHub <span aria-hidden="true">↗</span>
+            </a>
+            <a
+              class="closing-link"
+              href="https://github.com/vins13pattar/ai-interview-coach/issues"
+            >
+              Browse issues
+            </a>
+          </div>
+        </div>
+        <p class="closing-disclaimer">
+          Interview Coach is decision-support software—not an automated hiring
+          decision. Human review and candidate consent are product requirements.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wordmark">
+        <span class="wordmark-mark" aria-hidden="true"></span>
+        <span>Interview Coach</span>
+      </div>
+      <p>Built in the open with TypeScript, LangChain.js, and LangGraph.js.</p>
+      <p>© <span data-current-year>2026</span> · License decision pending</p>
+    </footer>
+  </body>
+</html>

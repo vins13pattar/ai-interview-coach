@@ -2,6 +2,11 @@
 
 An open-source foundation for natural, adaptive AI interviews.
 
+[Project website](https://vinodspattar.in/ai-interview-coach/) ·
+[Product requirements](docs/PRD.md) ·
+[Architecture](docs/ARCHITECTURE.md) ·
+[Roadmap](docs/ROADMAP.md)
+
 Candidates speak or type naturally. The interviewer follows up, changes
 difficulty, redirects rambling answers, scores observable evidence, and produces
 a recruiter-style report. The current vertical slice is deliberately usable
