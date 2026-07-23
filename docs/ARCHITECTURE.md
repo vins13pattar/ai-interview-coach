@@ -109,3 +109,22 @@ audit—not the media plane.
 - Browser: setup, five-turn interview, report, keyboard-only, reduced motion.
 - Evaluation: golden transcript dataset scored against calibrated human labels.
 - Operations: load, provider outage, database failover, backup/restore, deletion.
+
+## Container runtime
+
+The current alpha is packaged as one Next.js standalone container because it
+has no required database or queue. `compose.yaml` is the canonical local
+orchestration entry point.
+
+Runtime controls:
+
+- non-root `nextjs` user;
+- read-only root filesystem and memory-backed `/tmp`;
+- all Linux capabilities dropped;
+- `no-new-privileges`;
+- application and Docker health checks at `/api/health`;
+- provider credentials injected only through runtime environment variables.
+
+When durable sessions are implemented, PostgreSQL will become a second Compose
+service for local development. Production deployments should use a managed
+PostgreSQL service and keep database credentials outside the image.

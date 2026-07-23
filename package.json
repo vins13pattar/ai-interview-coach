@@ -9,6 +9,9 @@
   },
   "scripts": {
     "build": "turbo run build",
+    "container:down": "docker compose down",
+    "container:logs": "docker compose logs --follow web",
+    "container:up": "docker compose up --build --detach --wait",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "test": "turbo run test",

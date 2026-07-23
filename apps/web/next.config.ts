@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
 
+const developmentScriptPolicy =
+  process.env.NODE_ENV === "production" ? "" : " 'unsafe-eval'";
+
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["127.0.0.1"],
+  output: "standalone",
+  poweredByHeader: false,
   reactCompiler: true,
   transpilePackages: [
     "@interview-coach/contracts",
@@ -26,7 +31,7 @@ const nextConfig: NextConfig = {
             key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+              `script-src 'self' 'unsafe-inline'${developmentScriptPolicy}`,
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: blob:",
               "font-src 'self' data:",

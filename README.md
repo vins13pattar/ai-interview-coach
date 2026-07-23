@@ -53,6 +53,45 @@ your own key. The key is kept only in page memory, sent in a request header, and
 not persisted by this application. Self-hosters may instead set
 `OPENAI_API_KEY` in a server-only environment.
 
+## Run with Docker
+
+Docker is the simplest way to boot the complete current application. No local
+Node.js installation or API key is required:
+
+```bash
+docker compose up --build --detach --wait
+```
+
+Open [http://localhost:3000](http://localhost:3000). The command builds the
+production image, starts the service, and waits for `/api/health` to become
+healthy.
+
+Useful operations:
+
+```bash
+docker compose logs --follow web
+docker compose down
+```
+
+To use a different host port or a server-managed provider key, create an
+untracked `.env` file:
+
+```dotenv
+PORT=8080
+OPENAI_API_KEY=your-key
+```
+
+Then run the same `docker compose up --build --detach --wait` command and open
+`http://localhost:8080`.
+
+The runtime container:
+
+- runs as an unprivileged user;
+- drops Linux capabilities and prevents privilege escalation;
+- uses a read-only filesystem with an isolated temporary directory;
+- includes only Next.js standalone production output;
+- exposes a Docker health check.
+
 ## Repository map
 
 ```text

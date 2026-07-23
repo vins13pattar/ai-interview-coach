@@ -9,6 +9,33 @@ permissions:
   contents: read
 
 jobs:
+  container:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker compose config --quiet
+      - run: docker build --tag ai-interview-coach:ci .
+      - run: |
+          docker run \
+            --detach \
+            --name interview-coach-ci \
+            --publish 3000:3000 \
+            --read-only \
+            --tmpfs /tmp:size=64m,mode=1777 \
+            --cap-drop ALL \
+            --security-opt no-new-privileges:true \
+            ai-interview-coach:ci
+      - run: |
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:3000/api/health; then
+              exit 0
+            fi
+            sleep 1
+          done
+          docker logs interview-coach-ci
+          exit 1
+
   secrets:
     runs-on: ubuntu-latest
     timeout-minutes: 10
