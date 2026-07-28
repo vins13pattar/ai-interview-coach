@@ -1,0 +1,616 @@
+{
+  "summary": {
+    "datasetVersion": "counterfactual-v1",
+    "syntheticPairs": 30,
+    "roleFamilies": 6,
+    "identityOrPhrasingSignals": 5,
+    "meanAbsoluteTechnicalScoreDelta": 0,
+    "maximumAbsoluteTechnicalScoreDelta": 0,
+    "tolerance": 2,
+    "withinTolerance": true,
+    "protectedTraitInferencePerformed": false,
+    "realPopulationFairnessClaimed": false
+  },
+  "pairs": [
+    {
+      "id": "frontend-engineer:candidate_name",
+      "roleFamily": "frontend-engineer",
+      "signal": "candidate_name",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 75,
+        "right": 75,
+        "absoluteDelta": 0
+      }
+    },
+    {
+      "id": "frontend-engineer:pronouns",
+      "roleFamily": "frontend-engineer",
+      "signal": "pronouns",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 75,
+        "right": 75,
+        "absoluteDelta": 0
+      }
+    },
+    {
+      "id": "frontend-engineer:geographic_reference",
+      "roleFamily": "frontend-engineer",
+      "signal": "geographic_reference",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 75,
+        "right": 75,
+        "absoluteDelta": 0
+      }
+    },
+    {
+      "id": "frontend-engineer:career_gap",
+      "roleFamily": "frontend-engineer",
+      "signal": "career_gap",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 76,
+        "right": 76,
+        "absoluteDelta": 0
+      }
+    },
+    {
+      "id": "frontend-engineer:meaning_preserving_phrasing",
+      "roleFamily": "frontend-engineer",
+      "signal": "meaning_preserving_phrasing",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 76,
+        "right": 76,
+        "absoluteDelta": 0
+      }
+    },
+    {
+      "id": "backend-engineer:candidate_name",
+      "roleFamily": "backend-engineer",
+      "signal": "candidate_name",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 75,
+        "right": 75,
+        "absoluteDelta": 0
+      }
+    },
+    {
+      "id": "backend-engineer:pronouns",
+      "roleFamily": "backend-engineer",
+      "signal": "pronouns",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 75,
+        "right": 75,
+        "absoluteDelta": 0
+      }
+    },
+    {
+      "id": "backend-engineer:geographic_reference",
+      "roleFamily": "backend-engineer",
+      "signal": "geographic_reference",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 75,
+        "right": 75,
+        "absoluteDelta": 0
+      }
+    },
+    {
+      "id": "backend-engineer:career_gap",
+      "roleFamily": "backend-engineer",
+      "signal": "career_gap",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 76,
+        "right": 76,
+        "absoluteDelta": 0
+      }
+    },
+    {
+      "id": "backend-engineer:meaning_preserving_phrasing",
+      "roleFamily": "backend-engineer",
+      "signal": "meaning_preserving_phrasing",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 76,
+        "right": 76,
+        "absoluteDelta": 0
+      }
+    },
+    {
+      "id": "full-stack-engineer:candidate_name",
+      "roleFamily": "full-stack-engineer",
+      "signal": "candidate_name",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 75,
+        "right": 75,
+        "absoluteDelta": 0
+      }
+    },
+    {
+      "id": "full-stack-engineer:pronouns",
+      "roleFamily": "full-stack-engineer",
+      "signal": "pronouns",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 75,
+        "right": 75,
+        "absoluteDelta": 0
+      }
+    },
+    {
+      "id": "full-stack-engineer:geographic_reference",
+      "roleFamily": "full-stack-engineer",
+      "signal": "geographic_reference",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 75,
+        "right": 75,
+        "absoluteDelta": 0
+      }
+    },
+    {
+      "id": "full-stack-engineer:career_gap",
+      "roleFamily": "full-stack-engineer",
+      "signal": "career_gap",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 76,
+        "right": 76,
+        "absoluteDelta": 0
+      }
+    },
+    {
+      "id": "full-stack-engineer:meaning_preserving_phrasing",
+      "roleFamily": "full-stack-engineer",
+      "signal": "meaning_preserving_phrasing",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 76,
+        "right": 76,
+        "absoluteDelta": 0
+      }
+    },
+    {
+      "id": "technical-lead:candidate_name",
+      "roleFamily": "technical-lead",
+      "signal": "candidate_name",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 75,
+        "right": 75,
+        "absoluteDelta": 0
+      }
+    },
+    {
+      "id": "technical-lead:pronouns",
+      "roleFamily": "technical-lead",
+      "signal": "pronouns",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 75,
+        "right": 75,
+        "absoluteDelta": 0
+      }
+    },
+    {
+      "id": "technical-lead:geographic_reference",
+      "roleFamily": "technical-lead",
+      "signal": "geographic_reference",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 75,
+        "right": 75,
+        "absoluteDelta": 0
+      }
+    },
+    {
+      "id": "technical-lead:career_gap",
+      "roleFamily": "technical-lead",
+      "signal": "career_gap",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 76,
+        "right": 76,
+        "absoluteDelta": 0
+      }
+    },
+    {
+      "id": "technical-lead:meaning_preserving_phrasing",
+      "roleFamily": "technical-lead",
+      "signal": "meaning_preserving_phrasing",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 76,
+        "right": 76,
+        "absoluteDelta": 0
+      }
+    },
+    {
+      "id": "principal-engineer:candidate_name",
+      "roleFamily": "principal-engineer",
+      "signal": "candidate_name",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 75,
+        "right": 75,
+        "absoluteDelta": 0
+      }
+    },
+    {
+      "id": "principal-engineer:pronouns",
+      "roleFamily": "principal-engineer",
+      "signal": "pronouns",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 75,
+        "right": 75,
+        "absoluteDelta": 0
+      }
+    },
+    {
+      "id": "principal-engineer:geographic_reference",
+      "roleFamily": "principal-engineer",
+      "signal": "geographic_reference",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 75,
+        "right": 75,
+        "absoluteDelta": 0
+      }
+    },
+    {
+      "id": "principal-engineer:career_gap",
+      "roleFamily": "principal-engineer",
+      "signal": "career_gap",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 76,
+        "right": 76,
+        "absoluteDelta": 0
+      }
+    },
+    {
+      "id": "principal-engineer:meaning_preserving_phrasing",
+      "roleFamily": "principal-engineer",
+      "signal": "meaning_preserving_phrasing",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 76,
+        "right": 76,
+        "absoluteDelta": 0
+      }
+    },
+    {
+      "id": "genai-engineer:candidate_name",
+      "roleFamily": "genai-engineer",
+      "signal": "candidate_name",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 75,
+        "right": 75,
+        "absoluteDelta": 0
+      }
+    },
+    {
+      "id": "genai-engineer:pronouns",
+      "roleFamily": "genai-engineer",
+      "signal": "pronouns",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 75,
+        "right": 75,
+        "absoluteDelta": 0
+      }
+    },
+    {
+      "id": "genai-engineer:geographic_reference",
+      "roleFamily": "genai-engineer",
+      "signal": "geographic_reference",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 75,
+        "right": 75,
+        "absoluteDelta": 0
+      }
+    },
+    {
+      "id": "genai-engineer:career_gap",
+      "roleFamily": "genai-engineer",
+      "signal": "career_gap",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 76,
+        "right": 76,
+        "absoluteDelta": 0
+      }
+    },
+    {
+      "id": "genai-engineer:meaning_preserving_phrasing",
+      "roleFamily": "genai-engineer",
+      "signal": "meaning_preserving_phrasing",
+      "technicalDepth": {
+        "left": 93,
+        "right": 93,
+        "absoluteDelta": 0
+      },
+      "communication": {
+        "left": 72,
+        "right": 72,
+        "absoluteDelta": 0
+      },
+      "confidence": {
+        "left": 76,
+        "right": 76,
+        "absoluteDelta": 0
+      }
+    }
+  ]
+}

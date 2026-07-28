@@ -1,8 +1,12 @@
+import {
+  AnswerEvaluationSchema,
+  InterviewTurnSchema,
+} from "@interview-coach/contracts";
 import { describe, expect, it } from "vitest";
 
 import { buildNextQuestion } from "./questions";
 
-const evaluation = {
+const evaluation = AnswerEvaluationSchema.parse({
   scores: {
     confidence: 75,
     pronunciation: null,
@@ -15,12 +19,12 @@ const evaluation = {
   shouldInterrupt: false,
   interruptionReason: null,
   demonstratedConcepts: [],
-};
+});
 
 describe("adaptive question copy", () => {
   it("uses a leadership-specific frame", () => {
     const question = buildNextQuestion(
-      {
+      InterviewTurnSchema.parse({
         questionId: "q-2",
         question: "Prior question",
         answer: "Prior answer",
@@ -30,7 +34,7 @@ describe("adaptive question copy", () => {
         difficulty: "advanced",
         provider: "demo",
         turnNumber: 1,
-      },
+      }),
       evaluation,
       "advanced",
     );
@@ -41,7 +45,7 @@ describe("adaptive question copy", () => {
 
   it("does not repeat system in technical prompts", () => {
     const question = buildNextQuestion(
-      {
+      InterviewTurnSchema.parse({
         questionId: "q-5",
         question: "Prior question",
         answer: "Prior answer",
@@ -51,7 +55,7 @@ describe("adaptive question copy", () => {
         difficulty: "advanced",
         provider: "demo",
         turnNumber: 2,
-      },
+      }),
       evaluation,
       "advanced",
     );

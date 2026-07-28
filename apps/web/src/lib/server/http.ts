@@ -72,6 +72,14 @@ export function apiError(error: unknown): NextResponse {
         503,
         "The provider encryption key is invalid.",
       ],
+      VOICE_PROVIDER_NOT_SUPPORTED: [
+        409,
+        "Live voice is currently available only for OpenAI interview sessions.",
+      ],
+      VOICE_TOKEN_RATE_LIMITED: [
+        429,
+        "Too many live voice connection attempts. Wait a minute and retry.",
+      ],
     };
     const known = knownErrors[error.message];
     if (known) {

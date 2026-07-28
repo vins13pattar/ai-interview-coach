@@ -1,0 +1,67 @@
+{
+  "matchedCases": 156,
+  "dimensions": {
+    "confidence": {
+      "meanAbsoluteError": 17.8462,
+      "spearman": 0.7856,
+      "weightedKappa": 0.1382,
+      "overScoringRate": 0.6923,
+      "underScoringRate": 0.1538
+    },
+    "communication": {
+      "meanAbsoluteError": 16,
+      "spearman": 0.3973,
+      "weightedKappa": 0.1076,
+      "overScoringRate": 0.4231,
+      "underScoringRate": 0.4231
+    },
+    "technicalDepth": {
+      "meanAbsoluteError": 14.7692,
+      "spearman": 0.6998,
+      "weightedKappa": 0.4267,
+      "overScoringRate": 0.6923,
+      "underScoringRate": 0.1923
+    }
+  },
+  "evidencePrecision": 0.0577,
+  "evidenceRecall": 0.1154,
+  "followUpAgreement": 0.3462,
+  "slices": [
+    {
+      "roleFamily": "frontend-engineer",
+      "cases": 26,
+      "meanAbsoluteError": 16.2051,
+      "followUpAgreement": 0.3462
+    },
+    {
+      "roleFamily": "backend-engineer",
+      "cases": 26,
+      "meanAbsoluteError": 16.2051,
+      "followUpAgreement": 0.3462
+    },
+    {
+      "roleFamily": "full-stack-engineer",
+      "cases": 26,
+      "meanAbsoluteError": 16.2051,
+      "followUpAgreement": 0.3462
+    },
+    {
+      "roleFamily": "technical-lead",
+      "cases": 26,
+      "meanAbsoluteError": 16.2051,
+      "followUpAgreement": 0.3462
+    },
+    {
+      "roleFamily": "principal-engineer",
+      "cases": 26,
+      "meanAbsoluteError": 16.2051,
+      "followUpAgreement": 0.3462
+    },
+    {
+      "roleFamily": "genai-engineer",
+      "cases": 26,
+      "meanAbsoluteError": 16.2051,
+      "followUpAgreement": 0.3462
+    }
+  ]
+}

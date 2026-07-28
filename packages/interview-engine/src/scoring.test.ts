@@ -1,3 +1,7 @@
+import {
+  AnswerEvaluationSchema,
+  InterviewTurnSchema,
+} from "@interview-coach/contracts";
 import { describe, expect, it } from "vitest";
 
 import { adaptDifficulty, evaluateDeterministically } from "./scoring";
@@ -15,11 +19,13 @@ const baseTurn = {
 
 describe("deterministic evaluation", () => {
   it("rewards concrete technical evidence", () => {
-    const evaluation = evaluateDeterministically({
-      ...baseTurn,
-      answer:
-        "First, I measured API latency and database throughput. We added an index and cache, tested failure retries, and reduced p95 latency by 42 percent.",
-    });
+    const evaluation = evaluateDeterministically(
+      InterviewTurnSchema.parse({
+        ...baseTurn,
+        answer:
+          "First, I measured API latency and database throughput. We added an index and cache, tested failure retries, and reduced p95 latency by 42 percent.",
+      }),
+    );
 
     expect(evaluation.scores.technicalDepth).toBeGreaterThan(65);
     expect(evaluation.scores.communication).toBeGreaterThan(60);
@@ -28,20 +34,23 @@ describe("deterministic evaluation", () => {
 
   it("adapts upward only with a strong aggregate signal", () => {
     expect(
-      adaptDifficulty("intermediate", {
-        scores: {
-          confidence: 88,
-          pronunciation: null,
-          communication: 90,
-          technicalDepth: 91,
-        },
-        evidence: ["Strong"],
-        strengths: [],
-        improvements: [],
-        shouldInterrupt: false,
-        interruptionReason: null,
-        demonstratedConcepts: [],
-      }),
+      adaptDifficulty(
+        "intermediate",
+        AnswerEvaluationSchema.parse({
+          scores: {
+            confidence: 88,
+            pronunciation: null,
+            communication: 90,
+            technicalDepth: 91,
+          },
+          evidence: ["Strong"],
+          strengths: [],
+          improvements: [],
+          shouldInterrupt: false,
+          interruptionReason: null,
+          demonstratedConcepts: [],
+        }),
+      ),
     ).toBe("advanced");
   });
 });

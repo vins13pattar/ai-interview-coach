@@ -12,6 +12,7 @@ const nextConfig: NextConfig = {
     "@interview-coach/contracts",
     "@interview-coach/database",
     "@interview-coach/interview-engine",
+    "@interview-coach/voice",
   ],
   async headers() {
     return [

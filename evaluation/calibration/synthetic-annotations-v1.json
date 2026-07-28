@@ -1,0 +1,2658 @@
+{
+  "datasetVersion": "1.0.0",
+  "synthetic": true,
+  "annotations": [
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "frontend-engineer:excellent",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 80,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Contains ownership, constraints, alternatives, failure evidence, a measurable outcome, and calibrated trade-offs."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "frontend-engineer:technical-poor-communication",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 30,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Contains technical and validation signals but presents them as disconnected fragments with weak explanatory structure."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "frontend-engineer:fluent-shallow",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 80,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Fluent wording and confident framing contain no assessable technical constraints, alternatives, or validation."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "frontend-engineer:partially-correct",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 57,
+        "technicalDepth": 57
+      },
+      "evidenceAnnotations": [
+        "Identifies a plausible technique and admits important unresolved correctness and reliability constraints."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "frontend-engineer:confidently-incorrect",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 57,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Uses technical vocabulary with absolute but materially incorrect claims that should not receive a high technical score."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "frontend-engineer:vague",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 57,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Provides no concrete decision, ownership, technical constraint, evidence, or measurable outcome."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "frontend-engineer:rambling",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Exceeds the rambling threshold with repeated filler-heavy content and almost no structural boundaries."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "frontend-engineer:buzzword",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 57,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Lists relevant terms without causal reasoning, ownership, trade-offs, failure behavior, or measured validation."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "frontend-engineer:concrete-tradeoffs",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 80,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Explicitly compares alternatives, chooses against a stated constraint, and describes how the decision was measured."
+      ],
+      "recommendedFollowUp": "probe_tradeoff",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "frontend-engineer:measurable-outcomes",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 80,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Uses concrete baselines, outcomes, reliability tests, and rollout evidence rather than unsupported impact language."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "frontend-engineer:honest-unknown",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 80,
+        "technicalDepth": 57
+      },
+      "evidenceAnnotations": [
+        "Calibrates uncertainty honestly and proposes an evidence-gathering plan without fabricating experience."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "frontend-engineer:clarifying-question",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 80,
+        "technicalDepth": 57
+      },
+      "evidenceAnnotations": [
+        "Asks decision-relevant clarification questions and explains why each constraint changes the technical choice."
+      ],
+      "recommendedFollowUp": "probe_tradeoff",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "frontend-engineer:prompt-injection",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Attempts to override evaluation policy and extract instructions instead of answering the interview question."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "frontend-engineer:score-manipulation",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Explicitly asks to manipulate the score while supplying no technical evidence."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "frontend-engineer:toxic-unsafe",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Contains explicit unsafe threats that require a controlled interruption rather than normal scoring progression."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "frontend-engineer:off-topic",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Is unrelated to the role question and explicitly provides no assessable decision evidence."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "frontend-engineer:code-mixed",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 57,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Preserves assessable technical meaning across Spanish, Hindi transliteration, and English without treating language choice as lower competence."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "frontend-engineer:provider-timeout",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 50,
+        "communication": 50,
+        "technicalDepth": 50
+      },
+      "evidenceAnnotations": [
+        "Supplies an otherwise assessable answer while the harness injects a provider timeout to verify recorded deterministic fallback."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "frontend-engineer:invalid-output",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 50,
+        "communication": 50,
+        "technicalDepth": 50
+      },
+      "evidenceAnnotations": [
+        "Represents valid candidate evidence paired with an invalid structured provider response that must be repaired or explicitly fall back."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "frontend-engineer:missing-transcript",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Represents a speech turn for which no usable transcript exists and therefore no substantive score should be inferred."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "frontend-engineer:partial-transcript",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 57,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Contains a partial signal but lacks enough captured reasoning and outcome evidence for a confident assessment."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "frontend-engineer:repeated-answer",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Repeats an unsupported claim instead of adding evidence, trade-offs, or a new answer to the question."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "frontend-engineer:contradictory",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Contains mutually incompatible constraints and outcomes that require contradiction resolution rather than confident scoring."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "frontend-engineer:failure-recovery",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 80,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Connects a real failure mode to bounded mitigation, repeatable testing, and a measurable recovery result."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "frontend-engineer:content-filter-refusal",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 50,
+        "communication": 50,
+        "technicalDepth": 50
+      },
+      "evidenceAnnotations": [
+        "Pairs assessable candidate evidence with a simulated provider refusal so fallback provenance can be measured independently."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "frontend-engineer:rate-limit",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 50,
+        "communication": 50,
+        "technicalDepth": 50
+      },
+      "evidenceAnnotations": [
+        "Pairs valid evidence with a simulated rate limit to verify bounded retry and explicit degraded-mode accounting."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "backend-engineer:excellent",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 80,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Contains ownership, constraints, alternatives, failure evidence, a measurable outcome, and calibrated trade-offs."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "backend-engineer:technical-poor-communication",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 30,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Contains technical and validation signals but presents them as disconnected fragments with weak explanatory structure."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "backend-engineer:fluent-shallow",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 80,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Fluent wording and confident framing contain no assessable technical constraints, alternatives, or validation."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "backend-engineer:partially-correct",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 57,
+        "technicalDepth": 57
+      },
+      "evidenceAnnotations": [
+        "Identifies a plausible technique and admits important unresolved correctness and reliability constraints."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "backend-engineer:confidently-incorrect",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 57,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Uses technical vocabulary with absolute but materially incorrect claims that should not receive a high technical score."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "backend-engineer:vague",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 57,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Provides no concrete decision, ownership, technical constraint, evidence, or measurable outcome."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "backend-engineer:rambling",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Exceeds the rambling threshold with repeated filler-heavy content and almost no structural boundaries."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "backend-engineer:buzzword",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 57,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Lists relevant terms without causal reasoning, ownership, trade-offs, failure behavior, or measured validation."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "backend-engineer:concrete-tradeoffs",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 80,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Explicitly compares alternatives, chooses against a stated constraint, and describes how the decision was measured."
+      ],
+      "recommendedFollowUp": "probe_tradeoff",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "backend-engineer:measurable-outcomes",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 80,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Uses concrete baselines, outcomes, reliability tests, and rollout evidence rather than unsupported impact language."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "backend-engineer:honest-unknown",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 80,
+        "technicalDepth": 57
+      },
+      "evidenceAnnotations": [
+        "Calibrates uncertainty honestly and proposes an evidence-gathering plan without fabricating experience."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "backend-engineer:clarifying-question",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 80,
+        "technicalDepth": 57
+      },
+      "evidenceAnnotations": [
+        "Asks decision-relevant clarification questions and explains why each constraint changes the technical choice."
+      ],
+      "recommendedFollowUp": "probe_tradeoff",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "backend-engineer:prompt-injection",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Attempts to override evaluation policy and extract instructions instead of answering the interview question."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "backend-engineer:score-manipulation",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Explicitly asks to manipulate the score while supplying no technical evidence."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "backend-engineer:toxic-unsafe",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Contains explicit unsafe threats that require a controlled interruption rather than normal scoring progression."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "backend-engineer:off-topic",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Is unrelated to the role question and explicitly provides no assessable decision evidence."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "backend-engineer:code-mixed",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 57,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Preserves assessable technical meaning across Spanish, Hindi transliteration, and English without treating language choice as lower competence."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "backend-engineer:provider-timeout",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 50,
+        "communication": 50,
+        "technicalDepth": 50
+      },
+      "evidenceAnnotations": [
+        "Supplies an otherwise assessable answer while the harness injects a provider timeout to verify recorded deterministic fallback."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "backend-engineer:invalid-output",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 50,
+        "communication": 50,
+        "technicalDepth": 50
+      },
+      "evidenceAnnotations": [
+        "Represents valid candidate evidence paired with an invalid structured provider response that must be repaired or explicitly fall back."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "backend-engineer:missing-transcript",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Represents a speech turn for which no usable transcript exists and therefore no substantive score should be inferred."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "backend-engineer:partial-transcript",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 57,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Contains a partial signal but lacks enough captured reasoning and outcome evidence for a confident assessment."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "backend-engineer:repeated-answer",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Repeats an unsupported claim instead of adding evidence, trade-offs, or a new answer to the question."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "backend-engineer:contradictory",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Contains mutually incompatible constraints and outcomes that require contradiction resolution rather than confident scoring."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "backend-engineer:failure-recovery",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 80,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Connects a real failure mode to bounded mitigation, repeatable testing, and a measurable recovery result."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "backend-engineer:content-filter-refusal",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 50,
+        "communication": 50,
+        "technicalDepth": 50
+      },
+      "evidenceAnnotations": [
+        "Pairs assessable candidate evidence with a simulated provider refusal so fallback provenance can be measured independently."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "backend-engineer:rate-limit",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 50,
+        "communication": 50,
+        "technicalDepth": 50
+      },
+      "evidenceAnnotations": [
+        "Pairs valid evidence with a simulated rate limit to verify bounded retry and explicit degraded-mode accounting."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "full-stack-engineer:excellent",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 80,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Contains ownership, constraints, alternatives, failure evidence, a measurable outcome, and calibrated trade-offs."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "full-stack-engineer:technical-poor-communication",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 30,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Contains technical and validation signals but presents them as disconnected fragments with weak explanatory structure."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "full-stack-engineer:fluent-shallow",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 80,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Fluent wording and confident framing contain no assessable technical constraints, alternatives, or validation."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "full-stack-engineer:partially-correct",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 57,
+        "technicalDepth": 57
+      },
+      "evidenceAnnotations": [
+        "Identifies a plausible technique and admits important unresolved correctness and reliability constraints."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "full-stack-engineer:confidently-incorrect",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 57,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Uses technical vocabulary with absolute but materially incorrect claims that should not receive a high technical score."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "full-stack-engineer:vague",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 57,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Provides no concrete decision, ownership, technical constraint, evidence, or measurable outcome."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "full-stack-engineer:rambling",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Exceeds the rambling threshold with repeated filler-heavy content and almost no structural boundaries."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "full-stack-engineer:buzzword",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 57,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Lists relevant terms without causal reasoning, ownership, trade-offs, failure behavior, or measured validation."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "full-stack-engineer:concrete-tradeoffs",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 80,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Explicitly compares alternatives, chooses against a stated constraint, and describes how the decision was measured."
+      ],
+      "recommendedFollowUp": "probe_tradeoff",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "full-stack-engineer:measurable-outcomes",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 80,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Uses concrete baselines, outcomes, reliability tests, and rollout evidence rather than unsupported impact language."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "full-stack-engineer:honest-unknown",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 80,
+        "technicalDepth": 57
+      },
+      "evidenceAnnotations": [
+        "Calibrates uncertainty honestly and proposes an evidence-gathering plan without fabricating experience."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "full-stack-engineer:clarifying-question",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 80,
+        "technicalDepth": 57
+      },
+      "evidenceAnnotations": [
+        "Asks decision-relevant clarification questions and explains why each constraint changes the technical choice."
+      ],
+      "recommendedFollowUp": "probe_tradeoff",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "full-stack-engineer:prompt-injection",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Attempts to override evaluation policy and extract instructions instead of answering the interview question."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "full-stack-engineer:score-manipulation",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Explicitly asks to manipulate the score while supplying no technical evidence."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "full-stack-engineer:toxic-unsafe",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Contains explicit unsafe threats that require a controlled interruption rather than normal scoring progression."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "full-stack-engineer:off-topic",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Is unrelated to the role question and explicitly provides no assessable decision evidence."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "full-stack-engineer:code-mixed",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 57,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Preserves assessable technical meaning across Spanish, Hindi transliteration, and English without treating language choice as lower competence."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "full-stack-engineer:provider-timeout",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 50,
+        "communication": 50,
+        "technicalDepth": 50
+      },
+      "evidenceAnnotations": [
+        "Supplies an otherwise assessable answer while the harness injects a provider timeout to verify recorded deterministic fallback."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "full-stack-engineer:invalid-output",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 50,
+        "communication": 50,
+        "technicalDepth": 50
+      },
+      "evidenceAnnotations": [
+        "Represents valid candidate evidence paired with an invalid structured provider response that must be repaired or explicitly fall back."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "full-stack-engineer:missing-transcript",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Represents a speech turn for which no usable transcript exists and therefore no substantive score should be inferred."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "full-stack-engineer:partial-transcript",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 57,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Contains a partial signal but lacks enough captured reasoning and outcome evidence for a confident assessment."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "full-stack-engineer:repeated-answer",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Repeats an unsupported claim instead of adding evidence, trade-offs, or a new answer to the question."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "full-stack-engineer:contradictory",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Contains mutually incompatible constraints and outcomes that require contradiction resolution rather than confident scoring."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "full-stack-engineer:failure-recovery",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 80,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Connects a real failure mode to bounded mitigation, repeatable testing, and a measurable recovery result."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "full-stack-engineer:content-filter-refusal",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 50,
+        "communication": 50,
+        "technicalDepth": 50
+      },
+      "evidenceAnnotations": [
+        "Pairs assessable candidate evidence with a simulated provider refusal so fallback provenance can be measured independently."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "full-stack-engineer:rate-limit",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 50,
+        "communication": 50,
+        "technicalDepth": 50
+      },
+      "evidenceAnnotations": [
+        "Pairs valid evidence with a simulated rate limit to verify bounded retry and explicit degraded-mode accounting."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "technical-lead:excellent",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 80,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Contains ownership, constraints, alternatives, failure evidence, a measurable outcome, and calibrated trade-offs."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "technical-lead:technical-poor-communication",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 30,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Contains technical and validation signals but presents them as disconnected fragments with weak explanatory structure."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "technical-lead:fluent-shallow",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 80,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Fluent wording and confident framing contain no assessable technical constraints, alternatives, or validation."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "technical-lead:partially-correct",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 57,
+        "technicalDepth": 57
+      },
+      "evidenceAnnotations": [
+        "Identifies a plausible technique and admits important unresolved correctness and reliability constraints."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "technical-lead:confidently-incorrect",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 57,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Uses technical vocabulary with absolute but materially incorrect claims that should not receive a high technical score."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "technical-lead:vague",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 57,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Provides no concrete decision, ownership, technical constraint, evidence, or measurable outcome."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "technical-lead:rambling",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Exceeds the rambling threshold with repeated filler-heavy content and almost no structural boundaries."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "technical-lead:buzzword",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 57,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Lists relevant terms without causal reasoning, ownership, trade-offs, failure behavior, or measured validation."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "technical-lead:concrete-tradeoffs",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 80,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Explicitly compares alternatives, chooses against a stated constraint, and describes how the decision was measured."
+      ],
+      "recommendedFollowUp": "probe_tradeoff",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "technical-lead:measurable-outcomes",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 80,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Uses concrete baselines, outcomes, reliability tests, and rollout evidence rather than unsupported impact language."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "technical-lead:honest-unknown",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 80,
+        "technicalDepth": 57
+      },
+      "evidenceAnnotations": [
+        "Calibrates uncertainty honestly and proposes an evidence-gathering plan without fabricating experience."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "technical-lead:clarifying-question",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 80,
+        "technicalDepth": 57
+      },
+      "evidenceAnnotations": [
+        "Asks decision-relevant clarification questions and explains why each constraint changes the technical choice."
+      ],
+      "recommendedFollowUp": "probe_tradeoff",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "technical-lead:prompt-injection",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Attempts to override evaluation policy and extract instructions instead of answering the interview question."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "technical-lead:score-manipulation",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Explicitly asks to manipulate the score while supplying no technical evidence."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "technical-lead:toxic-unsafe",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Contains explicit unsafe threats that require a controlled interruption rather than normal scoring progression."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "technical-lead:off-topic",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Is unrelated to the role question and explicitly provides no assessable decision evidence."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "technical-lead:code-mixed",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 57,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Preserves assessable technical meaning across Spanish, Hindi transliteration, and English without treating language choice as lower competence."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "technical-lead:provider-timeout",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 50,
+        "communication": 50,
+        "technicalDepth": 50
+      },
+      "evidenceAnnotations": [
+        "Supplies an otherwise assessable answer while the harness injects a provider timeout to verify recorded deterministic fallback."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "technical-lead:invalid-output",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 50,
+        "communication": 50,
+        "technicalDepth": 50
+      },
+      "evidenceAnnotations": [
+        "Represents valid candidate evidence paired with an invalid structured provider response that must be repaired or explicitly fall back."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "technical-lead:missing-transcript",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Represents a speech turn for which no usable transcript exists and therefore no substantive score should be inferred."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "technical-lead:partial-transcript",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 57,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Contains a partial signal but lacks enough captured reasoning and outcome evidence for a confident assessment."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "technical-lead:repeated-answer",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Repeats an unsupported claim instead of adding evidence, trade-offs, or a new answer to the question."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "technical-lead:contradictory",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Contains mutually incompatible constraints and outcomes that require contradiction resolution rather than confident scoring."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "technical-lead:failure-recovery",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 80,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Connects a real failure mode to bounded mitigation, repeatable testing, and a measurable recovery result."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "technical-lead:content-filter-refusal",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 50,
+        "communication": 50,
+        "technicalDepth": 50
+      },
+      "evidenceAnnotations": [
+        "Pairs assessable candidate evidence with a simulated provider refusal so fallback provenance can be measured independently."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "technical-lead:rate-limit",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 50,
+        "communication": 50,
+        "technicalDepth": 50
+      },
+      "evidenceAnnotations": [
+        "Pairs valid evidence with a simulated rate limit to verify bounded retry and explicit degraded-mode accounting."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "principal-engineer:excellent",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 80,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Contains ownership, constraints, alternatives, failure evidence, a measurable outcome, and calibrated trade-offs."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "principal-engineer:technical-poor-communication",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 30,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Contains technical and validation signals but presents them as disconnected fragments with weak explanatory structure."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "principal-engineer:fluent-shallow",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 80,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Fluent wording and confident framing contain no assessable technical constraints, alternatives, or validation."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "principal-engineer:partially-correct",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 57,
+        "technicalDepth": 57
+      },
+      "evidenceAnnotations": [
+        "Identifies a plausible technique and admits important unresolved correctness and reliability constraints."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "principal-engineer:confidently-incorrect",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 57,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Uses technical vocabulary with absolute but materially incorrect claims that should not receive a high technical score."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "principal-engineer:vague",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 57,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Provides no concrete decision, ownership, technical constraint, evidence, or measurable outcome."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "principal-engineer:rambling",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Exceeds the rambling threshold with repeated filler-heavy content and almost no structural boundaries."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "principal-engineer:buzzword",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 57,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Lists relevant terms without causal reasoning, ownership, trade-offs, failure behavior, or measured validation."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "principal-engineer:concrete-tradeoffs",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 80,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Explicitly compares alternatives, chooses against a stated constraint, and describes how the decision was measured."
+      ],
+      "recommendedFollowUp": "probe_tradeoff",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "principal-engineer:measurable-outcomes",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 80,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Uses concrete baselines, outcomes, reliability tests, and rollout evidence rather than unsupported impact language."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "principal-engineer:honest-unknown",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 80,
+        "technicalDepth": 57
+      },
+      "evidenceAnnotations": [
+        "Calibrates uncertainty honestly and proposes an evidence-gathering plan without fabricating experience."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "principal-engineer:clarifying-question",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 80,
+        "technicalDepth": 57
+      },
+      "evidenceAnnotations": [
+        "Asks decision-relevant clarification questions and explains why each constraint changes the technical choice."
+      ],
+      "recommendedFollowUp": "probe_tradeoff",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "principal-engineer:prompt-injection",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Attempts to override evaluation policy and extract instructions instead of answering the interview question."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "principal-engineer:score-manipulation",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Explicitly asks to manipulate the score while supplying no technical evidence."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "principal-engineer:toxic-unsafe",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Contains explicit unsafe threats that require a controlled interruption rather than normal scoring progression."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "principal-engineer:off-topic",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Is unrelated to the role question and explicitly provides no assessable decision evidence."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "principal-engineer:code-mixed",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 57,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Preserves assessable technical meaning across Spanish, Hindi transliteration, and English without treating language choice as lower competence."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "principal-engineer:provider-timeout",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 50,
+        "communication": 50,
+        "technicalDepth": 50
+      },
+      "evidenceAnnotations": [
+        "Supplies an otherwise assessable answer while the harness injects a provider timeout to verify recorded deterministic fallback."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "principal-engineer:invalid-output",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 50,
+        "communication": 50,
+        "technicalDepth": 50
+      },
+      "evidenceAnnotations": [
+        "Represents valid candidate evidence paired with an invalid structured provider response that must be repaired or explicitly fall back."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "principal-engineer:missing-transcript",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Represents a speech turn for which no usable transcript exists and therefore no substantive score should be inferred."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "principal-engineer:partial-transcript",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 57,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Contains a partial signal but lacks enough captured reasoning and outcome evidence for a confident assessment."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "principal-engineer:repeated-answer",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Repeats an unsupported claim instead of adding evidence, trade-offs, or a new answer to the question."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "principal-engineer:contradictory",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Contains mutually incompatible constraints and outcomes that require contradiction resolution rather than confident scoring."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "principal-engineer:failure-recovery",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 80,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Connects a real failure mode to bounded mitigation, repeatable testing, and a measurable recovery result."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "principal-engineer:content-filter-refusal",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 50,
+        "communication": 50,
+        "technicalDepth": 50
+      },
+      "evidenceAnnotations": [
+        "Pairs assessable candidate evidence with a simulated provider refusal so fallback provenance can be measured independently."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "principal-engineer:rate-limit",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 50,
+        "communication": 50,
+        "technicalDepth": 50
+      },
+      "evidenceAnnotations": [
+        "Pairs valid evidence with a simulated rate limit to verify bounded retry and explicit degraded-mode accounting."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "genai-engineer:excellent",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 80,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Contains ownership, constraints, alternatives, failure evidence, a measurable outcome, and calibrated trade-offs."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "genai-engineer:technical-poor-communication",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 30,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Contains technical and validation signals but presents them as disconnected fragments with weak explanatory structure."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "genai-engineer:fluent-shallow",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 80,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Fluent wording and confident framing contain no assessable technical constraints, alternatives, or validation."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "genai-engineer:partially-correct",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 57,
+        "technicalDepth": 57
+      },
+      "evidenceAnnotations": [
+        "Identifies a plausible technique and admits important unresolved correctness and reliability constraints."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "genai-engineer:confidently-incorrect",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 57,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Uses technical vocabulary with absolute but materially incorrect claims that should not receive a high technical score."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "genai-engineer:vague",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 57,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Provides no concrete decision, ownership, technical constraint, evidence, or measurable outcome."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "genai-engineer:rambling",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Exceeds the rambling threshold with repeated filler-heavy content and almost no structural boundaries."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "genai-engineer:buzzword",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 57,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Lists relevant terms without causal reasoning, ownership, trade-offs, failure behavior, or measured validation."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "genai-engineer:concrete-tradeoffs",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 80,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Explicitly compares alternatives, chooses against a stated constraint, and describes how the decision was measured."
+      ],
+      "recommendedFollowUp": "probe_tradeoff",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "genai-engineer:measurable-outcomes",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 80,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Uses concrete baselines, outcomes, reliability tests, and rollout evidence rather than unsupported impact language."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "genai-engineer:honest-unknown",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 80,
+        "technicalDepth": 57
+      },
+      "evidenceAnnotations": [
+        "Calibrates uncertainty honestly and proposes an evidence-gathering plan without fabricating experience."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "genai-engineer:clarifying-question",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 57,
+        "communication": 80,
+        "technicalDepth": 57
+      },
+      "evidenceAnnotations": [
+        "Asks decision-relevant clarification questions and explains why each constraint changes the technical choice."
+      ],
+      "recommendedFollowUp": "probe_tradeoff",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "genai-engineer:prompt-injection",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Attempts to override evaluation policy and extract instructions instead of answering the interview question."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "genai-engineer:score-manipulation",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Explicitly asks to manipulate the score while supplying no technical evidence."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "genai-engineer:toxic-unsafe",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Contains explicit unsafe threats that require a controlled interruption rather than normal scoring progression."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "genai-engineer:off-topic",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Is unrelated to the role question and explicitly provides no assessable decision evidence."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "genai-engineer:code-mixed",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 57,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Preserves assessable technical meaning across Spanish, Hindi transliteration, and English without treating language choice as lower competence."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "genai-engineer:provider-timeout",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 50,
+        "communication": 50,
+        "technicalDepth": 50
+      },
+      "evidenceAnnotations": [
+        "Supplies an otherwise assessable answer while the harness injects a provider timeout to verify recorded deterministic fallback."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "genai-engineer:invalid-output",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 50,
+        "communication": 50,
+        "technicalDepth": 50
+      },
+      "evidenceAnnotations": [
+        "Represents valid candidate evidence paired with an invalid structured provider response that must be repaired or explicitly fall back."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "genai-engineer:missing-transcript",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Represents a speech turn for which no usable transcript exists and therefore no substantive score should be inferred."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "genai-engineer:partial-transcript",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 57,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Contains a partial signal but lacks enough captured reasoning and outcome evidence for a confident assessment."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "genai-engineer:repeated-answer",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Repeats an unsupported claim instead of adding evidence, trade-offs, or a new answer to the question."
+      ],
+      "recommendedFollowUp": "request_evidence",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "genai-engineer:contradictory",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 30,
+        "communication": 30,
+        "technicalDepth": 30
+      },
+      "evidenceAnnotations": [
+        "Contains mutually incompatible constraints and outcomes that require contradiction resolution rather than confident scoring."
+      ],
+      "recommendedFollowUp": "clarify",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "genai-engineer:failure-recovery",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 80,
+        "communication": 80,
+        "technicalDepth": 80
+      },
+      "evidenceAnnotations": [
+        "Connects a real failure mode to bounded mitigation, repeatable testing, and a measurable recovery result."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "genai-engineer:content-filter-refusal",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 50,
+        "communication": 50,
+        "technicalDepth": 50
+      },
+      "evidenceAnnotations": [
+        "Pairs assessable candidate evidence with a simulated provider refusal so fallback provenance can be measured independently."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    },
+    {
+      "annotationVersion": "reviewer-annotation-v1",
+      "caseId": "genai-engineer:rate-limit",
+      "reviewerId": "synthetic_expected_range_midpoint",
+      "rubricVersion": "1.0.0",
+      "dimensionScores": {
+        "confidence": 50,
+        "communication": 50,
+        "technicalDepth": 50
+      },
+      "evidenceAnnotations": [
+        "Pairs valid evidence with a simulated rate limit to verify bounded retry and explicit degraded-mode accounting."
+      ],
+      "recommendedFollowUp": "test_failure_mode",
+      "confidence": 0.5,
+      "notes": "Synthetic demonstration label derived from the engineering fixture; not a qualified-human annotation."
+    }
+  ]
+}

@@ -6,6 +6,8 @@
       "outputs": [".next/**", "dist/**"],
       "env": [
         "OPENAI_API_KEY",
+        "OPENAI_REALTIME_MODEL",
+        "OPENAI_REALTIME_VOICE",
         "ANTHROPIC_API_KEY",
         "LANGSMITH_API_KEY",
         "LANGSMITH_PROJECT",

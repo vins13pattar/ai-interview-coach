@@ -1,8 +1,11 @@
 import type {
   AnswerEvaluation,
   Difficulty,
+  FollowUpReason,
   InterviewTurn,
 } from "@interview-coach/contracts";
+
+import { isEquivalentQuestion } from "./policy";
 
 const QUESTION_FRAMES: Record<Difficulty, string[]> = {
   foundation: [
@@ -38,6 +41,8 @@ export function buildNextQuestion(
   turn: InterviewTurn,
   evaluation: AnswerEvaluation,
   nextDifficulty: Difficulty,
+  followUpReason?: FollowUpReason,
+  questionHistory: string[] = [],
 ): string {
   const rawFocus =
     turn.focusAreas[turn.turnNumber % turn.focusAreas.length] ??
@@ -56,13 +61,34 @@ export function buildNextQuestion(
         .replaceAll("{role}", turn.role)
         .replaceAll("{focus}", focus);
 
-  if (evaluation.improvements.some((item) => item.includes("trade-offs"))) {
-    return `${base} I will ask you to defend one trade-off.`;
+  let candidate = base;
+  if (followUpReason === "request_evidence") {
+    candidate = `${base} Use one specific example and quantify the impact.`;
+  } else if (followUpReason === "probe_tradeoff") {
+    candidate = `${base} Defend one rejected alternative and its trade-off.`;
+  } else if (followUpReason === "test_failure_mode") {
+    candidate = `${base} What fails first, and how would you detect and recover from it?`;
+  } else if (followUpReason === "resolve_contradiction") {
+    candidate = `${base} Reconcile that answer with your earlier constraint before choosing.`;
+  } else if (followUpReason === "clarify") {
+    candidate = `${base} Start with the decision you personally owned.`;
+  } else if (
+    !followUpReason &&
+    evaluation.improvements.some((item) => item.includes("trade-offs"))
+  ) {
+    candidate = `${base} Defend one rejected alternative and its trade-off.`;
+  } else if (
+    !followUpReason &&
+    evaluation.improvements.some((item) => item.includes("concrete"))
+  ) {
+    candidate = `${base} Use one specific example and quantify the impact.`;
   }
-  if (evaluation.improvements.some((item) => item.includes("concrete"))) {
-    return `${base} Use one specific example and quantify the impact.`;
+
+  const history = [...turn.questionHistory, ...questionHistory, turn.question];
+  if (isEquivalentQuestion(candidate, history)) {
+    return `For ${focus}, identify the riskiest assumption you have not yet tested and design a measurable validation plan.`;
   }
-  return base;
+  return candidate;
 }
 
 export function openingQuestion(

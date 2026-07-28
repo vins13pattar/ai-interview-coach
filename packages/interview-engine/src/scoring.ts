@@ -3,6 +3,9 @@ import type {
   Difficulty,
   InterviewTurn,
 } from "@interview-coach/contracts";
+import { AnswerEvaluationSchema } from "@interview-coach/contracts";
+
+import { resolveInterviewRubric } from "./rubrics";
 
 const FILLERS = /\b(um+|uh+|like|basically|actually|you know|sort of)\b/gi;
 const TECHNICAL_SIGNALS =
@@ -21,6 +24,7 @@ function matches(input: string, pattern: RegExp): number {
 export function evaluateDeterministically(
   turn: InterviewTurn,
 ): AnswerEvaluation {
+  const rubric = resolveInterviewRubric(turn);
   const words = turn.answer.trim().split(/\s+/).filter(Boolean);
   const wordCount = words.length;
   const fillers = matches(turn.answer, FILLERS);
@@ -50,13 +54,30 @@ export function evaluateDeterministically(
   const shouldInterrupt =
     (wordCount > 125 && structureSignals < 2) || fillers >= 7;
 
-  return {
+  return AnswerEvaluationSchema.parse({
+    provenance: {
+      schemaVersion: "answer-evaluation-v2",
+      rubricId: rubric.id,
+      rubricVersion: rubric.version,
+      promptVersion: "deterministic-signals-v2",
+      provider: "demo",
+      model: "deterministic-v2",
+      mode: "deterministic",
+      fallbackReason: null,
+    },
     scores: {
       confidence,
       pronunciation: null,
       communication,
       technicalDepth,
     },
+    scoreConfidence: Math.min(
+      0.95,
+      0.35 +
+        Math.min(technicalSignals, 6) * 0.06 +
+        Math.min(structureSignals, 5) * 0.05 +
+        (hasConcreteExample ? 0.12 : 0),
+    ),
     evidence: [
       `${wordCount} words with ${technicalSignals} technical signals`,
       hasConcreteExample
@@ -88,7 +109,7 @@ export function evaluateDeterministically(
         ),
       ),
     ).slice(0, 8),
-  };
+  });
 }
 
 const DIFFICULTIES: Difficulty[] = [
@@ -102,13 +123,11 @@ export function adaptDifficulty(
   current: Difficulty,
   evaluation: AnswerEvaluation,
 ): Difficulty {
-  const pronunciation = evaluation.scores.pronunciation ?? 75;
   const average =
     (evaluation.scores.confidence +
-      pronunciation +
       evaluation.scores.communication +
       evaluation.scores.technicalDepth) /
-    4;
+    3;
   const currentIndex = DIFFICULTIES.indexOf(current);
 
   if (average >= 78 && currentIndex < DIFFICULTIES.length - 1) {

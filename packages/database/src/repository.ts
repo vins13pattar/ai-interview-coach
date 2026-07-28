@@ -22,6 +22,7 @@ import {
   type SessionStatus,
   type SessionSummary,
   type SessionTurnResponse,
+  type VoiceConsentRequest,
 } from "@interview-coach/contracts";
 import type { PoolClient, QueryResultRow } from "pg";
 
@@ -71,6 +72,11 @@ export type TurnCommitInput = {
   answer: string;
   result: InterviewTurnResult;
   report: RecruiterReport | null;
+};
+
+export type PendingVoiceGrant = {
+  grantId: string;
+  session: SessionDetail;
 };
 
 function iso(value: Date | string): string {
@@ -452,15 +458,18 @@ export async function commitTurnRequest(
       await client.query(
         `INSERT INTO reports
           (id, tenant_id, user_id, session_id, report, rubric_version)
-         VALUES ($1, $2, $3, $4, $5, 'alpha-v1')
+         VALUES ($1, $2, $3, $4, $5, $6)
          ON CONFLICT (session_id) DO UPDATE
-           SET report = EXCLUDED.report, updated_at = now()`,
+           SET report = EXCLUDED.report,
+               rubric_version = EXCLUDED.rubric_version,
+               updated_at = now()`,
         [
           reportWithId.id,
           principal.tenantId,
           principal.userId,
           input.session.id,
           JSON.stringify(reportWithId),
+          reportWithId.rubricVersions.join(","),
         ],
       );
       storedReport = reportWithId;
@@ -700,4 +709,102 @@ export async function deleteProviderConnection(
   } finally {
     client.release();
   }
+}
+
+export async function beginVoiceTokenGrant(
+  principal: AuthenticatedPrincipal,
+  consent: VoiceConsentRequest,
+): Promise<PendingVoiceGrant> {
+  const pool = getPool();
+  const client = await pool.connect();
+  const grantId = randomUUID();
+  try {
+    await client.query("BEGIN");
+    const session = await getInterviewSession(
+      principal,
+      consent.sessionId,
+      client,
+    );
+    if (!session) throw new Error("SESSION_NOT_FOUND");
+    if (session.status !== "active") throw new Error("SESSION_NOT_ACTIVE");
+    if (session.provider !== "openai") {
+      throw new Error("VOICE_PROVIDER_NOT_SUPPORTED");
+    }
+
+    const recent = await client.query<{ count: string }>(
+      `SELECT count(*)::text AS count
+         FROM voice_token_grants
+        WHERE tenant_id = $1
+          AND user_id = $2
+          AND created_at > now() - interval '1 minute'`,
+      [principal.tenantId, principal.userId],
+    );
+    if (Number(recent.rows[0]?.count ?? 0) >= 3) {
+      throw new Error("VOICE_TOKEN_RATE_LIMITED");
+    }
+
+    const consentRows = [
+      ["voice.provider_processing", true],
+      ["voice.transcript_retention", true],
+      ["voice.raw_audio_retention", false],
+    ] as const;
+    for (const [consentType, granted] of consentRows) {
+      await client.query(
+        `INSERT INTO consent_events
+          (id, tenant_id, user_id, session_id, consent_type, granted, policy_version)
+         VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+        [
+          randomUUID(),
+          principal.tenantId,
+          principal.userId,
+          session.id,
+          consentType,
+          granted,
+          consent.policyVersion,
+        ],
+      );
+    }
+    await client.query(
+      `INSERT INTO voice_token_grants
+        (id, tenant_id, user_id, session_id, provider, status)
+       VALUES ($1, $2, $3, $4, 'openai', 'pending')`,
+      [grantId, principal.tenantId, principal.userId, session.id],
+    );
+    await audit(client, principal, "voice.consent_recorded", session.id, {
+      policyVersion: consent.policyVersion,
+      rawAudioRetained: false,
+    });
+    await client.query("COMMIT");
+    return { grantId, session };
+  } catch (error) {
+    await client.query("ROLLBACK");
+    throw error;
+  } finally {
+    client.release();
+  }
+}
+
+export async function completeVoiceTokenGrant(
+  principal: AuthenticatedPrincipal,
+  grantId: string,
+  expiresAt: Date,
+): Promise<void> {
+  await getPool().query(
+    `UPDATE voice_token_grants
+        SET status = 'issued', expires_at = $1, updated_at = now()
+      WHERE id = $2 AND tenant_id = $3 AND user_id = $4`,
+    [expiresAt, grantId, principal.tenantId, principal.userId],
+  );
+}
+
+export async function failVoiceTokenGrant(
+  principal: AuthenticatedPrincipal,
+  grantId: string,
+): Promise<void> {
+  await getPool().query(
+    `UPDATE voice_token_grants
+        SET status = 'failed', updated_at = now()
+      WHERE id = $1 AND tenant_id = $2 AND user_id = $3 AND status = 'pending'`,
+    [grantId, principal.tenantId, principal.userId],
+  );
 }

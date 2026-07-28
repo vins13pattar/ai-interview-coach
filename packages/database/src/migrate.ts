@@ -1,13 +1,9 @@
-import { readFile } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
 
 import { getPostgresCheckpointer } from "./checkpointer";
 import { getPool } from "./pool";
 
-const migrationVersion = "0001_durable_sessions";
-const migrationUrl = new URL(
-  "../migrations/0001_durable_sessions.sql",
-  import.meta.url,
-);
+const migrationsUrl = new URL("../migrations/", import.meta.url);
 
 async function migrate() {
   const checkpointer = getPostgresCheckpointer();
@@ -23,12 +19,19 @@ async function migrate() {
         applied_at timestamptz NOT NULL DEFAULT now()
       )`,
     );
-    const existing = await client.query<{ version: string }>(
-      "SELECT version FROM schema_migrations WHERE version = $1",
-      [migrationVersion],
-    );
-    if (existing.rowCount === 0) {
-      await client.query(await readFile(migrationUrl, "utf8"));
+    const migrationFiles = (await readdir(migrationsUrl))
+      .filter((name) => /^\d{4}_[a-z0-9_]+\.sql$/.test(name))
+      .sort();
+    for (const migrationFile of migrationFiles) {
+      const migrationVersion = migrationFile.replace(/\.sql$/, "");
+      const existing = await client.query<{ version: string }>(
+        "SELECT version FROM schema_migrations WHERE version = $1",
+        [migrationVersion],
+      );
+      if (existing.rowCount !== 0) continue;
+      await client.query(
+        await readFile(new URL(migrationFile, migrationsUrl), "utf8"),
+      );
       await client.query(
         "INSERT INTO schema_migrations (version) VALUES ($1) ON CONFLICT DO NOTHING",
         [migrationVersion],

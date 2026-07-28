@@ -9,13 +9,29 @@ import {
   type SessionSummary,
   type SessionTurnResponse,
   type TranscriptTurn,
+  type VoiceClientSecret,
 } from "@interview-coach/contracts";
+import {
+  listAudioInputDevices,
+  OpenAiRealtimeWebRtcAdapter,
+  type AudioInputDevice,
+  type VoiceAdapter,
+  type VoiceEvent,
+  type VoiceStatus,
+} from "@interview-coach/voice";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 
 type Stage = "setup" | "interview" | "report";
 
 const initialQuestion =
   "Tell me about the most consequential system design decision you have made and how you measured its impact.";
+const connectedVoiceStatuses = new Set<VoiceStatus>([
+  "requesting_permission",
+  "connecting",
+  "ready",
+  "listening",
+  "speaking",
+]);
 
 const scoreLabels = {
   confidence: "Confidence",
@@ -31,6 +47,7 @@ export function InterviewStudio() {
   const [focusText, setFocusText] = useState(
     "System design, distributed systems, leadership",
   );
+  const [interviewMode, setInterviewMode] = useState<"text" | "voice">("text");
   const [provider, setProvider] = useState<"demo" | "openai">("demo");
   const [apiKey, setApiKey] = useState("");
   const [difficulty, setDifficulty] = useState<Difficulty>("intermediate");
@@ -50,9 +67,23 @@ export function InterviewStudio() {
   const [saveApiKey, setSaveApiKey] = useState(false);
   const [error, setError] = useState("");
   const [isListening, setIsListening] = useState(false);
+  const [voiceStatus, setVoiceStatus] = useState<VoiceStatus>("idle");
+  const [voiceConsentOpen, setVoiceConsentOpen] = useState(false);
+  const [providerProcessingAccepted, setProviderProcessingAccepted] =
+    useState(false);
+  const [transcriptRetentionAccepted, setTranscriptRetentionAccepted] =
+    useState(false);
+  const [voiceError, setVoiceError] = useState("");
+  const [voiceLatency, setVoiceLatency] = useState<number | null>(null);
+  const [voiceDevices, setVoiceDevices] = useState<AudioInputDevice[]>([]);
+  const [voiceDeviceId, setVoiceDeviceId] = useState("");
+  const [voiceStarting, setVoiceStarting] = useState(false);
+  const [isVoiceMuted, setIsVoiceMuted] = useState(false);
+  const [wasInterrupted, setWasInterrupted] = useState(false);
   const [isPending, startTransition] = useTransition();
   const recognitionRef = useRef<SpeechRecognition | null>(null);
   const idempotencyKeyRef = useRef<string | null>(null);
+  const voiceAdapterRef = useRef<VoiceAdapter | null>(null);
 
   const focusAreas = useMemo(
     () =>
@@ -106,7 +137,18 @@ export function InterviewStudio() {
     };
   }, []);
 
+  useEffect(
+    () => () => {
+      voiceAdapterRef.current?.close();
+    },
+    [],
+  );
+
   const applySession = (session: SessionDetail) => {
+    voiceAdapterRef.current?.close();
+    voiceAdapterRef.current = null;
+    setVoiceStatus("idle");
+    setVoiceConsentOpen(false);
     setSessionId(session.id);
     setRole(session.role);
     setSeniority(session.seniority);
@@ -130,10 +172,117 @@ export function InterviewStudio() {
     setSavedSessions(body.sessions);
   };
 
+  const stopVoice = () => {
+    voiceAdapterRef.current?.close();
+    voiceAdapterRef.current = null;
+    setVoiceStatus("idle");
+    setIsVoiceMuted(false);
+    setVoiceError("");
+    setWasInterrupted(false);
+  };
+
+  const handleVoiceEvent = (event: VoiceEvent) => {
+    if (event.type === "status.changed") {
+      setVoiceStatus(event.status);
+      return;
+    }
+    if (event.type === "latency.measured") {
+      setVoiceLatency(event.durationMs);
+      return;
+    }
+    if (event.type === "interruption.requested") {
+      setWasInterrupted(true);
+      return;
+    }
+    if (event.type === "error") {
+      setVoiceError(event.message);
+      return;
+    }
+    if (event.type !== "transcript.final") return;
+
+    setAnswer(event.text);
+    if (event.text.length < 20) {
+      setVoiceError(
+        "That answer was too short to score. Keep speaking or add detail in the text box.",
+      );
+      return;
+    }
+    setVoiceError(
+      "Transcript ready. Review or correct it in the answer box, then submit it for scoring.",
+    );
+  };
+
+  const startVoice = async () => {
+    if (!sessionId || provider !== "openai") {
+      setVoiceError(
+        "Live voice requires a saved OpenAI interview session. Text mode remains available.",
+      );
+      return;
+    }
+    setVoiceStarting(true);
+    setVoiceError("");
+    setWasInterrupted(false);
+    try {
+      const response = await fetch("/api/v1/voice/token", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          "x-interview-coach-client": "web",
+          ...(apiKey ? { "x-provider-api-key": apiKey } : {}),
+        },
+        body: JSON.stringify({
+          sessionId,
+          policyVersion: "voice-beta-v1",
+          providerProcessingAccepted: true,
+          transcriptRetentionAccepted: true,
+          rawAudioRetentionAccepted: false,
+        }),
+      });
+      const body = (await response.json()) as
+        VoiceClientSecret | { error: string };
+      if (!response.ok || "error" in body) {
+        throw new Error(
+          "error" in body ? body.error : "Could not start live voice.",
+        );
+      }
+
+      stopVoice();
+      const adapter = new OpenAiRealtimeWebRtcAdapter(handleVoiceEvent);
+      voiceAdapterRef.current = adapter;
+      await adapter.connect({
+        clientSecret: body.value,
+        model: body.model,
+        initialQuestion: question,
+        ...(voiceDeviceId ? { deviceId: voiceDeviceId } : {}),
+      });
+      setVoiceDevices(await listAudioInputDevices());
+      setVoiceConsentOpen(false);
+    } catch (caught) {
+      setVoiceStatus("error");
+      setVoiceError(
+        caught instanceof Error
+          ? caught.message
+          : "Could not start live voice.",
+      );
+    } finally {
+      setVoiceStarting(false);
+    }
+  };
+
   const startInterview = () => {
     setError("");
     if (!role.trim() || focusAreas.length === 0) {
       setError("Add a role and at least one focus area.");
+      return;
+    }
+    if (interviewMode === "voice" && !durableAvailable) {
+      setError(
+        "Live voice requires the PostgreSQL-backed runtime. Start the complete Compose stack or choose text.",
+      );
+      return;
+    }
+    if (interviewMode === "voice" && provider !== "openai") {
+      setError("Live voice currently requires the OpenAI provider.");
       return;
     }
     if (
@@ -205,6 +354,9 @@ export function InterviewStudio() {
           );
         }
         applySession(body);
+        if (interviewMode === "voice") {
+          setVoiceConsentOpen(true);
+        }
         await refreshSavedSessions();
       } catch (caught) {
         setError(
@@ -280,6 +432,7 @@ export function InterviewStudio() {
   };
 
   const pauseInterview = () => {
+    stopVoice();
     if (!sessionId) {
       setStage("setup");
       return;
@@ -308,6 +461,7 @@ export function InterviewStudio() {
 
   const deleteCurrentSession = () => {
     if (!sessionId) return;
+    stopVoice();
     startTransition(async () => {
       try {
         const response = await fetch(`/api/v1/sessions/${sessionId}`, {
@@ -374,9 +528,10 @@ export function InterviewStudio() {
     recognition.start();
   };
 
-  const submitAnswer = () => {
+  const submitAnswer = (answerOverride?: string) => {
     setError("");
-    if (answer.trim().length < 20) {
+    const submittedAnswer = (answerOverride ?? answer).trim();
+    if (submittedAnswer.length < 20) {
       setError(
         "Give the interviewer a little more signal—at least 20 characters.",
       );
@@ -400,7 +555,7 @@ export function InterviewStudio() {
                 ? { "x-provider-api-key": apiKey }
                 : {}),
             },
-            body: JSON.stringify({ answer }),
+            body: JSON.stringify({ answer: submittedAnswer }),
           });
           const responseBody = (await response.json()) as
             SessionTurnResponse | { error: string };
@@ -426,7 +581,7 @@ export function InterviewStudio() {
             body: JSON.stringify({
               questionId: `q-${turns.length + 1}`,
               question,
-              answer,
+              answer: submittedAnswer,
               role,
               seniority,
               focusAreas,
@@ -450,7 +605,7 @@ export function InterviewStudio() {
         const completedTurn: TranscriptTurn = {
           id: `q-${turns.length + 1}`,
           question,
-          answer,
+          answer: submittedAnswer,
           difficulty,
           evaluation: body.evaluation,
         };
@@ -462,6 +617,7 @@ export function InterviewStudio() {
         setAnswer("");
 
         if (body.completed) {
+          stopVoice();
           if (durableReport) {
             setReport(durableReport);
             await refreshSavedSessions();
@@ -482,6 +638,8 @@ export function InterviewStudio() {
             setReport((await reportResponse.json()) as RecruiterReport);
           }
           setStage("report");
+        } else {
+          voiceAdapterRef.current?.speakQuestion(body.nextQuestion);
         }
       } catch (caught) {
         setError(
@@ -490,6 +648,8 @@ export function InterviewStudio() {
       }
     });
   };
+
+  const voiceConnected = connectedVoiceStatuses.has(voiceStatus);
 
   if (stage === "setup") {
     return (
@@ -608,6 +768,47 @@ export function InterviewStudio() {
             <span id="focus-hint">Separate areas with commas.</span>
           </label>
           <fieldset>
+            <legend>Interview mode</legend>
+            <div className="provider-options">
+              <label>
+                <input
+                  type="radio"
+                  name="interview-mode"
+                  value="text"
+                  checked={interviewMode === "text"}
+                  onChange={() => setInterviewMode("text")}
+                />
+                <span>
+                  <strong>Text</strong>
+                  <small>Keyless option · full fallback</small>
+                </span>
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="interview-mode"
+                  value="voice"
+                  checked={interviewMode === "voice"}
+                  onChange={() => {
+                    setInterviewMode("voice");
+                    setProvider("openai");
+                  }}
+                />
+                <span>
+                  <strong>Live voice beta</strong>
+                  <small>WebRTC · explicit consent</small>
+                </span>
+              </label>
+            </div>
+            {interviewMode === "voice" ? (
+              <p className="mode-disclosure">
+                Before microphone access, you must consent to provider audio
+                processing and transcript retention. Raw audio is not retained,
+                and pronunciation is not acoustically scored.
+              </p>
+            ) : null}
+          </fieldset>
+          <fieldset>
             <legend>Evaluator</legend>
             <div className="provider-options">
               <label>
@@ -616,7 +817,10 @@ export function InterviewStudio() {
                   name="provider"
                   value="demo"
                   checked={provider === "demo"}
-                  onChange={() => setProvider("demo")}
+                  onChange={() => {
+                    setProvider("demo");
+                    setInterviewMode("text");
+                  }}
                 />
                 <span>
                   <strong>Local demo</strong>
@@ -703,6 +907,20 @@ export function InterviewStudio() {
         <h3 className="balanced-heading">{report.title}</h3>
         <p className="recommendation">{report.recommendation}</p>
         <p className="report-summary">{report.summary}</p>
+        <div className="report-metadata" aria-label="Evaluation provenance">
+          <span>
+            <strong>Rubric</strong>
+            {report.rubricVersions.join(", ")}
+          </span>
+          <span>
+            <strong>Evaluation schema</strong>
+            {report.evaluationVersion}
+          </span>
+          <span>
+            <strong>Pronunciation</strong>
+            Not assessed
+          </span>
+        </div>
         <ScorePanel scores={report.scores} />
         <div className="report-columns">
           <div>
@@ -721,6 +939,14 @@ export function InterviewStudio() {
               ))}
             </ul>
           </div>
+        </div>
+        <div className="report-limitations">
+          <h4>Uncertainty and limitations</h4>
+          <ul>
+            {[...report.uncertainty, ...report.limitations].map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
         </div>
         <p className="report-disclaimer">{report.disclaimer}</p>
         <div className="report-actions">
@@ -770,6 +996,11 @@ export function InterviewStudio() {
           </span>
           <p>
             {role} · {seniority}
+            <span>
+              {provider === "demo"
+                ? " · deterministic evaluation"
+                : " · OpenAI evaluation with recorded fallback"}
+            </span>
           </p>
         </div>
         <div className="turn-counter">
@@ -791,12 +1022,192 @@ export function InterviewStudio() {
         <h3 className="balanced-heading">{question}</h3>
       </div>
 
+      {provider === "openai" && sessionId ? (
+        <section className="voice-console" aria-label="Live voice beta">
+          <div className="voice-console-heading">
+            <div>
+              <span className="voice-beta-label">Live voice beta</span>
+              <strong>
+                {voiceStatus === "idle" || voiceStatus === "closed"
+                  ? "Talk naturally with interruption support"
+                  : `Voice ${voiceStatus.replaceAll("_", " ")}`}
+              </strong>
+            </div>
+            {voiceConnected ? (
+              <div className="voice-console-actions">
+                <button
+                  type="button"
+                  aria-pressed={isVoiceMuted}
+                  onClick={() => {
+                    const nextMuted = !isVoiceMuted;
+                    voiceAdapterRef.current?.setMicrophoneMuted(nextMuted);
+                    setIsVoiceMuted(nextMuted);
+                  }}
+                >
+                  {isVoiceMuted ? "Unmute" : "Mute"}
+                </button>
+                <button type="button" onClick={stopVoice}>
+                  Leave voice
+                </button>
+              </div>
+            ) : (
+              <button
+                type="button"
+                onClick={() => {
+                  setProviderProcessingAccepted(false);
+                  setTranscriptRetentionAccepted(false);
+                  setVoiceConsentOpen(true);
+                  setVoiceError("");
+                }}
+              >
+                Start live voice
+              </button>
+            )}
+          </div>
+
+          {voiceConsentOpen ? (
+            <div className="voice-consent">
+              <strong>Consent before microphone access</strong>
+              <p>
+                Your audio is sent directly from this browser to OpenAI for live
+                transcription and playback. This app stores the resulting
+                transcript with your interview, but does not retain raw audio.
+              </p>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={providerProcessingAccepted}
+                  onChange={(event) =>
+                    setProviderProcessingAccepted(event.target.checked)
+                  }
+                />
+                <span>I agree to OpenAI processing my live audio.</span>
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={transcriptRetentionAccepted}
+                  onChange={(event) =>
+                    setTranscriptRetentionAccepted(event.target.checked)
+                  }
+                />
+                <span>
+                  I agree to retain the transcript for scoring, reports, and
+                  session resume.
+                </span>
+              </label>
+              <div className="voice-retention-fact">
+                <span aria-hidden="true">✓</span>
+                Raw audio retention is off. Pronunciation is not acoustically
+                scored in this beta.
+              </div>
+              <div className="voice-consent-actions">
+                <button
+                  className="button button-primary"
+                  type="button"
+                  disabled={
+                    voiceStarting ||
+                    !providerProcessingAccepted ||
+                    !transcriptRetentionAccepted
+                  }
+                  onClick={() => void startVoice()}
+                >
+                  {voiceStarting ? "Connecting…" : "Agree & start"}
+                </button>
+                <button
+                  className="button button-secondary"
+                  type="button"
+                  onClick={() => setVoiceConsentOpen(false)}
+                  disabled={voiceStarting}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          ) : null}
+
+          {voiceConnected ? (
+            <div className="voice-session-status" aria-live="polite">
+              <span>
+                <i aria-hidden="true" />
+                {voiceStatus.replaceAll("_", " ")}
+              </span>
+              {voiceLatency !== null ? (
+                <small>Last question-to-audio: {voiceLatency} ms</small>
+              ) : (
+                <small>Text input remains available at all times.</small>
+              )}
+              {voiceDevices.length > 0 ? (
+                <label>
+                  Microphone
+                  <select
+                    value={voiceDeviceId}
+                    onChange={(event) => {
+                      setVoiceDeviceId(event.target.value);
+                      setVoiceError(
+                        "Microphone selection saved. Stop and restart voice to switch devices.",
+                      );
+                    }}
+                  >
+                    <option value="">System default</option>
+                    {voiceDevices.map((device) => (
+                      <option key={device.deviceId} value={device.deviceId}>
+                        {device.label}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              ) : null}
+            </div>
+          ) : null}
+
+          {wasInterrupted ? (
+            <p className="voice-interruption">
+              Barge-in detected—the interviewer audio was stopped so you can
+              continue.
+            </p>
+          ) : null}
+          {voiceError ? (
+            <div className="voice-recovery" role="alert">
+              <span>{voiceError}</span>
+              {voiceConnected ? (
+                <button
+                  type="button"
+                  onClick={() =>
+                    void voiceAdapterRef.current
+                      ?.resumeOutput()
+                      .then(() => setVoiceError(""))
+                      .catch(() => undefined)
+                  }
+                >
+                  Enable audio
+                </button>
+              ) : voiceStatus === "recovering" || voiceStatus === "error" ? (
+                <button type="button" onClick={() => void startVoice()}>
+                  Reconnect
+                </button>
+              ) : null}
+            </div>
+          ) : null}
+        </section>
+      ) : null}
+
       {lastResult ? (
         <div className="coach-strip" aria-live="polite">
           <span>
             {lastResult.evaluation.shouldInterrupt ? "Redirect" : "Coach note"}
           </span>
           <p>{lastResult.coachNote}</p>
+        </div>
+      ) : null}
+
+      {lastResult && lastResult.providerStatus !== "available" ? (
+        <div className="provider-degraded" role="status">
+          <strong>Degraded evaluation recorded</strong>
+          <span>
+            Provider status: {lastResult.providerStatus.replaceAll("_", " ")}.
+            This turn used the provenance shown in the final report.
+          </span>
         </div>
       ) : null}
 
@@ -816,6 +1227,7 @@ export function InterviewStudio() {
             type="button"
             onClick={toggleListening}
             aria-pressed={isListening}
+            disabled={voiceConnected}
           >
             <span aria-hidden="true">{isListening ? "■" : "●"}</span>
             {isListening ? "Stop listening" : "Use microphone"}
@@ -836,7 +1248,7 @@ export function InterviewStudio() {
       <button
         className="button button-primary submit-answer"
         type="button"
-        onClick={submitAnswer}
+        onClick={() => submitAnswer()}
         disabled={isPending}
       >
         {isPending ? "Analyzing Evidence…" : "Submit Answer"}

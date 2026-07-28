@@ -1,0 +1,27 @@
+{
+  "name": "@interview-coach/evaluation",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc --noEmit",
+    "bias:report": "tsx src/bias-report.ts",
+    "calibration:report": "tsx src/calibration-report.ts",
+    "generate": "tsx src/generate.ts",
+    "lint": "tsc --noEmit",
+    "report": "tsx src/report.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@interview-coach/contracts": "workspace:*",
+    "@interview-coach/interview-engine": "workspace:*",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  }
+}

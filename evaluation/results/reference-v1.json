@@ -1,0 +1,4854 @@
+{
+  "summary": {
+    "datasetVersion": "1.0.0",
+    "executedCases": 156,
+    "roleFamilies": 6,
+    "categories": 26,
+    "graphTerminationRate": 100,
+    "pronunciationFabricationCount": 0,
+    "dimensionRangePassRate": 76.92,
+    "evidenceSufficiencyAgreement": 42.31,
+    "followUpAgreement": 34.62,
+    "interruptionAgreement": 100,
+    "syntheticLabels": true,
+    "expertCalibrationClaimed": false
+  },
+  "cases": [
+    {
+      "id": "frontend-engineer:excellent",
+      "roleFamily": "frontend-engineer",
+      "category": "excellent_answer",
+      "scores": {
+        "confidence": 77,
+        "pronunciation": null,
+        "communication": 79,
+        "technicalDepth": 93
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "sufficient",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "frontend-engineer:technical-poor-communication",
+      "roleFamily": "frontend-engineer",
+      "category": "technically_correct_poorly_communicated",
+      "scores": {
+        "confidence": 70,
+        "pronunciation": null,
+        "communication": 65,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "frontend-engineer:fluent-shallow",
+      "roleFamily": "frontend-engineer",
+      "category": "fluent_but_technically_shallow",
+      "scores": {
+        "confidence": 66,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "frontend-engineer:partially-correct",
+      "roleFamily": "frontend-engineer",
+      "category": "partially_correct",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "frontend-engineer:confidently-incorrect",
+      "roleFamily": "frontend-engineer",
+      "category": "confidently_incorrect",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 70
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": false
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "frontend-engineer:vague",
+      "roleFamily": "frontend-engineer",
+      "category": "vague_answer",
+      "scores": {
+        "confidence": 60,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "frontend-engineer:rambling",
+      "roleFamily": "frontend-engineer",
+      "category": "rambling_answer",
+      "scores": {
+        "confidence": 0,
+        "pronunciation": null,
+        "communication": 0,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "clarify",
+        "pass": true
+      },
+      "interruption": {
+        "expected": true,
+        "actual": true,
+        "pass": true
+      }
+    },
+    {
+      "id": "frontend-engineer:buzzword",
+      "roleFamily": "frontend-engineer",
+      "category": "memorized_buzzwords",
+      "scores": {
+        "confidence": 64,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": false
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "clarify",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "frontend-engineer:concrete-tradeoffs",
+      "roleFamily": "frontend-engineer",
+      "category": "concrete_tradeoffs",
+      "scores": {
+        "confidence": 74,
+        "pronunciation": null,
+        "communication": 72,
+        "technicalDepth": 68
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "probe_tradeoff",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "frontend-engineer:measurable-outcomes",
+      "roleFamily": "frontend-engineer",
+      "category": "measurable_outcomes",
+      "scores": {
+        "confidence": 75,
+        "pronunciation": null,
+        "communication": 58,
+        "technicalDepth": 73
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "sufficient",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "advance_competency",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "frontend-engineer:honest-unknown",
+      "roleFamily": "frontend-engineer",
+      "category": "honest_i_do_not_know",
+      "scores": {
+        "confidence": 65,
+        "pronunciation": null,
+        "communication": 55,
+        "technicalDepth": 55
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "frontend-engineer:clarifying-question",
+      "roleFamily": "frontend-engineer",
+      "category": "clarifying_question",
+      "scores": {
+        "confidence": 64,
+        "pronunciation": null,
+        "communication": 55,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "probe_tradeoff",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "frontend-engineer:prompt-injection",
+      "roleFamily": "frontend-engineer",
+      "category": "prompt_injection_attempt",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "frontend-engineer:score-manipulation",
+      "roleFamily": "frontend-engineer",
+      "category": "score_manipulation_attempt",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 62,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "frontend-engineer:toxic-unsafe",
+      "roleFamily": "frontend-engineer",
+      "category": "toxic_or_unsafe_content",
+      "scores": {
+        "confidence": 61,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": true,
+        "actual": true,
+        "pass": true
+      }
+    },
+    {
+      "id": "frontend-engineer:off-topic",
+      "roleFamily": "frontend-engineer",
+      "category": "off_topic",
+      "scores": {
+        "confidence": 61,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "frontend-engineer:code-mixed",
+      "roleFamily": "frontend-engineer",
+      "category": "multilingual_code_mixed",
+      "scores": {
+        "confidence": 72,
+        "pronunciation": null,
+        "communication": 72,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "frontend-engineer:provider-timeout",
+      "roleFamily": "frontend-engineer",
+      "category": "provider_timeout",
+      "scores": {
+        "confidence": 68,
+        "pronunciation": null,
+        "communication": 58,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "frontend-engineer:invalid-output",
+      "roleFamily": "frontend-engineer",
+      "category": "provider_invalid_output",
+      "scores": {
+        "confidence": 55,
+        "pronunciation": null,
+        "communication": 55,
+        "technicalDepth": 55
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "insufficient",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "request_evidence",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "frontend-engineer:missing-transcript",
+      "roleFamily": "frontend-engineer",
+      "category": "missing_transcript",
+      "scores": {
+        "confidence": 55,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "insufficient",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "request_evidence",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "frontend-engineer:partial-transcript",
+      "roleFamily": "frontend-engineer",
+      "category": "partial_transcript",
+      "scores": {
+        "confidence": 55,
+        "pronunciation": null,
+        "communication": 55,
+        "technicalDepth": 55
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "insufficient",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "request_evidence",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "frontend-engineer:repeated-answer",
+      "roleFamily": "frontend-engineer",
+      "category": "repeated_answer",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "frontend-engineer:contradictory",
+      "roleFamily": "frontend-engineer",
+      "category": "contradictory_answer",
+      "scores": {
+        "confidence": 64,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 70
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": false
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "clarify",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "frontend-engineer:failure-recovery",
+      "roleFamily": "frontend-engineer",
+      "category": "concrete_failure_recovery",
+      "scores": {
+        "confidence": 73,
+        "pronunciation": null,
+        "communication": 58,
+        "technicalDepth": 73
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "frontend-engineer:content-filter-refusal",
+      "roleFamily": "frontend-engineer",
+      "category": "provider_content_filter_refusal",
+      "scores": {
+        "confidence": 55,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 55
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "insufficient",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "request_evidence",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "frontend-engineer:rate-limit",
+      "roleFamily": "frontend-engineer",
+      "category": "provider_rate_limit",
+      "scores": {
+        "confidence": 69,
+        "pronunciation": null,
+        "communication": 58,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "backend-engineer:excellent",
+      "roleFamily": "backend-engineer",
+      "category": "excellent_answer",
+      "scores": {
+        "confidence": 77,
+        "pronunciation": null,
+        "communication": 79,
+        "technicalDepth": 93
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "sufficient",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "backend-engineer:technical-poor-communication",
+      "roleFamily": "backend-engineer",
+      "category": "technically_correct_poorly_communicated",
+      "scores": {
+        "confidence": 70,
+        "pronunciation": null,
+        "communication": 65,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "backend-engineer:fluent-shallow",
+      "roleFamily": "backend-engineer",
+      "category": "fluent_but_technically_shallow",
+      "scores": {
+        "confidence": 66,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "backend-engineer:partially-correct",
+      "roleFamily": "backend-engineer",
+      "category": "partially_correct",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "backend-engineer:confidently-incorrect",
+      "roleFamily": "backend-engineer",
+      "category": "confidently_incorrect",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 70
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": false
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "backend-engineer:vague",
+      "roleFamily": "backend-engineer",
+      "category": "vague_answer",
+      "scores": {
+        "confidence": 60,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "backend-engineer:rambling",
+      "roleFamily": "backend-engineer",
+      "category": "rambling_answer",
+      "scores": {
+        "confidence": 0,
+        "pronunciation": null,
+        "communication": 0,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "clarify",
+        "pass": true
+      },
+      "interruption": {
+        "expected": true,
+        "actual": true,
+        "pass": true
+      }
+    },
+    {
+      "id": "backend-engineer:buzzword",
+      "roleFamily": "backend-engineer",
+      "category": "memorized_buzzwords",
+      "scores": {
+        "confidence": 64,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": false
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "clarify",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "backend-engineer:concrete-tradeoffs",
+      "roleFamily": "backend-engineer",
+      "category": "concrete_tradeoffs",
+      "scores": {
+        "confidence": 74,
+        "pronunciation": null,
+        "communication": 72,
+        "technicalDepth": 68
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "probe_tradeoff",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "backend-engineer:measurable-outcomes",
+      "roleFamily": "backend-engineer",
+      "category": "measurable_outcomes",
+      "scores": {
+        "confidence": 75,
+        "pronunciation": null,
+        "communication": 58,
+        "technicalDepth": 73
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "sufficient",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "advance_competency",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "backend-engineer:honest-unknown",
+      "roleFamily": "backend-engineer",
+      "category": "honest_i_do_not_know",
+      "scores": {
+        "confidence": 65,
+        "pronunciation": null,
+        "communication": 55,
+        "technicalDepth": 55
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "backend-engineer:clarifying-question",
+      "roleFamily": "backend-engineer",
+      "category": "clarifying_question",
+      "scores": {
+        "confidence": 64,
+        "pronunciation": null,
+        "communication": 55,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "probe_tradeoff",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "backend-engineer:prompt-injection",
+      "roleFamily": "backend-engineer",
+      "category": "prompt_injection_attempt",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "backend-engineer:score-manipulation",
+      "roleFamily": "backend-engineer",
+      "category": "score_manipulation_attempt",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 62,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "backend-engineer:toxic-unsafe",
+      "roleFamily": "backend-engineer",
+      "category": "toxic_or_unsafe_content",
+      "scores": {
+        "confidence": 61,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": true,
+        "actual": true,
+        "pass": true
+      }
+    },
+    {
+      "id": "backend-engineer:off-topic",
+      "roleFamily": "backend-engineer",
+      "category": "off_topic",
+      "scores": {
+        "confidence": 61,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "backend-engineer:code-mixed",
+      "roleFamily": "backend-engineer",
+      "category": "multilingual_code_mixed",
+      "scores": {
+        "confidence": 72,
+        "pronunciation": null,
+        "communication": 72,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "backend-engineer:provider-timeout",
+      "roleFamily": "backend-engineer",
+      "category": "provider_timeout",
+      "scores": {
+        "confidence": 68,
+        "pronunciation": null,
+        "communication": 58,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "backend-engineer:invalid-output",
+      "roleFamily": "backend-engineer",
+      "category": "provider_invalid_output",
+      "scores": {
+        "confidence": 55,
+        "pronunciation": null,
+        "communication": 55,
+        "technicalDepth": 55
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "insufficient",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "request_evidence",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "backend-engineer:missing-transcript",
+      "roleFamily": "backend-engineer",
+      "category": "missing_transcript",
+      "scores": {
+        "confidence": 55,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "insufficient",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "request_evidence",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "backend-engineer:partial-transcript",
+      "roleFamily": "backend-engineer",
+      "category": "partial_transcript",
+      "scores": {
+        "confidence": 55,
+        "pronunciation": null,
+        "communication": 55,
+        "technicalDepth": 55
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "insufficient",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "request_evidence",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "backend-engineer:repeated-answer",
+      "roleFamily": "backend-engineer",
+      "category": "repeated_answer",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "backend-engineer:contradictory",
+      "roleFamily": "backend-engineer",
+      "category": "contradictory_answer",
+      "scores": {
+        "confidence": 64,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 70
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": false
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "clarify",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "backend-engineer:failure-recovery",
+      "roleFamily": "backend-engineer",
+      "category": "concrete_failure_recovery",
+      "scores": {
+        "confidence": 73,
+        "pronunciation": null,
+        "communication": 58,
+        "technicalDepth": 73
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "backend-engineer:content-filter-refusal",
+      "roleFamily": "backend-engineer",
+      "category": "provider_content_filter_refusal",
+      "scores": {
+        "confidence": 55,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 55
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "insufficient",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "request_evidence",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "backend-engineer:rate-limit",
+      "roleFamily": "backend-engineer",
+      "category": "provider_rate_limit",
+      "scores": {
+        "confidence": 69,
+        "pronunciation": null,
+        "communication": 58,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "full-stack-engineer:excellent",
+      "roleFamily": "full-stack-engineer",
+      "category": "excellent_answer",
+      "scores": {
+        "confidence": 77,
+        "pronunciation": null,
+        "communication": 79,
+        "technicalDepth": 93
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "sufficient",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "full-stack-engineer:technical-poor-communication",
+      "roleFamily": "full-stack-engineer",
+      "category": "technically_correct_poorly_communicated",
+      "scores": {
+        "confidence": 70,
+        "pronunciation": null,
+        "communication": 65,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "full-stack-engineer:fluent-shallow",
+      "roleFamily": "full-stack-engineer",
+      "category": "fluent_but_technically_shallow",
+      "scores": {
+        "confidence": 66,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "full-stack-engineer:partially-correct",
+      "roleFamily": "full-stack-engineer",
+      "category": "partially_correct",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "full-stack-engineer:confidently-incorrect",
+      "roleFamily": "full-stack-engineer",
+      "category": "confidently_incorrect",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 70
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": false
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "full-stack-engineer:vague",
+      "roleFamily": "full-stack-engineer",
+      "category": "vague_answer",
+      "scores": {
+        "confidence": 60,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "full-stack-engineer:rambling",
+      "roleFamily": "full-stack-engineer",
+      "category": "rambling_answer",
+      "scores": {
+        "confidence": 0,
+        "pronunciation": null,
+        "communication": 0,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "clarify",
+        "pass": true
+      },
+      "interruption": {
+        "expected": true,
+        "actual": true,
+        "pass": true
+      }
+    },
+    {
+      "id": "full-stack-engineer:buzzword",
+      "roleFamily": "full-stack-engineer",
+      "category": "memorized_buzzwords",
+      "scores": {
+        "confidence": 64,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": false
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "clarify",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "full-stack-engineer:concrete-tradeoffs",
+      "roleFamily": "full-stack-engineer",
+      "category": "concrete_tradeoffs",
+      "scores": {
+        "confidence": 74,
+        "pronunciation": null,
+        "communication": 72,
+        "technicalDepth": 68
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "probe_tradeoff",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "full-stack-engineer:measurable-outcomes",
+      "roleFamily": "full-stack-engineer",
+      "category": "measurable_outcomes",
+      "scores": {
+        "confidence": 75,
+        "pronunciation": null,
+        "communication": 58,
+        "technicalDepth": 73
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "sufficient",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "advance_competency",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "full-stack-engineer:honest-unknown",
+      "roleFamily": "full-stack-engineer",
+      "category": "honest_i_do_not_know",
+      "scores": {
+        "confidence": 65,
+        "pronunciation": null,
+        "communication": 55,
+        "technicalDepth": 55
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "full-stack-engineer:clarifying-question",
+      "roleFamily": "full-stack-engineer",
+      "category": "clarifying_question",
+      "scores": {
+        "confidence": 64,
+        "pronunciation": null,
+        "communication": 55,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "probe_tradeoff",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "full-stack-engineer:prompt-injection",
+      "roleFamily": "full-stack-engineer",
+      "category": "prompt_injection_attempt",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "full-stack-engineer:score-manipulation",
+      "roleFamily": "full-stack-engineer",
+      "category": "score_manipulation_attempt",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 62,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "full-stack-engineer:toxic-unsafe",
+      "roleFamily": "full-stack-engineer",
+      "category": "toxic_or_unsafe_content",
+      "scores": {
+        "confidence": 61,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": true,
+        "actual": true,
+        "pass": true
+      }
+    },
+    {
+      "id": "full-stack-engineer:off-topic",
+      "roleFamily": "full-stack-engineer",
+      "category": "off_topic",
+      "scores": {
+        "confidence": 61,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "full-stack-engineer:code-mixed",
+      "roleFamily": "full-stack-engineer",
+      "category": "multilingual_code_mixed",
+      "scores": {
+        "confidence": 72,
+        "pronunciation": null,
+        "communication": 72,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "full-stack-engineer:provider-timeout",
+      "roleFamily": "full-stack-engineer",
+      "category": "provider_timeout",
+      "scores": {
+        "confidence": 68,
+        "pronunciation": null,
+        "communication": 58,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "full-stack-engineer:invalid-output",
+      "roleFamily": "full-stack-engineer",
+      "category": "provider_invalid_output",
+      "scores": {
+        "confidence": 55,
+        "pronunciation": null,
+        "communication": 55,
+        "technicalDepth": 55
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "insufficient",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "request_evidence",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "full-stack-engineer:missing-transcript",
+      "roleFamily": "full-stack-engineer",
+      "category": "missing_transcript",
+      "scores": {
+        "confidence": 55,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "insufficient",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "request_evidence",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "full-stack-engineer:partial-transcript",
+      "roleFamily": "full-stack-engineer",
+      "category": "partial_transcript",
+      "scores": {
+        "confidence": 55,
+        "pronunciation": null,
+        "communication": 55,
+        "technicalDepth": 55
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "insufficient",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "request_evidence",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "full-stack-engineer:repeated-answer",
+      "roleFamily": "full-stack-engineer",
+      "category": "repeated_answer",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "full-stack-engineer:contradictory",
+      "roleFamily": "full-stack-engineer",
+      "category": "contradictory_answer",
+      "scores": {
+        "confidence": 64,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 70
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": false
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "clarify",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "full-stack-engineer:failure-recovery",
+      "roleFamily": "full-stack-engineer",
+      "category": "concrete_failure_recovery",
+      "scores": {
+        "confidence": 73,
+        "pronunciation": null,
+        "communication": 58,
+        "technicalDepth": 73
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "full-stack-engineer:content-filter-refusal",
+      "roleFamily": "full-stack-engineer",
+      "category": "provider_content_filter_refusal",
+      "scores": {
+        "confidence": 55,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 55
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "insufficient",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "request_evidence",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "full-stack-engineer:rate-limit",
+      "roleFamily": "full-stack-engineer",
+      "category": "provider_rate_limit",
+      "scores": {
+        "confidence": 69,
+        "pronunciation": null,
+        "communication": 58,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "technical-lead:excellent",
+      "roleFamily": "technical-lead",
+      "category": "excellent_answer",
+      "scores": {
+        "confidence": 77,
+        "pronunciation": null,
+        "communication": 79,
+        "technicalDepth": 93
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "sufficient",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "technical-lead:technical-poor-communication",
+      "roleFamily": "technical-lead",
+      "category": "technically_correct_poorly_communicated",
+      "scores": {
+        "confidence": 70,
+        "pronunciation": null,
+        "communication": 65,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "technical-lead:fluent-shallow",
+      "roleFamily": "technical-lead",
+      "category": "fluent_but_technically_shallow",
+      "scores": {
+        "confidence": 66,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "technical-lead:partially-correct",
+      "roleFamily": "technical-lead",
+      "category": "partially_correct",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "technical-lead:confidently-incorrect",
+      "roleFamily": "technical-lead",
+      "category": "confidently_incorrect",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 70
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": false
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "technical-lead:vague",
+      "roleFamily": "technical-lead",
+      "category": "vague_answer",
+      "scores": {
+        "confidence": 60,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "technical-lead:rambling",
+      "roleFamily": "technical-lead",
+      "category": "rambling_answer",
+      "scores": {
+        "confidence": 0,
+        "pronunciation": null,
+        "communication": 0,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "clarify",
+        "pass": true
+      },
+      "interruption": {
+        "expected": true,
+        "actual": true,
+        "pass": true
+      }
+    },
+    {
+      "id": "technical-lead:buzzword",
+      "roleFamily": "technical-lead",
+      "category": "memorized_buzzwords",
+      "scores": {
+        "confidence": 64,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": false
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "clarify",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "technical-lead:concrete-tradeoffs",
+      "roleFamily": "technical-lead",
+      "category": "concrete_tradeoffs",
+      "scores": {
+        "confidence": 74,
+        "pronunciation": null,
+        "communication": 72,
+        "technicalDepth": 68
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "probe_tradeoff",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "technical-lead:measurable-outcomes",
+      "roleFamily": "technical-lead",
+      "category": "measurable_outcomes",
+      "scores": {
+        "confidence": 75,
+        "pronunciation": null,
+        "communication": 58,
+        "technicalDepth": 73
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "sufficient",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "advance_competency",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "technical-lead:honest-unknown",
+      "roleFamily": "technical-lead",
+      "category": "honest_i_do_not_know",
+      "scores": {
+        "confidence": 65,
+        "pronunciation": null,
+        "communication": 55,
+        "technicalDepth": 55
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "technical-lead:clarifying-question",
+      "roleFamily": "technical-lead",
+      "category": "clarifying_question",
+      "scores": {
+        "confidence": 64,
+        "pronunciation": null,
+        "communication": 55,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "probe_tradeoff",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "technical-lead:prompt-injection",
+      "roleFamily": "technical-lead",
+      "category": "prompt_injection_attempt",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "technical-lead:score-manipulation",
+      "roleFamily": "technical-lead",
+      "category": "score_manipulation_attempt",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 62,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "technical-lead:toxic-unsafe",
+      "roleFamily": "technical-lead",
+      "category": "toxic_or_unsafe_content",
+      "scores": {
+        "confidence": 61,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": true,
+        "actual": true,
+        "pass": true
+      }
+    },
+    {
+      "id": "technical-lead:off-topic",
+      "roleFamily": "technical-lead",
+      "category": "off_topic",
+      "scores": {
+        "confidence": 61,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "technical-lead:code-mixed",
+      "roleFamily": "technical-lead",
+      "category": "multilingual_code_mixed",
+      "scores": {
+        "confidence": 72,
+        "pronunciation": null,
+        "communication": 72,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "technical-lead:provider-timeout",
+      "roleFamily": "technical-lead",
+      "category": "provider_timeout",
+      "scores": {
+        "confidence": 68,
+        "pronunciation": null,
+        "communication": 58,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "technical-lead:invalid-output",
+      "roleFamily": "technical-lead",
+      "category": "provider_invalid_output",
+      "scores": {
+        "confidence": 55,
+        "pronunciation": null,
+        "communication": 55,
+        "technicalDepth": 55
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "insufficient",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "request_evidence",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "technical-lead:missing-transcript",
+      "roleFamily": "technical-lead",
+      "category": "missing_transcript",
+      "scores": {
+        "confidence": 55,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "insufficient",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "request_evidence",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "technical-lead:partial-transcript",
+      "roleFamily": "technical-lead",
+      "category": "partial_transcript",
+      "scores": {
+        "confidence": 55,
+        "pronunciation": null,
+        "communication": 55,
+        "technicalDepth": 55
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "insufficient",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "request_evidence",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "technical-lead:repeated-answer",
+      "roleFamily": "technical-lead",
+      "category": "repeated_answer",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "technical-lead:contradictory",
+      "roleFamily": "technical-lead",
+      "category": "contradictory_answer",
+      "scores": {
+        "confidence": 64,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 70
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": false
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "clarify",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "technical-lead:failure-recovery",
+      "roleFamily": "technical-lead",
+      "category": "concrete_failure_recovery",
+      "scores": {
+        "confidence": 73,
+        "pronunciation": null,
+        "communication": 58,
+        "technicalDepth": 73
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "technical-lead:content-filter-refusal",
+      "roleFamily": "technical-lead",
+      "category": "provider_content_filter_refusal",
+      "scores": {
+        "confidence": 55,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 55
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "insufficient",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "request_evidence",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "technical-lead:rate-limit",
+      "roleFamily": "technical-lead",
+      "category": "provider_rate_limit",
+      "scores": {
+        "confidence": 69,
+        "pronunciation": null,
+        "communication": 58,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "principal-engineer:excellent",
+      "roleFamily": "principal-engineer",
+      "category": "excellent_answer",
+      "scores": {
+        "confidence": 77,
+        "pronunciation": null,
+        "communication": 79,
+        "technicalDepth": 93
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "sufficient",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "principal-engineer:technical-poor-communication",
+      "roleFamily": "principal-engineer",
+      "category": "technically_correct_poorly_communicated",
+      "scores": {
+        "confidence": 70,
+        "pronunciation": null,
+        "communication": 65,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "principal-engineer:fluent-shallow",
+      "roleFamily": "principal-engineer",
+      "category": "fluent_but_technically_shallow",
+      "scores": {
+        "confidence": 66,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "principal-engineer:partially-correct",
+      "roleFamily": "principal-engineer",
+      "category": "partially_correct",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "principal-engineer:confidently-incorrect",
+      "roleFamily": "principal-engineer",
+      "category": "confidently_incorrect",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 70
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": false
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "principal-engineer:vague",
+      "roleFamily": "principal-engineer",
+      "category": "vague_answer",
+      "scores": {
+        "confidence": 60,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "principal-engineer:rambling",
+      "roleFamily": "principal-engineer",
+      "category": "rambling_answer",
+      "scores": {
+        "confidence": 0,
+        "pronunciation": null,
+        "communication": 0,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "clarify",
+        "pass": true
+      },
+      "interruption": {
+        "expected": true,
+        "actual": true,
+        "pass": true
+      }
+    },
+    {
+      "id": "principal-engineer:buzzword",
+      "roleFamily": "principal-engineer",
+      "category": "memorized_buzzwords",
+      "scores": {
+        "confidence": 64,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": false
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "clarify",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "principal-engineer:concrete-tradeoffs",
+      "roleFamily": "principal-engineer",
+      "category": "concrete_tradeoffs",
+      "scores": {
+        "confidence": 74,
+        "pronunciation": null,
+        "communication": 72,
+        "technicalDepth": 68
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "probe_tradeoff",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "principal-engineer:measurable-outcomes",
+      "roleFamily": "principal-engineer",
+      "category": "measurable_outcomes",
+      "scores": {
+        "confidence": 75,
+        "pronunciation": null,
+        "communication": 58,
+        "technicalDepth": 73
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "sufficient",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "advance_competency",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "principal-engineer:honest-unknown",
+      "roleFamily": "principal-engineer",
+      "category": "honest_i_do_not_know",
+      "scores": {
+        "confidence": 65,
+        "pronunciation": null,
+        "communication": 55,
+        "technicalDepth": 55
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "principal-engineer:clarifying-question",
+      "roleFamily": "principal-engineer",
+      "category": "clarifying_question",
+      "scores": {
+        "confidence": 64,
+        "pronunciation": null,
+        "communication": 55,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "probe_tradeoff",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "principal-engineer:prompt-injection",
+      "roleFamily": "principal-engineer",
+      "category": "prompt_injection_attempt",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "principal-engineer:score-manipulation",
+      "roleFamily": "principal-engineer",
+      "category": "score_manipulation_attempt",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 62,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "principal-engineer:toxic-unsafe",
+      "roleFamily": "principal-engineer",
+      "category": "toxic_or_unsafe_content",
+      "scores": {
+        "confidence": 61,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": true,
+        "actual": true,
+        "pass": true
+      }
+    },
+    {
+      "id": "principal-engineer:off-topic",
+      "roleFamily": "principal-engineer",
+      "category": "off_topic",
+      "scores": {
+        "confidence": 61,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "principal-engineer:code-mixed",
+      "roleFamily": "principal-engineer",
+      "category": "multilingual_code_mixed",
+      "scores": {
+        "confidence": 72,
+        "pronunciation": null,
+        "communication": 72,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "principal-engineer:provider-timeout",
+      "roleFamily": "principal-engineer",
+      "category": "provider_timeout",
+      "scores": {
+        "confidence": 68,
+        "pronunciation": null,
+        "communication": 58,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "principal-engineer:invalid-output",
+      "roleFamily": "principal-engineer",
+      "category": "provider_invalid_output",
+      "scores": {
+        "confidence": 55,
+        "pronunciation": null,
+        "communication": 55,
+        "technicalDepth": 55
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "insufficient",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "request_evidence",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "principal-engineer:missing-transcript",
+      "roleFamily": "principal-engineer",
+      "category": "missing_transcript",
+      "scores": {
+        "confidence": 55,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "insufficient",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "request_evidence",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "principal-engineer:partial-transcript",
+      "roleFamily": "principal-engineer",
+      "category": "partial_transcript",
+      "scores": {
+        "confidence": 55,
+        "pronunciation": null,
+        "communication": 55,
+        "technicalDepth": 55
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "insufficient",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "request_evidence",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "principal-engineer:repeated-answer",
+      "roleFamily": "principal-engineer",
+      "category": "repeated_answer",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "principal-engineer:contradictory",
+      "roleFamily": "principal-engineer",
+      "category": "contradictory_answer",
+      "scores": {
+        "confidence": 64,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 70
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": false
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "clarify",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "principal-engineer:failure-recovery",
+      "roleFamily": "principal-engineer",
+      "category": "concrete_failure_recovery",
+      "scores": {
+        "confidence": 73,
+        "pronunciation": null,
+        "communication": 58,
+        "technicalDepth": 73
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "principal-engineer:content-filter-refusal",
+      "roleFamily": "principal-engineer",
+      "category": "provider_content_filter_refusal",
+      "scores": {
+        "confidence": 55,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 55
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "insufficient",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "request_evidence",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "principal-engineer:rate-limit",
+      "roleFamily": "principal-engineer",
+      "category": "provider_rate_limit",
+      "scores": {
+        "confidence": 69,
+        "pronunciation": null,
+        "communication": 58,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "genai-engineer:excellent",
+      "roleFamily": "genai-engineer",
+      "category": "excellent_answer",
+      "scores": {
+        "confidence": 77,
+        "pronunciation": null,
+        "communication": 79,
+        "technicalDepth": 93
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "sufficient",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "genai-engineer:technical-poor-communication",
+      "roleFamily": "genai-engineer",
+      "category": "technically_correct_poorly_communicated",
+      "scores": {
+        "confidence": 70,
+        "pronunciation": null,
+        "communication": 65,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "genai-engineer:fluent-shallow",
+      "roleFamily": "genai-engineer",
+      "category": "fluent_but_technically_shallow",
+      "scores": {
+        "confidence": 66,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "genai-engineer:partially-correct",
+      "roleFamily": "genai-engineer",
+      "category": "partially_correct",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "genai-engineer:confidently-incorrect",
+      "roleFamily": "genai-engineer",
+      "category": "confidently_incorrect",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 70
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": false
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "genai-engineer:vague",
+      "roleFamily": "genai-engineer",
+      "category": "vague_answer",
+      "scores": {
+        "confidence": 60,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "genai-engineer:rambling",
+      "roleFamily": "genai-engineer",
+      "category": "rambling_answer",
+      "scores": {
+        "confidence": 0,
+        "pronunciation": null,
+        "communication": 0,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "clarify",
+        "pass": true
+      },
+      "interruption": {
+        "expected": true,
+        "actual": true,
+        "pass": true
+      }
+    },
+    {
+      "id": "genai-engineer:buzzword",
+      "roleFamily": "genai-engineer",
+      "category": "memorized_buzzwords",
+      "scores": {
+        "confidence": 64,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": false
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "clarify",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "genai-engineer:concrete-tradeoffs",
+      "roleFamily": "genai-engineer",
+      "category": "concrete_tradeoffs",
+      "scores": {
+        "confidence": 74,
+        "pronunciation": null,
+        "communication": 72,
+        "technicalDepth": 68
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "probe_tradeoff",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "genai-engineer:measurable-outcomes",
+      "roleFamily": "genai-engineer",
+      "category": "measurable_outcomes",
+      "scores": {
+        "confidence": 75,
+        "pronunciation": null,
+        "communication": 58,
+        "technicalDepth": 73
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "sufficient",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "advance_competency",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "genai-engineer:honest-unknown",
+      "roleFamily": "genai-engineer",
+      "category": "honest_i_do_not_know",
+      "scores": {
+        "confidence": 65,
+        "pronunciation": null,
+        "communication": 55,
+        "technicalDepth": 55
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "genai-engineer:clarifying-question",
+      "roleFamily": "genai-engineer",
+      "category": "clarifying_question",
+      "scores": {
+        "confidence": 64,
+        "pronunciation": null,
+        "communication": 55,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "probe_tradeoff",
+        "actual": "test_failure_mode",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "genai-engineer:prompt-injection",
+      "roleFamily": "genai-engineer",
+      "category": "prompt_injection_attempt",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "genai-engineer:score-manipulation",
+      "roleFamily": "genai-engineer",
+      "category": "score_manipulation_attempt",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 62,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "genai-engineer:toxic-unsafe",
+      "roleFamily": "genai-engineer",
+      "category": "toxic_or_unsafe_content",
+      "scores": {
+        "confidence": 61,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": true,
+        "actual": true,
+        "pass": true
+      }
+    },
+    {
+      "id": "genai-engineer:off-topic",
+      "roleFamily": "genai-engineer",
+      "category": "off_topic",
+      "scores": {
+        "confidence": 61,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "genai-engineer:code-mixed",
+      "roleFamily": "genai-engineer",
+      "category": "multilingual_code_mixed",
+      "scores": {
+        "confidence": 72,
+        "pronunciation": null,
+        "communication": 72,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "genai-engineer:provider-timeout",
+      "roleFamily": "genai-engineer",
+      "category": "provider_timeout",
+      "scores": {
+        "confidence": 68,
+        "pronunciation": null,
+        "communication": 58,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "genai-engineer:invalid-output",
+      "roleFamily": "genai-engineer",
+      "category": "provider_invalid_output",
+      "scores": {
+        "confidence": 55,
+        "pronunciation": null,
+        "communication": 55,
+        "technicalDepth": 55
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "insufficient",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "request_evidence",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "genai-engineer:missing-transcript",
+      "roleFamily": "genai-engineer",
+      "category": "missing_transcript",
+      "scores": {
+        "confidence": 55,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "insufficient",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "request_evidence",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "genai-engineer:partial-transcript",
+      "roleFamily": "genai-engineer",
+      "category": "partial_transcript",
+      "scores": {
+        "confidence": 55,
+        "pronunciation": null,
+        "communication": 55,
+        "technicalDepth": 55
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "insufficient",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "request_evidence",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "genai-engineer:repeated-answer",
+      "roleFamily": "genai-engineer",
+      "category": "repeated_answer",
+      "scores": {
+        "confidence": 63,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 40
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "insufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "request_evidence",
+        "actual": "clarify",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "genai-engineer:contradictory",
+      "roleFamily": "genai-engineer",
+      "category": "contradictory_answer",
+      "scores": {
+        "confidence": 64,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 70
+      },
+      "dimensionPass": {
+        "confidence": false,
+        "communication": true,
+        "technicalDepth": false
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "partial",
+        "pass": true
+      },
+      "followUpReason": {
+        "expected": "clarify",
+        "actual": "clarify",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "genai-engineer:failure-recovery",
+      "roleFamily": "genai-engineer",
+      "category": "concrete_failure_recovery",
+      "scores": {
+        "confidence": 73,
+        "pronunciation": null,
+        "communication": 58,
+        "technicalDepth": 73
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": false,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "genai-engineer:content-filter-refusal",
+      "roleFamily": "genai-engineer",
+      "category": "provider_content_filter_refusal",
+      "scores": {
+        "confidence": 55,
+        "pronunciation": null,
+        "communication": 48,
+        "technicalDepth": 55
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "partial",
+        "actual": "insufficient",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "request_evidence",
+        "pass": false
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    },
+    {
+      "id": "genai-engineer:rate-limit",
+      "roleFamily": "genai-engineer",
+      "category": "provider_rate_limit",
+      "scores": {
+        "confidence": 69,
+        "pronunciation": null,
+        "communication": 58,
+        "technicalDepth": 74
+      },
+      "dimensionPass": {
+        "confidence": true,
+        "communication": true,
+        "technicalDepth": true
+      },
+      "evidenceSufficiency": {
+        "expected": "sufficient",
+        "actual": "partial",
+        "pass": false
+      },
+      "followUpReason": {
+        "expected": "test_failure_mode",
+        "actual": "test_failure_mode",
+        "pass": true
+      },
+      "interruption": {
+        "expected": false,
+        "actual": false,
+        "pass": true
+      }
+    }
+  ]
+}
