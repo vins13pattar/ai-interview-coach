@@ -1,14 +1,14 @@
 # Product Requirements Document: Interview Coach
 
-| Field                 | Value                                     |
-| --------------------- | ----------------------------------------- |
-| Product               | Interview Coach                           |
-| Status                | Durable alpha / proposed production scope |
-| Version               | 0.2                                       |
-| Last updated          | 2026-07-24                                |
-| Product model         | Open source, self-hostable, BYOK          |
-| Application languages | TypeScript and JavaScript only            |
-| AI orchestration      | LangChain.js 1.x and LangGraph 1.x        |
+| Field                 | Value                                    |
+| --------------------- | ---------------------------------------- |
+| Product               | Interview Coach                          |
+| Status                | Reference alpha / unvalidated voice beta |
+| Version               | 0.3                                      |
+| Last updated          | 2026-07-28                               |
+| Product model         | Open source, self-hostable, BYOK         |
+| Application languages | TypeScript and JavaScript only           |
+| AI orchestration      | LangChain.js 1.x and LangGraph 1.x       |
 
 ## 1. Executive summary
 
@@ -456,22 +456,23 @@ Retention classes:
 Durable APIs are versioned under `/api/v1`. The unversioned deterministic turn
 and report routes remain as a database-free contributor fallback.
 
-| Method | Route                            | Purpose                                   |
-| ------ | -------------------------------- | ----------------------------------------- |
-| GET    | `/api/v1/sessions`               | List authorized interview sessions        |
-| POST   | `/api/v1/sessions`               | Create a configured interview session     |
-| GET    | `/api/v1/sessions/:id`           | Retrieve transcript and report            |
-| POST   | `/api/v1/sessions/:id/turns`     | Submit a transcript turn idempotently     |
-| POST   | `/api/v1/sessions/:id/pause`     | Pause durable execution                   |
-| POST   | `/api/v1/sessions/:id/resume`    | Resume durable execution                  |
-| GET    | `/api/v1/sessions/:id/export`    | Export authorized session data            |
-| DELETE | `/api/v1/sessions/:id`           | Delete product and checkpoint data        |
-| GET    | `/api/v1/provider-connections`   | List redacted connection metadata         |
-| PUT    | `/api/v1/provider-connections`   | Encrypt and save an opted-in provider key |
-| DELETE | `/api/v1/provider-connections?…` | Delete an authorized provider connection  |
+| Method | Route                            | Purpose                                     |
+| ------ | -------------------------------- | ------------------------------------------- |
+| GET    | `/api/v1/sessions`               | List authorized interview sessions          |
+| POST   | `/api/v1/sessions`               | Create a configured interview session       |
+| GET    | `/api/v1/sessions/:id`           | Retrieve transcript and report              |
+| POST   | `/api/v1/sessions/:id/turns`     | Submit a transcript turn idempotently       |
+| POST   | `/api/v1/sessions/:id/pause`     | Pause durable execution                     |
+| POST   | `/api/v1/sessions/:id/resume`    | Resume durable execution                    |
+| GET    | `/api/v1/sessions/:id/export`    | Export authorized session data              |
+| DELETE | `/api/v1/sessions/:id`           | Delete product and checkpoint data          |
+| GET    | `/api/v1/provider-connections`   | List redacted connection metadata           |
+| PUT    | `/api/v1/provider-connections`   | Encrypt and save an opted-in provider key   |
+| DELETE | `/api/v1/provider-connections?…` | Delete an authorized provider connection    |
+| POST   | `/api/v1/voice/token`            | Mint a consented ephemeral voice credential |
 
-SSE events, explicit early-finalization, report sharing, and voice-token routes
-remain beta/public-v1 scope.
+SSE events, explicit early-finalization, and report sharing remain
+beta/public-v1 scope.
 
 ## 13. Non-functional requirements
 
@@ -622,11 +623,21 @@ Implemented:
 
 ### Phase 2 — Real-time voice beta
 
-- WebRTC voice provider;
-- ephemeral token minting;
-- VAD, barge-in, and interruption policy;
-- acoustic scoring research;
-- browser/device reliability matrix.
+Implemented foundation:
+
+- provider-neutral WebRTC voice adapter;
+- consented ephemeral token minting;
+- semantic VAD and natural barge-in;
+- visible state, device selection, audio recovery, transcript review/correction,
+  mute/leave, manual fresh-token reconnect, and permanent text fallback;
+- raw-audio retention off and acoustic pronunciation explicitly unavailable.
+
+Still required:
+
+- automatic reconnect and controlled mid-answer interviewer redirection;
+- real OpenAI browser/device validation;
+- latency, false/missed interruption, reconnection, and transcript-error
+  measurements.
 
 ### Phase 3 — Calibrated public v1
 

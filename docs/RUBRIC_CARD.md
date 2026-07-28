@@ -1,64 +1,87 @@
-# Alpha Rubric Card
+# Model and Rubric Card
 
-Version: `alpha-v1`
+- Reference registry: `interview-rubric-registry-v1`
+- Evaluation schema: `answer-evaluation-v2`
+- Current role-rubric version: `1.0.0`
 
-## Purpose
+## Intended use
 
-The alpha rubric gives candidates immediate coaching feedback and gives
-maintainers a deterministic baseline for regression testing. It is not a
-validated hiring instrument and must not be used as the sole basis for an
-employment decision.
+AI Interview Coach provides practice, evidence-backed coaching, and
+interview decision support. Its output may help a candidate reflect on an
+answer or help a qualified reviewer inspect the evidence. It is not a
+validated hiring instrument and must not replace a qualified interviewer or
+be the sole basis for an employment decision.
 
-## Dimensions
+## Supported role families
 
-| Dimension       | Evidence considered in text mode                                                                | Explicit limitation                                                        |
-| --------------- | ----------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| Confidence      | Direct language, answer completeness, concrete examples, and filler frequency                   | Does not infer personality, anxiety, identity, or truthfulness             |
-| Communication   | Structure markers, causal explanations, examples, and concision                                 | English-language heuristic; not calibrated across dialects or disabilities |
-| Technical depth | Technical concepts, trade-offs, failure modes, testing, scale, security, and measurable results | Keyword evidence can miss valid domain-specific reasoning                  |
-| Pronunciation   | Acoustic evidence only                                                                          | Always `null` for typed or browser-transcribed text in the alpha           |
+The executable registry contains separate, deliberately small rubrics for
+Frontend Engineer, Backend Engineer, Full-Stack Engineer, Technical Lead,
+Principal Engineer, and GenAI Engineer. Each rubric declares competencies,
+dimension-specific behavioral anchors, required evidence, disqualifying
+insufficiencies, follow-up rules, confidence guidance, and limitations.
 
-Scores range from 0 to 100. A score is a coaching signal, not a probability or
-employment recommendation. Every report includes supporting observations and a
-human-review disclaimer.
+Rubric identifier and version are stored in every evaluated turn and final
+report. A behavioral or threshold change requires a version bump and updated
+evaluation evidence.
 
-## Difficulty policy
+## Assessment boundary
 
-The engine averages confidence, communication, technical depth, and a neutral
-pronunciation value of 75 when acoustic evidence is absent:
+| Dimension       | Evidence used                                                        | Safety boundary                                                        |
+| --------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| Confidence      | Answer completeness, directness, specificity, and admitted unknowns  | Does not infer personality, anxiety, identity, honesty, or hireability |
+| Communication   | Structure, causal reasoning, relevance, examples, and concision      | Fluency and accent are not proxies for competence                      |
+| Technical depth | Decisions, constraints, trade-offs, failure modes, tests, and impact | Unsupported terminology is not treated as technical evidence           |
+| Pronunciation   | Acoustic evidence from a separately calibrated optional assessment   | Always `null` in the current implementation                            |
 
-- 78 or higher: increase one difficulty level;
-- below 48: decrease one difficulty level;
-- otherwise: keep the current level.
+The model may extract evidence and assess dimensions against anchors.
+Deterministic policy owns score bounds and evidence caps, difficulty
+hysteresis, follow-up selection, interruption eligibility, completion budgets,
+missing-data behavior, and pronunciation availability.
 
-Difficulty is bounded to foundation, intermediate, advanced, and expert.
+## Evaluation evidence
 
-## Interruption policy
+The versioned reference dataset contains 156 synthetic engineering fixtures
+across the six role families and 26 answer/failure categories. Executed
+baseline results:
 
-The deterministic alpha suggests a redirect when an answer is longer than 125
-words without enough structure, or when it detects at least seven filler
-phrases. The text experience shows coaching feedback; real-time voice barge-in
-is a beta feature and requires separate consent and latency validation.
+- graph termination: 156/156;
+- text-only pronunciation fabrication: 0/156;
+- dimension-range agreement: 76.92%;
+- evidence-sufficiency agreement: 42.31%;
+- follow-up agreement: 34.62%;
+- interruption agreement: 100%.
 
-## Evaluation dataset
+The 30-pair counterfactual suite changes only irrelevant name, pronoun,
+geography, career-gap, or meaning-preserving phrasing signals. Its current
+deterministic technical-score mean and maximum delta are both 0 within a
+documented tolerance of 2.
 
-[`evaluation/alpha-v1.json`](../evaluation/alpha-v1.json) contains the initial
-public regression set:
+These results are regression evidence on synthetic fixtures. They are not
+qualified-human calibration, adverse-impact evidence, or proof of validity
+for employment decisions.
 
-- a concrete, structured system-design answer;
-- unsupported generalities;
-- a filler-heavy ramble that should trigger a redirect.
+## Calibration status
 
-The suite checks bounded score expectations, interruption behavior, and the
-requirement that pronunciation remains unscored without acoustic evidence.
+The repository can import anonymized reviewer annotations and compute MAE,
+Spearman correlation, weighted Cohen's kappa, evidence precision/recall,
+follow-up agreement, over/under-scoring rates, and role/category slices. The
+published demonstration uses synthetic labels and intentionally exposes poor
+agreement in several dimensions. No expert-calibration claim is made.
 
-## Known gaps before public v1
+## Known limitations
 
-- Expand the dataset across roles, seniority levels, dialects, and answer styles.
-- Run inter-rater studies with qualified interviewers.
-- Measure score stability across providers and repeated runs.
-- Perform accessibility, adverse-impact, and bias reviews.
-- Publish calibration methodology, subgroup limitations, and change history.
+- Deterministic mode is reproducible but shallow and English-centric.
+- OpenAI is the only implemented hosted evaluator.
+- Real-population, multilingual, disability, dialect, and accent studies are
+  absent.
+- Voice provider/browser/device and latency validation is pending.
+- No pronunciation model or calibrated acoustic dataset exists.
+- Prompt injection and manipulation cases are regression fixtures, not a
+  complete adversarial evaluation.
+- Scores describe answer evidence for coaching; they do not estimate job
+  performance or candidate potential.
 
-Rubric or threshold changes require a version bump, fixture updates, and a
-documented rationale.
+See [Rubric Design](RUBRIC_DESIGN.md),
+[Evaluation Dataset](EVALUATION_DATASET.md),
+[Calibration Methodology](CALIBRATION_METHODOLOGY.md), and
+[Known Limitations](KNOWN_LIMITATIONS.md).

@@ -25,27 +25,47 @@ flowchart LR
 - `packages/contracts`: stable Zod schemas and inferred TypeScript types.
 - `packages/database`: SQL migrations, tenant-scoped repositories, encrypted
   provider connections, and the LangGraph checkpointer.
+- `packages/evaluation`: versioned dataset generation, deterministic execution,
+  counterfactual tests, and computed reports.
 - `packages/interview-engine`: graph, scorer adapters, difficulty logic, reports.
+- `packages/voice`: provider-neutral events, device recovery, and OpenAI
+  Realtime WebRTC.
 - `evaluation`: public deterministic fixtures and expected score bounds.
-- Future `packages/voice`: ephemeral credentials and provider-neutral events.
 
 ## Interview graph
 
-The alpha graph is intentionally small:
+The reference graph makes model interpretation and deterministic application
+policy separate:
 
 ```mermaid
-flowchart LR
-    S["START"] --> A["assess_answer"]
-    A --> D["adapt_difficulty"]
-    D --> Q["prepare_next_question"]
-    Q --> E["END"]
+flowchart TD
+    S["START"] --> I["initialize session"]
+    I --> C["verify consent"]
+    C --> K["select competency and rubric"]
+    K --> A["assess answer"]
+    A --> F["safe fallback when degraded"]
+    A --> V["validate evidence"]
+    F --> V
+    V --> D["adapt difficulty"]
+    D --> Q["select follow up"]
+    Q --> P["apply interruption policy"]
+    P --> B["decide completion budget"]
+    B --> N["prepare unique next question"]
+    N --> R["prepare report state"]
+    R --> E["END"]
 ```
 
-The durable alpha compiles this graph with `PostgresSaver`; repository writes
-remain explicit around the graph so authorization, idempotency, export, and
-deletion are independently testable. Future voice work adds interruption
-policy, time budgets, and coverage planning. Nodes return partial state updates.
-Graph state never contains provider API keys.
+OpenAI mode uses one versioned structured call to extract evidence and a second
+to assess confidence, communication, and technical depth. Deterministic nodes
+own evidence sufficiency, score caps, follow-up reason, difficulty hysteresis,
+interruption eligibility, budgets, completion, and pronunciation availability.
+Provider failure records deterministic-fallback provenance instead of silently
+substituting scores.
+
+The graph compiles with `PostgresSaver`; repository writes remain explicit
+around it so authorization, idempotency, export, and deletion are independently
+testable. Nodes return partial updates. Graph state never contains provider API
+keys.
 
 ## Persistence
 
@@ -102,9 +122,9 @@ events:
 ```ts
 type VoiceEvent =
   | { type: "speech.started"; atMs: number }
-  | { type: "transcript.partial"; text: string; sequence: number }
-  | { type: "transcript.final"; text: string; sequence: number }
-  | { type: "interviewer.audio.delta"; audio: ArrayBuffer }
+  | { type: "speech.stopped"; atMs: number }
+  | { type: "transcript.final"; text: string; itemId: string }
+  | { type: "interviewer.transcript.delta"; delta: string }
   | { type: "interruption.requested"; reason: string }
   | { type: "error"; code: string; recoverable: boolean };
 ```
@@ -112,6 +132,32 @@ type VoiceEvent =
 Audio should travel directly between browser and provider when possible. The
 backend owns authorization, ephemeral-token minting, interview state, and event
 audit—not the media plane.
+
+```mermaid
+sequenceDiagram
+    participant C as Candidate
+    participant B as Browser
+    participant A as Next.js API
+    participant P as Realtime provider
+    participant G as Interview graph
+    C->>B: Accept processing and transcript retention
+    B->>A: Request ephemeral grant with consent version
+    A->>P: Create short-lived client secret
+    P-->>A: Ephemeral secret and expiry
+    A-->>B: Ephemeral secret only
+    B->>P: Establish WebRTC media and event channels
+    P-->>B: Final transcript
+    B-->>C: Show editable transcript
+    C->>B: Correct and submit
+    B->>G: Persist validated text turn
+    G-->>B: Evidence, policy decision, and next question
+    B->>P: Speak the application-selected question
+```
+
+The browser never automatically scores a final transcript. The candidate can
+review and correct it before submitting. Mute and leave controls operate on the
+local media stream; reconnect requests a fresh ephemeral grant. Automatic
+network recovery and real-device reliability measurement remain pending.
 
 ## Security controls
 

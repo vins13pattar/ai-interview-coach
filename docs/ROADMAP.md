@@ -34,18 +34,50 @@ connection access, Playwright covers the complete durable candidate journey,
 and the Compose runtime applies migrations before admitting web traffic.
 Registered accounts and an external identity provider remain public-v1 work.
 
-## Beta — real-time voice
+## Implemented beta — real-time voice validation pending
 
-- [ ] WebRTC speech provider adapter
-- [ ] Ephemeral browser credentials
-- [ ] Voice activity detection and barge-in
-- [ ] Interruption policy enforcement
-- [ ] Audio/device recovery matrix
-- [ ] Explicit recording and retention consent
-- [ ] Acoustic-pronunciation evaluation or explicit deferral
+- [x] WebRTC speech provider adapter
+- [x] Ephemeral browser credentials
+- [x] Voice activity detection and barge-in
+- [x] Initial deterministic interruption policy
+- [x] Audio/device recovery controls
+- [x] Explicit provider-processing and transcript-retention consent
+- [x] Acoustic-pronunciation evaluation explicitly deferred
 
 Exit criteria: p95 voice response under 1.8 seconds, zero unconsented recording,
 and keyboard/text fallback passes all critical flows.
+
+Code and consent gating pass focused/unit and Chromium tests. Real OpenAI audio,
+latency, reconnection, false/missed interruption, transcript-error, and
+browser/device evidence remain required before calling voice production-ready.
+
+## In progress — public reference implementation
+
+- [x] Requirement-to-evidence [gap matrix](REFERENCE_IMPLEMENTATION_GAP_MATRIX.md)
+- [x] Explicit bounded LangGraph turn state and deterministic policy nodes
+- [x] Versioned executable rubrics for six role families
+- [x] Split evidence extraction from dimension assessment
+- [x] 156-case deterministic dataset with computed baseline metrics
+- [x] Synthetic 30-pair counterfactual technical-score report
+- [x] Human-annotation import and synthetic calibration statistics
+- [x] Provider timeout/rate-limit/invalid-output/refusal conformance tests
+- [x] Content-free graph/turn latency and fallback telemetry baseline
+- [x] Patched production dependency audit with no known vulnerabilities
+- [ ] Qualified-human calibration study
+- [ ] Circuit-breaking and stream/database failure-injection suite
+- [ ] Runtime persistence/export for telemetry, token, cost, and completion
+      reporting
+- [ ] Concurrent-tab, restart, reconnect, and report-regeneration matrix
+- [ ] Retention scheduler and complete derived-data inventory
+- [ ] WCAG 2.2 AA evidence
+- [ ] Repository threat model and independent security review
+- [ ] Real voice browser/device validation matrix
+
+Current computed synthetic baseline: 156/156 cases terminate and fabricate zero
+pronunciation scores. Dimension-range agreement is 76.92%,
+evidence-sufficiency agreement is 42.31%, follow-up agreement is 34.62%, and
+interruption agreement is 100%. These are engineering-fixture results, not
+qualified-human calibration or hiring validity.
 
 ## Public v1 — calibrated and operable
 

@@ -12,11 +12,12 @@ difficulty, redirects rambling answers, scores observable evidence, and produces
 a recruiter-style report. The current vertical slice is deliberately usable
 without an API key and supports an optional bring-your-own OpenAI key.
 
-> Project status: **durable alpha**. Adaptive interviews now persist in
-> PostgreSQL, survive restarts, resume safely, and support export and verified
-> deletion. Production voice-to-voice interruption, registered accounts,
-> calibrated pronunciation scoring, and hiring-grade validation remain roadmap
-> items. See the [PRD](docs/PRD.md) and
+> Project status: **reference-implementation alpha with an unvalidated voice
+> beta**. Durable text interviews, explicit workflow policy, six versioned role
+> rubrics, 156 deterministic evaluation cases, export, and verified deletion
+> are implemented. Real-provider voice reliability, qualified-human
+> calibration, registered accounts, accessibility certification, and
+> hiring-grade validation remain roadmap items. See the [PRD](docs/PRD.md) and
 > [roadmap](docs/ROADMAP.md).
 
 ## Why this is different
@@ -36,6 +37,8 @@ without an API key and supports an optional bring-your-own OpenAI key.
 - pnpm workspaces and Turborepo
 - Vitest for deterministic engine tests
 - PostgreSQL repositories, SQL migrations, and LangGraph Postgres checkpoints
+- Six executable versioned role rubrics and a 156-case evaluation workspace
+- Provider-neutral WebRTC voice adapter with consented ephemeral credentials
 - Playwright browser journeys and Vitest unit/integration suites
 
 ## Quick start
@@ -113,13 +116,18 @@ apps/
 packages/
   contracts/            Shared Zod schemas and TypeScript types
   database/             Tenant-scoped repositories, migrations, checkpointer
+  evaluation/           Dataset generation, metrics, counterfactual tests
   interview-engine/     LangGraph orchestration, scoring, report logic
+  voice/                Provider-neutral voice events and WebRTC adapter
 evaluation/
-  alpha-v1.json         Public deterministic regression fixtures
+  reference-v1.json     156-case versioned reference dataset
+  results/              Computed machine-readable evaluation reports
 docs/
   PRD.md                Detailed product requirements
   ARCHITECTURE.md       Runtime design and security boundaries
   ROADMAP.md            Delivery phases and exit criteria
+  RUBRIC_CARD.md        Intended use, measured evidence, and limitations
+  PROVIDER_SECURITY.md  BYOK trust boundaries and redaction model
 ```
 
 ## Quality commands
@@ -131,7 +139,19 @@ pnpm test
 pnpm test:e2e
 pnpm build
 pnpm check
+pnpm evaluation:generate
+pnpm evaluation:report
+pnpm audit:dependencies
 ```
+
+The current synthetic deterministic baseline executes all 156 cases with 100%
+graph termination and zero fabricated pronunciation scores. Its 76.92%
+dimension-range, 42.31% evidence-sufficiency, and 34.62% follow-up agreement
+show why this remains an alpha. See the
+[evaluation report](docs/evaluation/reference-v1-report.md) and
+[counterfactual report](docs/evaluation/counterfactual-v1-report.md). These
+fixtures are not qualified-human calibration or evidence of fairness across
+real populations.
 
 ## Responsible use
 
