@@ -105,7 +105,8 @@ security boundaries, deterministic tests, and no required vendor account.
 - Score confidence, communication, and technical depth from text evidence.
 - Score pronunciation only from a validated acoustic pipeline.
 - Produce a recruiter-quality report with evidence, uncertainty, and next steps.
-- Support BYOK and self-hosted server-managed keys.
+- Support tab-scoped BYOK and encrypted per-user connections without exposing
+  an operator-funded key to guest traffic.
 - Provide observable, testable orchestration in LangGraph.
 - Meet WCAG 2.2 AA for all non-audio workflows.
 
@@ -407,13 +408,15 @@ Supported modes:
 1. **Local demo:** deterministic, no network provider.
 2. **Browser session key:** key held in page memory and sent to the self-hosted
    backend over TLS.
-3. **Server-managed key:** operator configures a server-only environment secret.
-4. **Ephemeral voice credential:** backend exchanges the server key for a
-   short-lived browser token where the provider supports it.
+3. **Encrypted per-user connection:** an explicitly opted-in BYOK secret is
+   encrypted at rest on the self-hosted server.
+4. **Ephemeral voice credential:** backend exchanges that candidate-owned key
+   for a short-lived browser token where the provider supports it.
 
 Rules:
 
 - never accept keys in query strings;
+- never fall back to an operator-funded provider key for public or guest routes;
 - never persist plaintext keys in application data;
 - redact authorization and provider-key headers;
 - opt out keys and raw prompts from analytics;

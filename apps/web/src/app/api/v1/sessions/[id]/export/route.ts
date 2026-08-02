@@ -2,7 +2,7 @@ import { SessionExportSchema } from "@interview-coach/contracts";
 import { getInterviewSession } from "@interview-coach/database";
 import { z } from "zod";
 
-import { getOrCreatePrincipal } from "@/lib/server/auth";
+import { requirePrincipal } from "@/lib/server/auth";
 import { apiError, noStoreJson } from "@/lib/server/http";
 
 type Context = { params: Promise<{ id: string }> };
@@ -10,7 +10,7 @@ type Context = { params: Promise<{ id: string }> };
 export async function GET(_request: Request, context: Context) {
   try {
     const sessionId = z.uuid().parse((await context.params).id);
-    const principal = await getOrCreatePrincipal();
+    const principal = await requirePrincipal();
     const session = await getInterviewSession(principal, sessionId);
     if (!session) {
       return noStoreJson(

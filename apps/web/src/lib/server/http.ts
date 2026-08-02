@@ -3,6 +3,8 @@ import "server-only";
 import { NextResponse } from "next/server";
 import { ZodError } from "zod";
 
+export const MAX_REPORT_BODY_BYTES = 1_048_576;
+
 export function assertMutationRequest(request: Request): void {
   if (request.headers.get("x-interview-coach-client") !== "web") {
     throw new HttpError(403, "Missing required client request header.");
@@ -33,6 +35,54 @@ export class HttpError extends Error {
   }
 }
 
+export async function readJsonBody(
+  request: Request,
+  maxBytes: number,
+): Promise<unknown> {
+  const declaredLength = request.headers.get("content-length");
+  if (declaredLength) {
+    const parsedLength = Number(declaredLength);
+    if (Number.isFinite(parsedLength) && parsedLength > maxBytes) {
+      throw new HttpError(413, "Request body is too large.");
+    }
+  }
+
+  if (!request.body) {
+    throw new HttpError(400, "A JSON request body is required.");
+  }
+
+  const reader = request.body.getReader();
+  const chunks: Uint8Array[] = [];
+  let totalBytes = 0;
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      totalBytes += value.byteLength;
+      if (totalBytes > maxBytes) {
+        await reader.cancel();
+        throw new HttpError(413, "Request body is too large.");
+      }
+      chunks.push(value);
+    }
+  } finally {
+    reader.releaseLock();
+  }
+
+  const body = new Uint8Array(totalBytes);
+  let offset = 0;
+  for (const chunk of chunks) {
+    body.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+
+  try {
+    return JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(body));
+  } catch {
+    throw new HttpError(400, "Request body must be valid UTF-8 JSON.");
+  }
+}
+
 export function apiError(error: unknown): NextResponse {
   if (error instanceof HttpError) {
     return NextResponse.json(
@@ -54,6 +104,10 @@ export function apiError(error: unknown): NextResponse {
   }
   if (error instanceof Error) {
     const knownErrors: Record<string, [number, string]> = {
+      AUTHENTICATION_REQUIRED: [
+        401,
+        "An active interview session is required.",
+      ],
       SESSION_NOT_FOUND: [404, "Interview session not found."],
       SESSION_NOT_ACTIVE: [409, "Interview session is not active."],
       SESSION_VERSION_CONFLICT: [

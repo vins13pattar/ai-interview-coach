@@ -4,7 +4,7 @@ import {
 } from "@interview-coach/database";
 import { z } from "zod";
 
-import { getOrCreatePrincipal } from "@/lib/server/auth";
+import { requirePrincipal } from "@/lib/server/auth";
 import {
   apiError,
   assertMutationRequest,
@@ -20,7 +20,7 @@ type Context = { params: Promise<{ id: string }> };
 export async function GET(_request: Request, context: Context) {
   try {
     const sessionId = SessionIdSchema.parse((await context.params).id);
-    const principal = await getOrCreatePrincipal();
+    const principal = await requirePrincipal();
     const session = await getInterviewSession(principal, sessionId);
     return session
       ? noStoreJson(session)
@@ -34,7 +34,7 @@ export async function DELETE(request: Request, context: Context) {
   try {
     assertMutationRequest(request);
     const sessionId = SessionIdSchema.parse((await context.params).id);
-    const principal = await getOrCreatePrincipal();
+    const principal = await requirePrincipal();
     const deleted = await deleteInterviewSession(principal, sessionId);
     return deleted
       ? new Response(null, { status: 204 })

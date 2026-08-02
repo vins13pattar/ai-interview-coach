@@ -20,6 +20,7 @@ export {
   getInterviewSession,
   listInterviewSessions,
   listProviderConnections,
+  recordDictationConsent,
   completeVoiceTokenGrant,
   setInterviewSessionStatus,
   upsertProviderConnection,

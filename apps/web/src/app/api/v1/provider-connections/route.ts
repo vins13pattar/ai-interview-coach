@@ -9,7 +9,11 @@ import {
   upsertProviderConnection,
 } from "@interview-coach/database";
 
-import { getOrCreatePrincipal } from "@/lib/server/auth";
+import {
+  getOrCreatePrincipal,
+  getPrincipal,
+  requirePrincipal,
+} from "@/lib/server/auth";
 import {
   apiError,
   assertMutationRequest,
@@ -30,10 +34,10 @@ function assertEncryptionAvailable(): void {
 
 export async function GET() {
   try {
-    const principal = await getOrCreatePrincipal();
+    const principal = await getPrincipal();
     return noStoreJson({
       available: providerEncryptionConfigured(),
-      connections: await listProviderConnections(principal),
+      connections: principal ? await listProviderConnections(principal) : [],
     });
   } catch (error) {
     return apiError(error);
@@ -59,7 +63,7 @@ export async function DELETE(request: Request) {
     const provider = ProviderSchema.extract(["openai"]).parse(
       new URL(request.url).searchParams.get("provider"),
     );
-    const principal = await getOrCreatePrincipal();
+    const principal = await requirePrincipal();
     const deleted = await deleteProviderConnection(principal, provider);
     return deleted
       ? new Response(null, { status: 204 })

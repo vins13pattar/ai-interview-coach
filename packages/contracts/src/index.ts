@@ -86,28 +86,28 @@ export const InterruptionDecisionSchema = z.object({
   eligible: z.boolean(),
   reason: InterruptionReasonSchema.nullable(),
   confidence: z.number().min(0).max(1),
-  evidence: z.array(z.string()).max(4),
+  evidence: z.array(z.string().min(1).max(2_000)).max(4),
   minimumSpeakingTimeMet: z.boolean(),
   naturalBoundaryPreferred: z.literal(true),
 });
 
 export const EvaluationProvenanceSchema = z.object({
-  schemaVersion: z.string().min(1),
-  rubricId: z.string().min(1),
-  rubricVersion: z.string().min(1),
-  promptVersion: z.string().min(1),
+  schemaVersion: z.string().min(1).max(120),
+  rubricId: z.string().min(1).max(120),
+  rubricVersion: z.string().min(1).max(120),
+  promptVersion: z.string().min(1).max(120),
   provider: ProviderSchema,
-  model: z.string().min(1),
+  model: z.string().min(1).max(200),
   mode: EvaluationModeSchema,
-  fallbackReason: z.string().nullable(),
+  fallbackReason: z.string().max(2_000).nullable(),
 });
 
 export const EvidenceExtractionSchema = z.object({
   schemaVersion: z.literal("evidence-extraction-v1"),
   relevance: z.enum(["off_topic", "partial", "relevant"]),
-  evidence: z.array(z.string().min(3)).min(1).max(4),
-  demonstratedConcepts: z.array(z.string().min(1)).max(8),
-  insufficiencies: z.array(z.string().min(3)).max(6),
+  evidence: z.array(z.string().min(3).max(2_000)).min(1).max(4),
+  demonstratedConcepts: z.array(z.string().min(1).max(200)).max(8),
+  insufficiencies: z.array(z.string().min(3).max(2_000)).max(6),
 });
 
 export const DimensionAssessmentSchema = z.object({
@@ -118,8 +118,8 @@ export const DimensionAssessmentSchema = z.object({
     technicalDepth: z.number().min(0).max(100),
   }),
   scoreConfidence: z.number().min(0).max(1),
-  strengths: z.array(z.string().min(3)).max(4),
-  improvements: z.array(z.string().min(3)).max(4),
+  strengths: z.array(z.string().min(3).max(2_000)).max(4),
+  improvements: z.array(z.string().min(3).max(2_000)).max(4),
 });
 
 export const ScoreSchema = z.object({
@@ -143,11 +143,11 @@ export const AnswerEvaluationSchema = z.object({
   scores: ScoreSchema,
   scoreConfidence: z.number().min(0).max(1).default(0.5),
   evidenceSufficiency: EvidenceSufficiencySchema.default("partial"),
-  evidence: z.array(z.string()).min(1).max(4),
-  strengths: z.array(z.string()).max(4),
-  improvements: z.array(z.string()).max(4),
+  evidence: z.array(z.string().min(1).max(2_000)).min(1).max(4),
+  strengths: z.array(z.string().max(2_000)).max(4),
+  improvements: z.array(z.string().max(2_000)).max(4),
   shouldInterrupt: z.boolean(),
-  interruptionReason: z.string().nullable(),
+  interruptionReason: z.string().max(2_000).nullable(),
   interruption: InterruptionDecisionSchema.default({
     eligible: false,
     reason: null,
@@ -157,7 +157,7 @@ export const AnswerEvaluationSchema = z.object({
     naturalBoundaryPreferred: true,
   }),
   followUpReason: FollowUpReasonSchema.nullable().default(null),
-  demonstratedConcepts: z.array(z.string()).max(8),
+  demonstratedConcepts: z.array(z.string().max(200)).max(8),
 });
 
 export const InterviewTurnSchema = z.object({
@@ -180,10 +180,10 @@ export const InterviewTurnSchema = z.object({
 export const InterviewTurnResultSchema = z.object({
   evaluation: AnswerEvaluationSchema,
   nextDifficulty: DifficultySchema,
-  nextQuestion: z.string().min(4),
-  coachNote: z.string().min(4),
+  nextQuestion: z.string().min(4).max(2_000),
+  coachNote: z.string().min(4).max(2_000),
   completed: z.boolean(),
-  currentCompetency: z.string().min(1).default("general"),
+  currentCompetency: z.string().min(1).max(120).default("general"),
   followUpReason: FollowUpReasonSchema,
   providerStatus: ProviderStatusSchema.default("available"),
   remainingTurnBudget: z.number().int().min(0).max(30).default(0),
@@ -194,9 +194,9 @@ export const InterviewTurnResultSchema = z.object({
 });
 
 export const TranscriptTurnSchema = z.object({
-  id: z.string().min(1),
-  question: z.string(),
-  answer: z.string(),
+  id: z.string().min(1).max(100),
+  question: z.string().min(4).max(2_000),
+  answer: z.string().min(3).max(20_000),
   difficulty: DifficultySchema,
   evaluation: AnswerEvaluationSchema,
 });
@@ -204,7 +204,7 @@ export const TranscriptTurnSchema = z.object({
 export const RecruiterReportRequestSchema = z.object({
   role: z.string().min(2).max(120),
   seniority: z.string().min(2).max(80),
-  focusAreas: z.array(z.string()).min(1).max(12),
+  focusAreas: z.array(z.string().min(1).max(80)).min(1).max(12),
   turns: z.array(TranscriptTurnSchema).min(5).max(30),
 });
 
@@ -293,6 +293,13 @@ export const VoiceConsentRequestSchema = z.object({
   rawAudioRetentionAccepted: z.literal(false),
 });
 
+export const DictationConsentRequestSchema = z.object({
+  policyVersion: z.literal("text-dictation-v1"),
+  browserProcessingAccepted: z.literal(true),
+  transcriptUseAccepted: z.literal(true),
+  rawAudioRetentionAccepted: z.literal(false),
+});
+
 export const VoiceClientSecretSchema = z.object({
   value: z.string().min(1),
   expiresAt: z.number().int().positive(),
@@ -373,6 +380,9 @@ export type ProviderConnectionInput = z.infer<
 >;
 export type ProviderConnection = z.infer<typeof ProviderConnectionSchema>;
 export type VoiceConsentRequest = z.infer<typeof VoiceConsentRequestSchema>;
+export type DictationConsentRequest = z.infer<
+  typeof DictationConsentRequestSchema
+>;
 export type VoiceClientSecret = z.infer<typeof VoiceClientSecretSchema>;
 export type SessionSummary = z.infer<typeof SessionSummarySchema>;
 export type SessionDetail = z.infer<typeof SessionDetailSchema>;

@@ -6,7 +6,7 @@ import {
 } from "@interview-coach/database";
 import { openingQuestion } from "@interview-coach/interview-engine";
 
-import { getOrCreatePrincipal } from "@/lib/server/auth";
+import { getOrCreatePrincipal, getPrincipal } from "@/lib/server/auth";
 import {
   apiError,
   assertMutationRequest,
@@ -23,9 +23,9 @@ export async function GET() {
     );
   }
   try {
-    const principal = await getOrCreatePrincipal();
+    const principal = await getPrincipal();
     return noStoreJson({
-      sessions: await listInterviewSessions(principal),
+      sessions: principal ? await listInterviewSessions(principal) : [],
     });
   } catch (error) {
     return apiError(error);

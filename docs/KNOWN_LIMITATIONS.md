@@ -19,7 +19,8 @@
 - Retention is delete-driven; automated expiry jobs are not implemented.
 - The project has not completed load, failover, backup, or restore testing.
 - Accessibility has not received an independent WCAG audit.
-- The threat model and independent security review are pending contextual
-  validation.
+- The repository threat model uses conservative hosted/self-hosted, India/PII,
+  and guest-identity assumptions that still require maintainer confirmation.
+  An independent security review remains pending.
 - No `LICENSE` exists until the maintainer selects one.
 - No hosted deployment or release candidate has been approved.

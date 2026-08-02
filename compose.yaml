@@ -46,7 +46,7 @@ services:
     init: true
     restart: unless-stopped
     ports:
-      - "${PORT:-3000}:3000"
+      - "127.0.0.1:${PORT:-3000}:3000"
     environment:
       APP_ORIGIN: ${APP_ORIGIN:-http://localhost:3000}
       ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
@@ -55,7 +55,6 @@ services:
       LANGSMITH_API_KEY: ${LANGSMITH_API_KEY:-}
       LANGSMITH_PROJECT: ${LANGSMITH_PROJECT:-ai-interview-coach}
       LANGSMITH_TRACING: ${LANGSMITH_TRACING:-false}
-      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
       OPENAI_REALTIME_MODEL: ${OPENAI_REALTIME_MODEL:-gpt-realtime-2.1}
       OPENAI_REALTIME_VOICE: ${OPENAI_REALTIME_VOICE:-marin}
       PROVIDER_ENCRYPTION_KEY: ${PROVIDER_ENCRYPTION_KEY:-}

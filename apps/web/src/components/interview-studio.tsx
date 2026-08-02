@@ -19,7 +19,14 @@ import {
   type VoiceEvent,
   type VoiceStatus,
 } from "@interview-coach/voice";
-import { useEffect, useMemo, useRef, useState, useTransition } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useTransition,
+} from "react";
 
 type Stage = "setup" | "interview" | "report";
 
@@ -67,6 +74,12 @@ export function InterviewStudio() {
   const [saveApiKey, setSaveApiKey] = useState(false);
   const [error, setError] = useState("");
   const [isListening, setIsListening] = useState(false);
+  const [dictationConsentOpen, setDictationConsentOpen] = useState(false);
+  const [browserDictationAccepted, setBrowserDictationAccepted] =
+    useState(false);
+  const [dictationTranscriptAccepted, setDictationTranscriptAccepted] =
+    useState(false);
+  const [dictationStarting, setDictationStarting] = useState(false);
   const [voiceStatus, setVoiceStatus] = useState<VoiceStatus>("idle");
   const [voiceConsentOpen, setVoiceConsentOpen] = useState(false);
   const [providerProcessingAccepted, setProviderProcessingAccepted] =
@@ -84,6 +97,19 @@ export function InterviewStudio() {
   const recognitionRef = useRef<SpeechRecognition | null>(null);
   const idempotencyKeyRef = useRef<string | null>(null);
   const voiceAdapterRef = useRef<VoiceAdapter | null>(null);
+
+  const stopDictation = useCallback(() => {
+    const recognition = recognitionRef.current;
+    recognitionRef.current = null;
+    if (recognition) {
+      recognition.onstart = null;
+      recognition.onend = null;
+      recognition.onerror = null;
+      recognition.onresult = null;
+      recognition.stop();
+    }
+    setIsListening(false);
+  }, []);
 
   const focusAreas = useMemo(
     () =>
@@ -140,11 +166,13 @@ export function InterviewStudio() {
   useEffect(
     () => () => {
       voiceAdapterRef.current?.close();
+      stopDictation();
     },
-    [],
+    [stopDictation],
   );
 
   const applySession = (session: SessionDetail) => {
+    stopDictation();
     voiceAdapterRef.current?.close();
     voiceAdapterRef.current = null;
     setVoiceStatus("idle");
@@ -219,6 +247,7 @@ export function InterviewStudio() {
       );
       return;
     }
+    stopDictation();
     setVoiceStarting(true);
     setVoiceError("");
     setWasInterrupted(false);
@@ -432,6 +461,7 @@ export function InterviewStudio() {
   };
 
   const pauseInterview = () => {
+    stopDictation();
     stopVoice();
     if (!sessionId) {
       setStage("setup");
@@ -461,6 +491,7 @@ export function InterviewStudio() {
 
   const deleteCurrentSession = () => {
     if (!sessionId) return;
+    stopDictation();
     stopVoice();
     startTransition(async () => {
       try {
@@ -488,9 +519,9 @@ export function InterviewStudio() {
     });
   };
 
-  const toggleListening = () => {
+  const requestDictation = () => {
     if (isListening) {
-      recognitionRef.current?.stop();
+      stopDictation();
       return;
     }
     const Recognition =
@@ -501,31 +532,96 @@ export function InterviewStudio() {
       );
       return;
     }
-    const recognition = new Recognition();
-    recognition.continuous = true;
-    recognition.interimResults = true;
-    recognition.lang = "en-US";
-    recognition.onstart = () => setIsListening(true);
-    recognition.onend = () => setIsListening(false);
-    recognition.onerror = () => {
-      setIsListening(false);
-      setError("Microphone transcription stopped. Check browser permission.");
-    };
-    recognition.onresult = (event) => {
-      let transcript = "";
-      for (
-        let index = event.resultIndex;
-        index < event.results.length;
-        index += 1
-      ) {
-        transcript += event.results[index]?.[0]?.transcript ?? "";
+    setBrowserDictationAccepted(false);
+    setDictationTranscriptAccepted(false);
+    setDictationConsentOpen(true);
+    setError("");
+  };
+
+  const startDictation = async () => {
+    if (!browserDictationAccepted || !dictationTranscriptAccepted) return;
+    const Recognition =
+      window.SpeechRecognition ?? window.webkitSpeechRecognition;
+    if (!Recognition) {
+      setDictationConsentOpen(false);
+      setError(
+        "Speech recognition is unavailable in this browser. You can type your answer or use current Chrome/Edge.",
+      );
+      return;
+    }
+
+    setDictationStarting(true);
+    setError("");
+    try {
+      if (sessionId) {
+        const response = await fetch(
+          `/api/v1/sessions/${sessionId}/dictation-consent`,
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+              "x-interview-coach-client": "web",
+            },
+            body: JSON.stringify({
+              policyVersion: "text-dictation-v1",
+              browserProcessingAccepted: true,
+              transcriptUseAccepted: true,
+              rawAudioRetentionAccepted: false,
+            }),
+          },
+        );
+        if (!response.ok) {
+          const body = (await response.json()) as { error?: string };
+          throw new Error(body.error ?? "Could not record dictation consent.");
+        }
       }
-      if (transcript) {
-        setAnswer((current) => `${current} ${transcript}`.trim());
-      }
-    };
-    recognitionRef.current = recognition;
-    recognition.start();
+
+      stopDictation();
+      const recognition = new Recognition();
+      recognition.continuous = true;
+      recognition.interimResults = true;
+      recognition.lang = "en-US";
+      recognition.onstart = () => {
+        if (recognitionRef.current === recognition) setIsListening(true);
+      };
+      recognition.onend = () => {
+        if (recognitionRef.current !== recognition) return;
+        recognitionRef.current = null;
+        setIsListening(false);
+      };
+      recognition.onerror = () => {
+        if (recognitionRef.current === recognition) {
+          recognitionRef.current = null;
+        }
+        setIsListening(false);
+        setError("Microphone transcription stopped. Check browser permission.");
+      };
+      recognition.onresult = (event) => {
+        let transcript = "";
+        for (
+          let index = event.resultIndex;
+          index < event.results.length;
+          index += 1
+        ) {
+          transcript += event.results[index]?.[0]?.transcript ?? "";
+        }
+        if (transcript) {
+          setAnswer((current) => `${current} ${transcript}`.trim());
+        }
+      };
+      recognitionRef.current = recognition;
+      recognition.start();
+      setDictationConsentOpen(false);
+    } catch (caught) {
+      stopDictation();
+      setError(
+        caught instanceof Error
+          ? caught.message
+          : "Could not start microphone transcription.",
+      );
+    } finally {
+      setDictationStarting(false);
+    }
   };
 
   const submitAnswer = (answerOverride?: string) => {
@@ -537,6 +633,8 @@ export function InterviewStudio() {
       );
       return;
     }
+
+    stopDictation();
 
     startTransition(async () => {
       try {
@@ -963,6 +1061,7 @@ export function InterviewStudio() {
             className="button button-secondary"
             type="button"
             onClick={() => {
+              stopDictation();
               setStage("setup");
               setSessionId(null);
               setTurns([]);
@@ -1225,9 +1324,9 @@ export function InterviewStudio() {
           <button
             className={`mic-button ${isListening ? "is-listening" : ""}`}
             type="button"
-            onClick={toggleListening}
+            onClick={requestDictation}
             aria-pressed={isListening}
-            disabled={voiceConnected}
+            disabled={voiceConnected || dictationStarting}
           >
             <span aria-hidden="true">{isListening ? "■" : "●"}</span>
             {isListening ? "Stop listening" : "Use microphone"}
@@ -1236,6 +1335,68 @@ export function InterviewStudio() {
             {answer.trim() ? answer.trim().split(/\s+/).length : 0} words
           </span>
         </div>
+        {dictationConsentOpen ? (
+          <div className="voice-consent">
+            <strong>Consent before browser dictation</strong>
+            <p>
+              Your browser or operating system may send microphone audio to its
+              speech-recognition service. Interview Coach places the resulting
+              text in your editable answer and does not retain raw audio.
+            </p>
+            <label>
+              <input
+                type="checkbox"
+                checked={browserDictationAccepted}
+                onChange={(event) =>
+                  setBrowserDictationAccepted(event.target.checked)
+                }
+              />
+              <span>
+                I agree to my browser or operating-system speech service
+                processing microphone audio.
+              </span>
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                checked={dictationTranscriptAccepted}
+                onChange={(event) =>
+                  setDictationTranscriptAccepted(event.target.checked)
+                }
+              />
+              <span>
+                I agree to place the resulting transcript in my answer and
+                retain it if I submit or save the interview.
+              </span>
+            </label>
+            <div className="voice-retention-fact">
+              <span aria-hidden="true">✓</span>
+              Policy text-dictation-v1 · Raw audio retention is off.
+            </div>
+            <div className="voice-consent-actions">
+              <button
+                className="button button-primary"
+                type="button"
+                disabled={
+                  dictationStarting ||
+                  !browserDictationAccepted ||
+                  !dictationTranscriptAccepted
+                }
+                onClick={() => void startDictation()}
+              >
+                {dictationStarting ? "Starting…" : "Agree & start dictation"}
+              </button>
+              <button
+                className="button button-secondary"
+                type="button"
+                onClick={() => setDictationConsentOpen(false)}
+                disabled={dictationStarting}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        ) : null}
       </div>
 
       {lastResult ? <ScorePanel scores={lastResult.evaluation.scores} /> : null}

@@ -1,7 +1,7 @@
 import { setInterviewSessionStatus } from "@interview-coach/database";
 import { z } from "zod";
 
-import { getOrCreatePrincipal } from "@/lib/server/auth";
+import { requirePrincipal } from "@/lib/server/auth";
 import {
   apiError,
   assertMutationRequest,
@@ -14,7 +14,7 @@ export async function POST(request: Request, context: Context) {
   try {
     assertMutationRequest(request);
     const sessionId = z.uuid().parse((await context.params).id);
-    const principal = await getOrCreatePrincipal();
+    const principal = await requirePrincipal();
     const session = await setInterviewSessionStatus(
       principal,
       sessionId,

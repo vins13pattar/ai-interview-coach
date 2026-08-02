@@ -9,9 +9,7 @@ export async function POST(request: Request) {
   try {
     const payload = InterviewTurnSchema.parse(await request.json());
     const requestKey = request.headers.get("x-provider-api-key") ?? undefined;
-    const serverKey =
-      payload.provider === "openai" ? process.env.OPENAI_API_KEY : undefined;
-    const apiKey = requestKey ?? serverKey;
+    const apiKey = requestKey;
 
     if (payload.provider !== "demo" && !apiKey) {
       return NextResponse.json(

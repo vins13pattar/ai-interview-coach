@@ -16,7 +16,7 @@ import {
 } from "@interview-coach/voice";
 import { z } from "zod";
 
-import { getOrCreatePrincipal } from "@/lib/server/auth";
+import { requirePrincipal } from "@/lib/server/auth";
 import {
   apiError,
   assertMutationRequest,
@@ -38,12 +38,12 @@ function privacyPreservingSafetyIdentifier(userId: string): string {
 
 export async function POST(request: Request) {
   let grantId = "";
-  let principal: Awaited<ReturnType<typeof getOrCreatePrincipal>> | null = null;
+  let principal: Awaited<ReturnType<typeof requirePrincipal>> | null = null;
 
   try {
     assertMutationRequest(request);
     const consent = VoiceConsentRequestSchema.parse(await request.json());
-    principal = await getOrCreatePrincipal();
+    principal = await requirePrincipal();
     const pending = await beginVoiceTokenGrant(principal, consent);
     grantId = pending.grantId;
 
@@ -51,12 +51,10 @@ export async function POST(request: Request) {
     const requestKey = requestKeyHeader
       ? ProviderKeySchema.parse(requestKeyHeader)
       : undefined;
-    const serverKey = process.env.OPENAI_API_KEY || undefined;
-    const storedKey =
-      !requestKey && !serverKey
-        ? await getProviderApiKey(principal, "openai")
-        : undefined;
-    const apiKey = requestKey ?? serverKey ?? storedKey ?? undefined;
+    const storedKey = !requestKey
+      ? await getProviderApiKey(principal, "openai")
+      : undefined;
+    const apiKey = requestKey ?? storedKey ?? undefined;
     if (!apiKey) {
       throw new HttpError(
         400,

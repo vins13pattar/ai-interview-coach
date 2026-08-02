@@ -19,6 +19,7 @@ import {
   getInterviewSession,
   getPool,
   listProviderConnections,
+  recordDictationConsent,
   setInterviewSessionStatus,
   upsertProviderConnection,
 } from "./index";
@@ -220,6 +221,125 @@ describe.skipIf(!databaseAvailable)("durable interview repository", () => {
       { consent_type: "voice.provider_processing", granted: true },
       { consent_type: "voice.raw_audio_retention", granted: false },
       { consent_type: "voice.transcript_retention", granted: true },
+    ]);
+  });
+
+  it("serializes concurrent voice grant quota decisions", async () => {
+    const principal = await createGuestPrincipal(
+      randomUUID().replaceAll("-", "").padEnd(64, "6"),
+      new Date(Date.now() + 60_000),
+    );
+    tenantIds.push(principal.tenantId);
+    const session = await createInterviewSession(
+      principal,
+      {
+        role: "Platform Engineer",
+        seniority: "Staff",
+        focusAreas: ["reliability"],
+        difficulty: "advanced",
+        provider: "openai",
+      },
+      "How would you contain a cascading multi-region failure?",
+    );
+    const consent = {
+      sessionId: session.id,
+      policyVersion: "voice-beta-v1",
+      providerProcessingAccepted: true,
+      transcriptRetentionAccepted: true,
+      rawAudioRetentionAccepted: false,
+    } as const;
+
+    const attempts = await Promise.allSettled(
+      Array.from({ length: 12 }, () =>
+        beginVoiceTokenGrant(principal, consent),
+      ),
+    );
+    const fulfilled = attempts.filter(
+      (attempt) => attempt.status === "fulfilled",
+    );
+    const rejected = attempts.filter(
+      (attempt) => attempt.status === "rejected",
+    );
+    expect(fulfilled).toHaveLength(3);
+    expect(rejected).toHaveLength(9);
+    expect(
+      rejected.every(
+        (attempt) =>
+          attempt.status === "rejected" &&
+          attempt.reason instanceof Error &&
+          attempt.reason.message === "VOICE_TOKEN_RATE_LIMITED",
+      ),
+    ).toBe(true);
+
+    const grants = await getPool().query<{ count: string }>(
+      `SELECT count(*)::text AS count
+         FROM voice_token_grants
+        WHERE tenant_id = $1 AND user_id = $2`,
+      [principal.tenantId, principal.userId],
+    );
+    expect(Number(grants.rows[0]?.count ?? 0)).toBe(3);
+  });
+
+  it("records versioned dictation consent only for the session owner", async () => {
+    const principal = await createGuestPrincipal(
+      randomUUID().replaceAll("-", "").padEnd(64, "7"),
+      new Date(Date.now() + 60_000),
+    );
+    const otherPrincipal = await createGuestPrincipal(
+      randomUUID().replaceAll("-", "").padEnd(64, "8"),
+      new Date(Date.now() + 60_000),
+    );
+    tenantIds.push(principal.tenantId, otherPrincipal.tenantId);
+    const session = await createInterviewSession(
+      principal,
+      {
+        role: "Backend Engineer",
+        seniority: "Senior",
+        focusAreas: ["data systems"],
+        difficulty: "intermediate",
+        provider: "demo",
+      },
+      "How did you validate your database migration strategy?",
+    );
+    const consent = {
+      policyVersion: "text-dictation-v1",
+      browserProcessingAccepted: true,
+      transcriptUseAccepted: true,
+      rawAudioRetentionAccepted: false,
+    } as const;
+
+    await expect(
+      recordDictationConsent(otherPrincipal, session.id, consent),
+    ).rejects.toThrow("SESSION_NOT_FOUND");
+    await recordDictationConsent(principal, session.id, consent);
+
+    const consentEvents = await getPool().query<{
+      consent_type: string;
+      granted: boolean;
+      policy_version: string;
+    }>(
+      `SELECT consent_type, granted, policy_version
+         FROM consent_events
+        WHERE tenant_id = $1 AND user_id = $2 AND session_id = $3
+        ORDER BY consent_type`,
+      [principal.tenantId, principal.userId, session.id],
+    );
+    expect(consentEvents.rows).toEqual([
+      {
+        consent_type: "dictation.browser_processing",
+        granted: true,
+        policy_version: "text-dictation-v1",
+      },
+      {
+        consent_type: "dictation.raw_audio_retention",
+        granted: false,
+        policy_version: "text-dictation-v1",
+      },
+      {
+        consent_type: "dictation.transcript_use",
+        granted: true,
+        policy_version: "text-dictation-v1",
+      },
     ]);
   });
 });

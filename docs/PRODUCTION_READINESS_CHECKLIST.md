@@ -12,6 +12,10 @@
 - [x] Explicit voice consent and text fallback browser journey
 - [x] Content-free graph/turn latency and fallback telemetry contract
 - [x] High-severity production dependency audit: no known vulnerabilities
+- [x] Repository-grounded threat model and severity calibration
+- [x] Repository-wide internal security scan: 145/145 files reviewed; eight
+      medium findings remediated with focused regression coverage; no high or
+      critical findings
 
 ## Required before release candidate approval
 
@@ -23,7 +27,8 @@
 - [ ] Concurrent-tab, restart, backup, restore, and load tests
 - [ ] Real browser/device voice matrix and latency report
 - [ ] WCAG 2.2 AA audit
-- [ ] Context-validated threat model
+- [ ] Maintainer confirmation of hosting, identity, geography, and retention
+      assumptions
 - [ ] Independent security review and dependency/container findings disposition
 - [ ] Hosted identity, retention, administrative access, and incident runbooks
 - [ ] License selection and `LICENSE`

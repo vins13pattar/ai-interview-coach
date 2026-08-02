@@ -22,7 +22,7 @@ This roadmap separates a working alpha from production claims.
 - [x] LangGraph PostgreSQL checkpointer
 - [x] Versioned, idempotent session APIs
 - [x] Resume, pause, delete, and export
-- [x] Optional encrypted server-managed provider connections
+- [x] Optional encrypted per-user provider connections
 - [x] CI browser tests and secret scanning
 - [x] Initial evaluation dataset and [rubric card](RUBRIC_CARD.md)
 
@@ -70,7 +70,10 @@ browser/device evidence remain required before calling voice production-ready.
 - [ ] Concurrent-tab, restart, reconnect, and report-regeneration matrix
 - [ ] Retention scheduler and complete derived-data inventory
 - [ ] WCAG 2.2 AA evidence
-- [ ] Repository threat model and independent security review
+- [x] Repository-scoped threat model with explicit hosted/self-hosted assumptions
+- [x] Internal 145-file security scan and regression-backed remediation of all
+      eight medium findings
+- [ ] Maintainer assumption confirmation and independent security review
 - [ ] Real voice browser/device validation matrix
 
 Current computed synthetic baseline: 156/156 cases terminate and fabricate zero
@@ -85,7 +88,8 @@ qualified-human calibration or hiring validity.
 - [ ] Calibrated role packs
 - [ ] Bias and score-stability study
 - [ ] WCAG 2.2 AA audit
-- [ ] Threat model and independent security review
+- [x] Repository-scoped threat model
+- [ ] Independent security review
 - [ ] Load, failover, backup, and restore evidence
 - [ ] Public model/rubric card
 - [ ] Hosted deployment and browser smoke verification

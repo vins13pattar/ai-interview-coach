@@ -5,7 +5,8 @@ An open-source foundation for natural, adaptive AI interviews.
 [Project website](https://vinodspattar.in/ai-interview-coach/) ·
 [Product requirements](docs/PRD.md) ·
 [Architecture](docs/ARCHITECTURE.md) ·
-[Roadmap](docs/ROADMAP.md)
+[Roadmap](docs/ROADMAP.md) ·
+[Threat model](docs/THREAT_MODEL.md)
 
 Candidates speak or type naturally. The interviewer follows up, changes
 difficulty, redirects rambling answers, scores observable evidence, and produces
@@ -59,8 +60,9 @@ No API key is required.
 
 To use model-backed evaluation, select **OpenAI** in the setup form and provide
 your own key. The key is tab-scoped by default, sent in a request header, and
-not persisted. Self-hosters may instead set `OPENAI_API_KEY` in a server-only
-environment or explicitly enable encrypted per-user connections.
+not persisted. Self-hosters may explicitly enable encrypted per-user
+connections. Public and guest routes never fall back to an operator-funded
+provider key.
 
 ## Run with Docker
 
@@ -88,7 +90,6 @@ To use a different host port or provider integration, create an untracked
 
 ```dotenv
 PORT=8080
-OPENAI_API_KEY=your-key
 PROVIDER_ENCRYPTION_KEY=base64-encoded-32-byte-key
 ```
 
@@ -107,6 +108,8 @@ The runtime container:
 - exposes a Docker health check.
 - stores interview state and LangGraph checkpoints in PostgreSQL;
 - runs migrations as a one-shot service before the web container starts.
+- binds the host port to `127.0.0.1` by default; non-loopback deployments must
+  add TLS and secure-cookie configuration explicitly.
 
 ## Repository map
 

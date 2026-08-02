@@ -17,7 +17,7 @@ import {
 } from "@interview-coach/interview-engine";
 import { z } from "zod";
 
-import { getOrCreatePrincipal } from "@/lib/server/auth";
+import { requirePrincipal } from "@/lib/server/auth";
 import {
   apiError,
   assertMutationRequest,
@@ -35,7 +35,7 @@ type Context = { params: Promise<{ id: string }> };
 
 export async function POST(request: Request, context: Context) {
   let requestId = "";
-  let principal: Awaited<ReturnType<typeof getOrCreatePrincipal>> | null = null;
+  let principal: Awaited<ReturnType<typeof requirePrincipal>> | null = null;
   try {
     assertMutationRequest(request);
     const sessionId = SessionIdSchema.parse((await context.params).id);
@@ -43,7 +43,7 @@ export async function POST(request: Request, context: Context) {
       request.headers.get("idempotency-key"),
     );
     const input = SessionTurnRequestSchema.parse(await request.json());
-    principal = await getOrCreatePrincipal();
+    principal = await requirePrincipal();
     const pending = await beginTurnRequest(
       principal,
       sessionId,
@@ -60,13 +60,11 @@ export async function POST(request: Request, context: Context) {
 
     const session = pending.session;
     const requestKey = request.headers.get("x-provider-api-key") ?? undefined;
-    const serverKey =
-      session.provider === "openai" ? process.env.OPENAI_API_KEY : undefined;
     const storedKey =
-      session.provider === "openai" && !requestKey && !serverKey
+      session.provider === "openai" && !requestKey
         ? await getProviderApiKey(principal, "openai")
         : undefined;
-    const apiKey = requestKey ?? serverKey ?? storedKey ?? undefined;
+    const apiKey = requestKey ?? storedKey ?? undefined;
     if (session.provider !== "demo" && !apiKey) {
       throw new HttpError(
         400,

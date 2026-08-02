@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Interview Coach is an open-source, adaptive AI interview practice platform with evidence-backed scoring and recruiter-style reports."
+      content="Practice realistic, adaptive interviews, strengthen every answer, and leave with evidence-backed feedback you can act on."
     />
     <meta name="theme-color" content="#f2efe6" />
     <meta
       property="og:title"
-      content="Interview Coach — The interview that listens back"
+      content="Interview Coach — Practice the interview, not the script"
     />
     <meta
       property="og:description"
-      content="Natural, adaptive interview practice with evidence-backed scoring. Self-host it, bring your own API keys, and inspect every decision."
+      content="Speak naturally, face adaptive follow-ups, and see exactly how to make your next answer stronger. Open source, self-hostable, and BYOK."
     />
     <meta property="og:type" content="website" />
     <meta
@@ -22,7 +22,7 @@
       content="https://vinodspattar.in/ai-interview-coach/"
     />
     <meta name="twitter:card" content="summary_large_image" />
-    <title>Interview Coach — Open-source adaptive interview practice</title>
+    <title>Interview Coach — Practice stronger interview answers</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
     <script src="./site.js" defer></script>
@@ -45,9 +45,10 @@
         <i aria-hidden="true"></i>
       </button>
       <nav id="primary-navigation" aria-label="Primary navigation">
-        <a href="#difference">Why it works</a>
-        <a href="#architecture">Architecture</a>
-        <a href="#documentation">Documentation</a>
+        <a href="#difference">What you improve</a>
+        <a href="#architecture">Privacy &amp; trust</a>
+        <a href="#quick-start">Get started</a>
+        <a href="#documentation">Open source</a>
         <a
           class="nav-github"
           href="https://github.com/vins13pattar/ai-interview-coach"
@@ -62,30 +63,35 @@
         <div class="hero-copy reveal">
           <p class="eyebrow">
             <span aria-hidden="true">●</span>
-            Open source · Adaptive · Evidence-backed
+            Realistic practice · Clear feedback · Your control
           </p>
           <h1>
-            The interview
-            <em>that listens back.</em>
+            Your next answer
+            <em>can be stronger.</em>
           </h1>
           <p class="hero-lede">
-            A production-minded AI interview coach that follows the answer—not a
-            script. It challenges assumptions, changes difficulty, and turns
-            observable evidence into feedback a serious recruiter could use.
+            Speak naturally and think out loud. Your coach follows your
+            reasoning, asks sharper follow-ups, changes the difficulty, and
+            shows you exactly what to improve before the real interview.
           </p>
           <div class="hero-actions">
             <a class="button button-dark" href="#quick-start">
-              Run it locally <span aria-hidden="true">↘</span>
+              Start practicing locally <span aria-hidden="true">↘</span>
             </a>
-            <a class="underlined-link" href="#documentation"
-              >Read the specification</a
+            <a class="underlined-link" href="#difference"
+              >See what you’ll improve</a
             >
           </div>
-          <ul class="hero-facts" aria-label="Project facts">
-            <li><strong>100%</strong><span>TypeScript orchestration</span></li>
-            <li><strong>0</strong><span>keys required for demo mode</span></li>
+          <ul class="hero-facts" aria-label="Practice experience">
             <li>
-              <strong>BYOK</strong><span>for model-backed evaluation</span>
+              <strong>Natural</strong><span>answer in your own words</span>
+            </li>
+            <li>
+              <strong>Adaptive</strong><span>questions follow your answer</span>
+            </li>
+            <li>
+              <strong>Your key</strong
+              ><span>start keyless or bring your own</span>
             </li>
           </ul>
         </div>
@@ -96,7 +102,7 @@
         >
           <div class="signal-header">
             <span class="live-label"
-              ><i aria-hidden="true"></i> Live interview</span
+              ><i aria-hidden="true"></i> Your practice interview</span
             >
             <span>07:42</span>
           </div>
@@ -111,61 +117,67 @@
             ><i></i><i></i><i></i>
           </div>
           <div class="signal-change">
-            <span>Difficulty changed</span>
+            <span>Your next question</span>
             <strong>Advanced ↑</strong>
           </div>
           <div class="coach-interrupt">
-            <span>Coach interruption</span>
+            <span>Coach follow-up</span>
             <p>Pause there. What failed first under load?</p>
           </div>
           <span class="signal-stamp" aria-hidden="true"
-            >adaptive<br />not scripted</span
+            >follows<br />your answer</span
           >
         </div>
       </section>
 
       <section class="manifesto" aria-label="Product principles">
-        <p>Not a question playlist.</p>
-        <p>Not a keyword counter.</p>
-        <p>Not a black-box score.</p>
+        <p>Practice how you actually speak.</p>
+        <p>Find where your answer loses force.</p>
+        <p>Leave knowing what to try next.</p>
       </section>
 
       <section class="difference section" id="difference">
         <div class="section-heading reveal">
-          <p class="eyebrow">A better signal</p>
-          <h2>Every score needs receipts.</h2>
+          <p class="eyebrow">Feedback you can use</p>
+          <h2>Know what landed. Know what to improve next.</h2>
           <p>
-            The coach separates what can be observed from what cannot. Every
-            assessment points back to an answer, and text-only sessions never
-            invent a pronunciation score.
+            Your report connects every assessment to something you actually
+            said. You get specific evidence, practical next steps, and no
+            made-up pronunciation score when the session has no usable audio
+            evidence.
           </p>
         </div>
         <div class="score-grid">
           <article class="score-card reveal">
             <span>01</span>
             <h3>Confidence</h3>
-            <p>How decisively choices, assumptions, and outcomes are framed.</p>
+            <p>
+              See where you sound decisive—and where your answer needs a clearer
+              choice, assumption, or outcome.
+            </p>
           </article>
           <article class="score-card reveal">
             <span>02</span>
             <h3>Communication</h3>
             <p>
-              Structure, clarity, relevance, concision, and audience awareness.
+              Learn whether your answer is easy to follow, relevant, concise,
+              and right for the audience.
             </p>
           </article>
           <article class="score-card reveal">
             <span>03</span>
             <h3>Technical depth</h3>
             <p>
-              Reasoning, constraints, trade-offs, failure modes, and evidence.
+              Strengthen the trade-offs, constraints, failure modes, and proof
+              behind your technical decisions.
             </p>
           </article>
           <article class="score-card score-card-accent reveal">
             <span>04</span>
             <h3>Pronunciation</h3>
             <p>
-              Only evaluated when acoustic evidence is available. Never
-              fabricated.
+              Get this signal only when supported acoustic evidence is
+              available. Otherwise, it stays unassessed.
             </p>
           </article>
         </div>
@@ -173,19 +185,19 @@
 
       <section class="architecture section" id="architecture">
         <div class="architecture-copy reveal">
-          <p class="eyebrow">Inspectable by design</p>
-          <h2>One typed contract. Browser to graph to report.</h2>
+          <p class="eyebrow">Control before convenience</p>
+          <h2>Useful coaching should not require blind trust.</h2>
           <p>
-            LangGraph.js owns the adaptive turn loop. Shared Zod contracts keep
-            the interface honest. PostgreSQL preserves interview and checkpoint
-            state, while provider-specific behavior stays behind evaluator
-            adapters so local development and CI remain keyless.
+            Start in deterministic demo mode without an API key. If you choose
+            model-backed evaluation, bring your own key. The scoring rules are
+            inspectable, your sessions can be exported or deleted, and the
+            application never treats a coaching score as a hiring decision.
           </p>
           <a
             class="underlined-link"
             href="https://github.com/vins13pattar/ai-interview-coach/blob/main/docs/ARCHITECTURE.md"
           >
-            Explore the architecture <span aria-hidden="true">↗</span>
+            See how your data moves <span aria-hidden="true">↗</span>
           </a>
         </div>
         <div class="system-map reveal" aria-label="System architecture flow">
@@ -203,10 +215,10 @@
             <span>PostgreSQL</span>
           </div>
           <div class="map-note">
-            <strong>Keys stay out of graph state.</strong>
+            <strong>Your provider key stays out of interview state.</strong>
             <span
-              >Tab-scoped BYOK, encrypted opt-in storage, or server-only
-              secrets.</span
+              >Keep it in the browser tab or opt into encrypted per-user storage
+              when self-hosting.</span
             >
           </div>
         </div>
@@ -214,40 +226,42 @@
 
       <section class="status section">
         <div class="status-heading reveal">
-          <p class="eyebrow">Build in public</p>
-          <h2>A reference alpha, measured in public.</h2>
+          <p class="eyebrow">Honest about what works</p>
+          <h2>Start with a real practice loop—not a product promise.</h2>
         </div>
         <div class="status-board reveal">
           <div class="status-column">
             <p class="status-label">
-              <i class="status-done" aria-hidden="true"></i> Works today
+              <i class="status-done" aria-hidden="true"></i> What you can use
+              today
             </p>
             <ul>
-              <li>Five-turn adaptive interview</li>
-              <li>Deterministic keyless evaluator</li>
-              <li>Optional OpenAI evaluation</li>
-              <li>Evidence-backed dimension scores</li>
-              <li>Recruiter-style final report</li>
-              <li>Restart-safe PostgreSQL sessions</li>
-              <li>Pause, resume, export, and deletion</li>
-              <li>One-command three-service runtime</li>
-              <li>Six versioned executable role rubrics</li>
-              <li>156-case deterministic evaluation</li>
-              <li>Consented WebRTC voice beta foundation</li>
+              <li>Practice a five-turn adaptive interview</li>
+              <li>Try the complete flow without an API key</li>
+              <li>Choose optional OpenAI-backed evaluation</li>
+              <li>See evidence behind every dimension score</li>
+              <li>Review a recruiter-style coaching report</li>
+              <li>Pause now and resume your session later</li>
+              <li>Export or permanently delete your interview</li>
+              <li>Run the full application with one command</li>
+              <li>Practice against six versioned role rubrics</li>
+              <li>Use text mode as the reliable default</li>
+              <li>Explore a consent-gated WebRTC voice beta</li>
             </ul>
           </div>
           <div class="status-column">
             <p class="status-label">
-              <i class="status-next" aria-hidden="true"></i> Next milestones
+              <i class="status-next" aria-hidden="true"></i> What we are proving
+              next
             </p>
             <ul>
-              <li>Real-browser voice reliability evidence</li>
-              <li>Qualified-human calibration study</li>
-              <li>Registered accounts and organizations</li>
-              <li>Calibrated role packs</li>
-              <li>Bias and score-stability study</li>
-              <li>WCAG 2.2 AA audit</li>
-              <li>Hosted reliability evidence</li>
+              <li>Voice reliability across real browsers and devices</li>
+              <li>Score calibration with qualified human reviewers</li>
+              <li>Registered accounts and team workspaces</li>
+              <li>More deeply calibrated role packs</li>
+              <li>Bias and score-stability evidence</li>
+              <li>Independent WCAG 2.2 AA review</li>
+              <li>Reliability evidence for a hosted service</li>
             </ul>
           </div>
         </div>
@@ -255,12 +269,12 @@
 
       <section class="quick-start section" id="quick-start">
         <div class="quick-copy reveal">
-          <p class="eyebrow">Your machine. Your keys.</p>
-          <h2>Boot the complete app with one command.</h2>
+          <p class="eyebrow">Start on your machine</p>
+          <h2>Your practice room is one command away.</h2>
           <p>
-            Compose starts PostgreSQL, applies idempotent migrations, and runs
-            the production web image as an unprivileged user with a read-only
-            filesystem. No API key is required.
+            Run the complete application on your own machine. Demo mode needs no
+            API key; add your own OpenAI key only when you want model-backed
+            evaluation or the experimental voice experience.
           </p>
         </div>
         <div class="terminal reveal" aria-label="Docker quick start command">
@@ -275,7 +289,7 @@
           <div class="terminal-result">
             <span class="terminal-check">✓</span>
             <p>
-              Interview Coach is healthy<br />
+              Your local coach is ready<br />
               <a href="http://localhost:3000">http://localhost:3000</a>
             </p>
           </div>
@@ -284,11 +298,11 @@
 
       <section class="documentation section" id="documentation">
         <div class="section-heading reveal">
-          <p class="eyebrow">Read before building</p>
-          <h2>The project has a point of view—and a plan.</h2>
+          <p class="eyebrow">Open source means inspectable</p>
+          <h2>Know what you are trusting before you practice.</h2>
           <p>
-            Product boundaries, architecture decisions, risk controls, and
-            delivery gates are written down before they become code.
+            Read how the coach works, what each score means, where your data
+            goes, and which capabilities still need stronger evidence.
           </p>
         </div>
         <div class="doc-list">
@@ -298,10 +312,10 @@
           >
             <span class="doc-number">01</span>
             <span>
-              <strong>Product requirements</strong>
+              <strong>See what the product is designed to do</strong>
               <small
-                >Personas, journeys, requirements, scoring, safety, and success
-                metrics.</small
+                >Candidate journeys, coaching requirements, scoring, safety, and
+                success measures.</small
               >
             </span>
             <i aria-hidden="true">↗</i>
@@ -312,9 +326,9 @@
           >
             <span class="doc-number">02</span>
             <span>
-              <strong>Architecture</strong>
+              <strong>Understand how your data moves</strong>
               <small
-                >System boundaries, graph design, key handling, voice, and
+                >System boundaries, key handling, interview state, voice, and
                 testing.</small
               >
             </span>
@@ -326,7 +340,7 @@
           >
             <span class="doc-number">03</span>
             <span>
-              <strong>Delivery roadmap</strong>
+              <strong>Follow what is coming next</strong>
               <small
                 >Alpha, durable sessions, real-time voice, and public-v1 exit
                 criteria.</small
@@ -340,7 +354,7 @@
           >
             <span class="doc-number">04</span>
             <span>
-              <strong>Alpha rubric card</strong>
+              <strong>Understand every coaching score</strong>
               <small
                 >Score evidence, interruption policy, public fixtures, and known
                 calibration gaps.</small
@@ -354,7 +368,7 @@
           >
             <span class="doc-number">05</span>
             <span>
-              <strong>Licensing decision</strong>
+              <strong>Review the license status</strong>
               <small
                 >The current license status and options still requiring a
                 maintainer choice.</small
@@ -368,10 +382,24 @@
           >
             <span class="doc-number">06</span>
             <span>
-              <strong>Reference implementation gap matrix</strong>
+              <strong>Check the readiness evidence</strong>
               <small
                 >Verified evidence, missing controls, external validation, and
                 release gates.</small
+              >
+            </span>
+            <i aria-hidden="true">↗</i>
+          </a>
+          <a
+            class="doc-link reveal"
+            href="https://github.com/vins13pattar/ai-interview-coach/blob/main/docs/THREAT_MODEL.md"
+          >
+            <span class="doc-number">07</span>
+            <span>
+              <strong>Review the security model</strong>
+              <small
+                >Assets, trust boundaries, attacker stories, invariants, and
+                severity calibration.</small
               >
             </span>
             <i aria-hidden="true">↗</i>
@@ -381,31 +409,32 @@
 
       <section class="closing">
         <div class="closing-copy reveal">
-          <p class="eyebrow">Better practice. Better evidence.</p>
-          <h2>Help build the interview coach scripted apps promised.</h2>
+          <p class="eyebrow">Make the real interview feel familiar</p>
+          <h2>Practice until your reasoning sounds as strong as it is.</h2>
           <p>
-            Study the specification, run the alpha, and contribute a verifiable
-            slice. The repository is public; the implementation decisions are,
-            too.
+            Run Interview Coach on your machine, rehearse the role you want, and
+            turn every attempt into a clearer story. If something is missing,
+            help shape it in the open.
           </p>
           <div class="hero-actions">
             <a
               class="button button-acid"
               href="https://github.com/vins13pattar/ai-interview-coach"
             >
-              View on GitHub <span aria-hidden="true">↗</span>
+              Get the open-source project <span aria-hidden="true">↗</span>
             </a>
             <a
               class="closing-link"
               href="https://github.com/vins13pattar/ai-interview-coach/issues"
             >
-              Browse issues
+              Request a feature
             </a>
           </div>
         </div>
         <p class="closing-disclaimer">
-          Interview Coach is decision-support software—not an automated hiring
-          decision. Human review and candidate consent are product requirements.
+          Interview Coach provides practice and decision-support signals. It is
+          not a hiring decision, a clinical assessment, or a substitute for
+          qualified human review.
         </p>
       </section>
     </main>
@@ -415,7 +444,7 @@
         <span class="wordmark-mark" aria-hidden="true"></span>
         <span>Interview Coach</span>
       </div>
-      <p>Built in the open with TypeScript, LangChain.js, and LangGraph.js.</p>
+      <p>Practice privately. Inspect the method. Improve with evidence.</p>
       <p>© <span data-current-year>2026</span> · License decision pending</p>
     </footer>
   </body>

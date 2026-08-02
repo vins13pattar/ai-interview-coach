@@ -3,6 +3,141 @@ import { expect, test } from "@playwright/test";
 const candidateAnswer =
   "First, I would define the availability and latency objectives, then test the database and queue failure modes. In a previous system, that process reduced p95 latency by 38 percent while preserving an idempotent recovery path.";
 
+const reportEvaluation = {
+  scores: {
+    confidence: 75,
+    pronunciation: null,
+    communication: 78,
+    technicalDepth: 80,
+  },
+  evidence: ["The candidate described a measurable production outcome."],
+  strengths: ["Connected the decision to evidence."],
+  improvements: ["Explain the rejected alternative."],
+  shouldInterrupt: false,
+  interruptionReason: null,
+  demonstratedConcepts: ["reliability"],
+};
+
+test("security: read-only discovery does not create a guest identity", async ({
+  browser,
+}) => {
+  const context = await browser.newContext();
+  const sessions = await context.request.get("/api/v1/sessions");
+  const connections = await context.request.get("/api/v1/provider-connections");
+
+  expect(sessions.ok()).toBeTruthy();
+  expect(connections.ok()).toBeTruthy();
+  expect(sessions.headers()["set-cookie"]).toBeUndefined();
+  expect(connections.headers()["set-cookie"]).toBeUndefined();
+  await expect(sessions.json()).resolves.toMatchObject({ sessions: [] });
+  await expect(connections.json()).resolves.toMatchObject({ connections: [] });
+  await context.close();
+});
+
+test("security: oversized recruiter reports are rejected before parsing", async ({
+  request,
+}) => {
+  const oversizedAnswer = "A".repeat(250_000);
+  const response = await request.post("/api/reports", {
+    headers: { "x-interview-coach-client": "web" },
+    data: {
+      role: "Platform Engineer",
+      seniority: "Senior",
+      focusAreas: ["reliability"],
+      turns: Array.from({ length: 5 }, (_, index) => ({
+        id: `q-${index + 1}`,
+        question: "How did you validate the design under failure?",
+        answer: oversizedAnswer,
+        difficulty: "advanced",
+        evaluation: reportEvaluation,
+      })),
+    },
+  });
+
+  expect(response.status()).toBe(413);
+});
+
+test("security: text dictation requires consent and stops on pause", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    class ControlledSpeechRecognition {
+      continuous = false;
+      interimResults = false;
+      lang = "";
+      onstart: (() => void) | null = null;
+      onend: (() => void) | null = null;
+      onerror: (() => void) | null = null;
+      onresult: (() => void) | null = null;
+
+      start() {
+        const state = window as typeof window & { dictationStarts?: number };
+        state.dictationStarts = (state.dictationStarts ?? 0) + 1;
+        this.onstart?.();
+      }
+
+      stop() {
+        const state = window as typeof window & { dictationStops?: number };
+        state.dictationStops = (state.dictationStops ?? 0) + 1;
+        this.onend?.();
+      }
+    }
+
+    Object.defineProperty(window, "SpeechRecognition", {
+      configurable: true,
+      value: ControlledSpeechRecognition,
+    });
+  });
+
+  await page.goto("/");
+  await page.getByRole("button", { name: /Begin Interview/ }).click();
+  await page.getByRole("button", { name: "Use microphone" }).click();
+
+  await expect(
+    page.getByText("Consent before browser dictation"),
+  ).toBeVisible();
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () =>
+          (window as typeof window & { dictationStarts?: number })
+            .dictationStarts ?? 0,
+      ),
+    )
+    .toBe(0);
+
+  const agreeButton = page.getByRole("button", {
+    name: "Agree & start dictation",
+  });
+  await expect(agreeButton).toBeDisabled();
+  await page
+    .getByLabel(/browser or operating-system speech service processing/i)
+    .check();
+  await page.getByLabel(/place the resulting transcript in my answer/i).check();
+  await expect(agreeButton).toBeEnabled();
+  await agreeButton.click();
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () =>
+          (window as typeof window & { dictationStarts?: number })
+            .dictationStarts ?? 0,
+      ),
+    )
+    .toBe(1);
+
+  await page.getByRole("button", { name: "Pause & save" }).click();
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () =>
+          (window as typeof window & { dictationStops?: number })
+            .dictationStops ?? 0,
+      ),
+    )
+    .toBe(1);
+});
+
 test("persists, resumes, completes, exports, and deletes an interview", async ({
   page,
 }) => {

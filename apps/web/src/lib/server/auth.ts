@@ -42,3 +42,16 @@ export async function getOrCreatePrincipal(): Promise<AuthenticatedPrincipal> {
   });
   return principal;
 }
+
+export async function getPrincipal(): Promise<AuthenticatedPrincipal | null> {
+  const cookieStore = await cookies();
+  const existingToken = cookieStore.get(sessionCookieName)?.value;
+  if (!existingToken) return null;
+  return findPrincipalByTokenHash(hashToken(existingToken));
+}
+
+export async function requirePrincipal(): Promise<AuthenticatedPrincipal> {
+  const principal = await getPrincipal();
+  if (!principal) throw new Error("AUTHENTICATION_REQUIRED");
+  return principal;
+}

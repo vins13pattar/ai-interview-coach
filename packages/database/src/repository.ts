@@ -3,6 +3,7 @@ import { randomUUID } from "node:crypto";
 import {
   AnswerEvaluationSchema,
   CreateSessionRequestSchema,
+  DictationConsentRequestSchema,
   DifficultySchema,
   InterviewTurnResultSchema,
   ProviderConnectionInputSchema,
@@ -14,6 +15,7 @@ import {
   SessionTurnResponseSchema,
   TranscriptTurnSchema,
   type CreateSessionRequest,
+  type DictationConsentRequest,
   type InterviewTurnResult,
   type ProviderConnection,
   type ProviderConnectionInput,
@@ -731,6 +733,11 @@ export async function beginVoiceTokenGrant(
       throw new Error("VOICE_PROVIDER_NOT_SUPPORTED");
     }
 
+    await client.query(
+      "SELECT pg_advisory_xact_lock(hashtextextended($1, 0))",
+      [`voice-grant:${principal.tenantId}:${principal.userId}`],
+    );
+
     const recent = await client.query<{ count: string }>(
       `SELECT count(*)::text AS count
          FROM voice_token_grants
@@ -776,6 +783,54 @@ export async function beginVoiceTokenGrant(
     });
     await client.query("COMMIT");
     return { grantId, session };
+  } catch (error) {
+    await client.query("ROLLBACK");
+    throw error;
+  } finally {
+    client.release();
+  }
+}
+
+export async function recordDictationConsent(
+  principal: AuthenticatedPrincipal,
+  sessionId: string,
+  consent: DictationConsentRequest,
+): Promise<void> {
+  const parsed = DictationConsentRequestSchema.parse(consent);
+  const pool = getPool();
+  const client = await pool.connect();
+  try {
+    await client.query("BEGIN");
+    const session = await getInterviewSession(principal, sessionId, client);
+    if (!session) throw new Error("SESSION_NOT_FOUND");
+    if (session.status !== "active") throw new Error("SESSION_NOT_ACTIVE");
+
+    const consentRows = [
+      ["dictation.browser_processing", true],
+      ["dictation.transcript_use", true],
+      ["dictation.raw_audio_retention", false],
+    ] as const;
+    for (const [consentType, granted] of consentRows) {
+      await client.query(
+        `INSERT INTO consent_events
+          (id, tenant_id, user_id, session_id, consent_type, granted, policy_version)
+         VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+        [
+          randomUUID(),
+          principal.tenantId,
+          principal.userId,
+          session.id,
+          consentType,
+          granted,
+          parsed.policyVersion,
+        ],
+      );
+    }
+    await audit(client, principal, "dictation.consent_recorded", session.id, {
+      policyVersion: parsed.policyVersion,
+      rawAudioRetained: false,
+    });
+    await client.query("COMMIT");
   } catch (error) {
     await client.query("ROLLBACK");
     throw error;

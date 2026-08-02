@@ -1,26 +1,22 @@
 import { RecruiterReportRequestSchema } from "@interview-coach/contracts";
 import { createRecruiterReport } from "@interview-coach/interview-engine";
-import { NextResponse } from "next/server";
-import { ZodError } from "zod";
+
+import {
+  apiError,
+  MAX_REPORT_BODY_BYTES,
+  noStoreJson,
+  readJsonBody,
+} from "@/lib/server/http";
 
 export const runtime = "nodejs";
 
 export async function POST(request: Request) {
   try {
-    const payload = RecruiterReportRequestSchema.parse(await request.json());
-    return NextResponse.json(createRecruiterReport(payload), {
-      headers: { "cache-control": "no-store" },
-    });
-  } catch (error) {
-    if (error instanceof ZodError) {
-      return NextResponse.json(
-        { error: "Invalid report request.", issues: error.issues },
-        { status: 422 },
-      );
-    }
-    return NextResponse.json(
-      { error: "The report could not be generated." },
-      { status: 500 },
+    const payload = RecruiterReportRequestSchema.parse(
+      await readJsonBody(request, MAX_REPORT_BODY_BYTES),
     );
+    return noStoreJson(createRecruiterReport(payload));
+  } catch (error) {
+    return apiError(error);
   }
 }
