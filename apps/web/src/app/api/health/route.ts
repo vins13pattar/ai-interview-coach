@@ -30,6 +30,7 @@ export async function GET() {
       version:
         process.env.APP_VERSION ||
         process.env.VERCEL_GIT_COMMIT_SHA ||
+        process.env.VERCEL_URL ||
         "development",
       timestamp: new Date().toISOString(),
     },
