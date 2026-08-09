@@ -28,8 +28,8 @@ export async function GET() {
       service: "interview-coach-web",
       database: database ? "connected" : "not-configured",
       version:
-        process.env.APP_VERSION ??
-        process.env.VERCEL_GIT_COMMIT_SHA ??
+        process.env.APP_VERSION ||
+        process.env.VERCEL_GIT_COMMIT_SHA ||
         "development",
       timestamp: new Date().toISOString(),
     },
