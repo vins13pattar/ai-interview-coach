@@ -6,6 +6,7 @@ An open-source foundation for natural, adaptive AI interviews.
 [Product requirements](docs/PRD.md) ·
 [Architecture](docs/ARCHITECTURE.md) ·
 [Roadmap](docs/ROADMAP.md) ·
+[Hosted alpha plan](docs/HOSTED_ALPHA_PLAN.md) ·
 [Threat model](docs/THREAT_MODEL.md)
 
 Candidates speak or type naturally. The interviewer follows up, changes
