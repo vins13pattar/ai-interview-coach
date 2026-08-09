@@ -1,0 +1,2 @@
+# Local conflict-copy artifacts are never part of a deployment.
+**/* 2.*

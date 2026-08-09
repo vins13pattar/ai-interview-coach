@@ -2,6 +2,23 @@
 
 This roadmap separates a working alpha from production claims.
 
+The next executable release slice is the
+[hosted BYOK alpha](HOSTED_ALPHA_PLAN.md). It prioritizes a low-idle-cost public
+text experience while keeping voice, calibration, accessibility, and hiring
+validity claims behind their evidence gates.
+
+## Next - hosted BYOK alpha
+
+- [ ] Select and add an open-source license
+- [ ] Deploy the Node/Next.js application to Vercel with scale-to-zero Neon
+      PostgreSQL
+- [ ] Keep operator model keys and saved guest provider connections disabled
+- [ ] Add hosted rate limits, guest usage budgets, and automated retention
+- [ ] Validate real BYOK text, cold-start resume, export, and complete deletion
+- [ ] Complete hosted security, accessibility, backup/restore, and browser smoke
+      gates
+- [ ] Publish the live URL with explicit public-alpha limitations
+
 ## Now — alpha foundation
 
 - [x] TypeScript pnpm monorepo
@@ -13,7 +30,7 @@ This roadmap separates a working alpha from production claims.
 - [x] Evidence-backed dimension scores
 - [x] Recruiter-style five-turn report
 - [x] Product, architecture, security, and contributor documentation
-- [ ] Select and add an open-source license
+- [ ] Select and add an open-source license (tracked in the hosted-alpha gate)
 
 ## Delivered — durable alpha
 

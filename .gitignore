@@ -13,3 +13,6 @@ test-results/
 .DS_Store
 *.log
 *.tsbuildinfo
+.vercel/
+.env*
+!.env.example

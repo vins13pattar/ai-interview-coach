@@ -27,7 +27,10 @@ export async function GET() {
       status: "ok",
       service: "interview-coach-web",
       database: database ? "connected" : "not-configured",
-      version: process.env.APP_VERSION ?? "development",
+      version:
+        process.env.APP_VERSION ??
+        process.env.VERCEL_GIT_COMMIT_SHA ??
+        "development",
       timestamp: new Date().toISOString(),
     },
     {
