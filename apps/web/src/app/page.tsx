@@ -1,3 +1,4 @@
+import { AccountControls } from "@/components/account-controls";
 import { InterviewStudio } from "@/components/interview-studio";
 
 const scoreDimensions = [
@@ -133,6 +134,7 @@ export default function Home() {
             only for the request.
           </p>
         </div>
+        <AccountControls />
         <InterviewStudio />
       </section>
 

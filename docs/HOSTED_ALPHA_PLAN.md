@@ -96,9 +96,7 @@ Trust and cost boundaries:
 
 ### Phase 0 - decisions and repository hygiene
 
-- [ ] Select an OSI-approved license and add `LICENSE`. Apache-2.0 is the
-      recommended default because it is permissive and includes an explicit
-      patent grant.
+- [x] Select Apache-2.0 and add `LICENSE`, including the explicit patent grant.
 - [ ] Confirm that the hosted alpha is personal and non-commercial while it is
       on Vercel Hobby.
 - [ ] Confirm the public hostname and data region. Recommended hostname:
@@ -110,18 +108,18 @@ Exit gate: the license, intended use, hostname, and region are explicit.
 
 ### Phase 1 - Vercel and Neon deployment foundation
 
-- [ ] Create the Vercel project with `apps/web` as the monorepo root directory.
-- [ ] Provision a Neon Free project in the same practical geography as the
+- [x] Create the Vercel project with the monorepo web application configured.
+- [x] Provision a Neon Free project in the same practical geography as the
       Vercel function and use its pooled TLS connection string.
 - [ ] Add production environment validation for `DATABASE_URL`, `APP_ORIGIN`,
       `SESSION_COOKIE_SECURE`, `APP_VERSION`, and voice model identifiers.
 - [ ] Keep `PROVIDER_ENCRYPTION_KEY`, `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, and
       `LANGSMITH_API_KEY` unset in the initial hosted alpha.
-- [ ] Run idempotent migrations as a gated deployment step, never from request
+- [x] Run idempotent migrations as a gated deployment step, never from request
       startup.
 - [ ] Add a preview deployment workflow, migration check, and production
       promotion only after CI and smoke tests pass.
-- [ ] Verify `/api/health` reports the deployed revision and database health
+- [x] Verify `/api/health` reports the deployed revision and database health
       without exposing connection details.
 
 Exit gate: a private preview survives a cold start and database scale-to-zero,
@@ -133,13 +131,14 @@ and migrations can be repeated safely.
       the tab-scoped key and that local self-hosting is the stronger trust mode.
 - [ ] Add a provider-key connection test that returns only a redacted result.
 - [ ] Add one Vercel WAF rate-limit rule for mutation and provider-token routes.
-- [ ] Add per-guest daily session and turn budgets enforced in PostgreSQL.
-- [ ] Verify request-size limits for every JSON mutation route.
+- [x] Add per-guest and registered daily session/turn budgets enforced in
+      PostgreSQL, with minute-level throttles.
+- [x] Enforce request-size limits for every JSON mutation route.
 - [ ] Add regression tests proving keys never enter logs, audit metadata,
       LangGraph state, exports, or persisted session records.
-- [ ] Disable encrypted saved connections in the UI when server-side encryption
+- [x] Disable encrypted saved connections in the UI when server-side encryption
       is not configured.
-- [ ] Add a daily, authenticated retention job. Vercel Hobby supports daily
+- [x] Add a daily, authenticated retention job. Vercel Hobby supports daily
       cron execution; the job must delete expired sessions, turns, reports,
       grants, audit metadata, and LangGraph checkpoints in bounded batches.
 - [ ] Document a hard usage cap and alert thresholds for Vercel and Neon.
@@ -190,8 +189,10 @@ can distinguish platform, database, provider, and application failures.
 - [ ] Complete independent WCAG 2.2 AA and security reviews.
 - [ ] Validate load, backup, restore, failover, and retention evidence.
 - [ ] Publish the final model/rubric card and calibrated role packs.
-- [ ] Add registered identity only when account recovery and deletion semantics
-      are defined; guest mode remains useful for low-friction practice.
+- [x] Add optional pseudonymous accounts with one-time recovery material,
+      rotation, sign-out, and complete account deletion; guest mode remains
+      useful for low-friction practice. Verified external identity remains a
+      separate future decision.
 
 Exit gate: all public-v1 gates in the PRD and production-readiness checklist
 are satisfied with current measured evidence.

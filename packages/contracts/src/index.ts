@@ -285,6 +285,38 @@ export const ProviderConnectionSchema = z.object({
   configuredAt: z.iso.datetime(),
 });
 
+export const AccountRegistrationRequestSchema = z.object({
+  displayName: z.string().trim().min(2).max(80),
+});
+
+export const AccountRecoverySignInRequestSchema = z.object({
+  accountHandle: z.string().regex(/^aic_[a-z0-9]{16}$/),
+  recoveryCode: z.string().regex(/^aicr_[A-Za-z0-9_-]{32}$/),
+});
+
+export const AccountRecoveryRotationRequestSchema = z.object({
+  confirmation: z.literal("ROTATE"),
+});
+
+export const AccountDeletionRequestSchema = z.object({
+  recoveryCode: z.string().regex(/^aicr_[A-Za-z0-9_-]{32}$/),
+  confirmation: z.literal("DELETE MY ACCOUNT"),
+});
+
+export const AccountProfileSchema = z.object({
+  kind: z.enum(["guest", "registered"]),
+  displayName: z.string().min(1).max(80),
+  accountHandle: z
+    .string()
+    .regex(/^aic_[a-z0-9]{16}$/)
+    .nullable(),
+});
+
+export const RecoveryKitSchema = z.object({
+  profile: AccountProfileSchema,
+  recoveryCode: z.string().regex(/^aicr_[A-Za-z0-9_-]{32}$/),
+});
+
 export const VoiceConsentRequestSchema = z.object({
   sessionId: z.uuid(),
   policyVersion: z.literal("voice-beta-v1"),
@@ -379,6 +411,14 @@ export type ProviderConnectionInput = z.infer<
   typeof ProviderConnectionInputSchema
 >;
 export type ProviderConnection = z.infer<typeof ProviderConnectionSchema>;
+export type AccountRegistrationRequest = z.infer<
+  typeof AccountRegistrationRequestSchema
+>;
+export type AccountRecoverySignInRequest = z.infer<
+  typeof AccountRecoverySignInRequestSchema
+>;
+export type AccountProfile = z.infer<typeof AccountProfileSchema>;
+export type RecoveryKit = z.infer<typeof RecoveryKitSchema>;
 export type VoiceConsentRequest = z.infer<typeof VoiceConsentRequestSchema>;
 export type DictationConsentRequest = z.infer<
   typeof DictationConsentRequestSchema

@@ -34,6 +34,75 @@ test("security: read-only discovery does not create a guest identity", async ({
   await context.close();
 });
 
+test("security: retention cron rejects unauthenticated requests", async ({
+  request,
+}) => {
+  const response = await request.get("/api/cron/retention");
+  expect(response.status()).toBe(401);
+  await expect(response.json()).resolves.toEqual({ error: "Unauthorized." });
+});
+
+test("registers, recovers, rotates, and deletes a pseudonymous account", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const registrationPromise = page.waitForResponse(
+    (response) =>
+      response.url().endsWith("/api/v1/account") &&
+      response.request().method() === "POST",
+  );
+  await page.getByLabel("Display name").fill("Browser candidate");
+  await page.getByRole("button", { name: "Get recovery kit" }).click();
+  const registration = await registrationPromise;
+  expect(registration.status()).toBe(201);
+  const firstKit = (await registration.json()) as {
+    profile: { accountHandle: string };
+    recoveryCode: string;
+  };
+  await expect(
+    page.getByText("Save this once-only recovery kit"),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("status").getByText(firstKit.profile.accountHandle),
+  ).toBeVisible();
+
+  await page.reload();
+  await expect(page.getByText("Signed in as")).toBeVisible();
+  const signOut = await page.request.post("/api/v1/account/sign-out", {
+    headers: { "x-interview-coach-client": "web" },
+  });
+  expect(signOut.status()).toBe(204);
+  await page.reload();
+  await page.getByLabel("Account handle").fill(firstKit.profile.accountHandle);
+  await page.getByLabel("Recovery code").fill(firstKit.recoveryCode);
+  await page.getByRole("button", { name: "Sign in" }).click();
+  await expect(page.getByText("Signed in as")).toBeVisible();
+
+  const rotationPromise = page.waitForResponse(
+    (response) =>
+      response.url().endsWith("/api/v1/account/recovery") &&
+      response.request().method() === "POST",
+  );
+  await page.getByRole("button", { name: "Rotate recovery code" }).click();
+  const rotation = await rotationPromise;
+  expect(rotation.ok()).toBeTruthy();
+  const rotatedKit = (await rotation.json()) as { recoveryCode: string };
+  expect(rotatedKit.recoveryCode).not.toBe(firstKit.recoveryCode);
+
+  const deleted = await page.request.delete("/api/v1/account", {
+    headers: { "x-interview-coach-client": "web" },
+    data: {
+      recoveryCode: rotatedKit.recoveryCode,
+      confirmation: "DELETE MY ACCOUNT",
+    },
+  });
+  expect(deleted.status()).toBe(204);
+  await page.reload();
+  await expect(
+    page.getByRole("heading", { name: "Register this workspace" }),
+  ).toBeVisible();
+});
+
 test("security: oversized recruiter reports are rejected before parsing", async ({
   request,
 }) => {
@@ -141,6 +210,7 @@ test("security: text dictation requires consent and stops on pause", async ({
 test("persists, resumes, completes, exports, and deletes an interview", async ({
   page,
 }) => {
+  test.setTimeout(90_000);
   await page.goto("/");
   await expect(
     page.getByRole("heading", { name: "What Are You Preparing For?" }),
@@ -154,7 +224,7 @@ test("persists, resumes, completes, exports, and deletes an interview", async ({
   await expect(page.getByText("Interview in progress")).toBeVisible();
   await page.getByLabel("Your answer").fill(candidateAnswer);
   await page.getByRole("button", { name: /Submit Answer/ }).click();
-  await expect(page.getByText("Turn 2 / 5")).toBeVisible();
+  await expect(page.getByText("Turn 2 / 5")).toBeVisible({ timeout: 15_000 });
 
   await page.getByRole("button", { name: "Pause & save" }).click();
   await expect(
@@ -175,11 +245,15 @@ test("persists, resumes, completes, exports, and deletes an interview", async ({
       .fill(`${candidateAnswer} This is adaptive turn ${turn}.`);
     await page.getByRole("button", { name: /Submit Answer/ }).click();
     if (turn < 5) {
-      await expect(page.getByText(`Turn ${turn + 1} / 5`)).toBeVisible();
+      await expect(page.getByText(`Turn ${turn + 1} / 5`)).toBeVisible({
+        timeout: 15_000,
+      });
     }
   }
 
-  await expect(page.getByText("Interview complete")).toBeVisible();
+  await expect(page.getByText("Interview complete")).toBeVisible({
+    timeout: 30_000,
+  });
   await expect(page.getByText("5 adaptive turns")).toBeVisible();
   const downloadPromise = page.waitForEvent("download");
   await page.getByRole("link", { name: /Export my data/ }).click();

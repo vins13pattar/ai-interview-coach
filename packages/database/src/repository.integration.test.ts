@@ -13,14 +13,20 @@ import {
   completeVoiceTokenGrant,
   createGuestPrincipal,
   createInterviewSession,
+  deleteRegisteredAccount,
   deleteProviderConnection,
   deleteInterviewSession,
   getProviderApiKey,
   getInterviewSession,
   getPool,
+  getAccountProfile,
   listProviderConnections,
   recordDictationConsent,
+  registerAccount,
+  rotateRecoveryCode,
+  runRetentionBatch,
   setInterviewSessionStatus,
+  signInWithRecovery,
   upsertProviderConnection,
 } from "./index";
 
@@ -341,6 +347,154 @@ describe.skipIf(!databaseAvailable)("durable interview repository", () => {
         policy_version: "text-dictation-v1",
       },
     ]);
+  });
+
+  it("enforces atomic guest session budgets", async () => {
+    const principal = await createGuestPrincipal(
+      randomUUID().replaceAll("-", "").padEnd(64, "9"),
+      new Date(Date.now() + 60_000),
+    );
+    tenantIds.push(principal.tenantId);
+    const previousMinute = process.env.GUEST_SESSION_LIMIT_PER_MINUTE;
+    const previousDay = process.env.GUEST_SESSION_LIMIT_PER_DAY;
+    process.env.GUEST_SESSION_LIMIT_PER_MINUTE = "100";
+    process.env.GUEST_SESSION_LIMIT_PER_DAY = "2";
+    const createSession = () =>
+      createInterviewSession(
+        principal,
+        {
+          role: "Backend Engineer",
+          seniority: "Senior",
+          focusAreas: ["reliability"],
+          difficulty: "intermediate",
+          provider: "demo",
+        },
+        "How do you validate a reliability trade-off?",
+      );
+
+    try {
+      await createSession();
+      await createSession();
+      await expect(createSession()).rejects.toThrow("DAILY_BUDGET_EXCEEDED");
+      const counters = await getPool().query<{ count: number }>(
+        `SELECT count FROM usage_counters
+          WHERE tenant_id = $1 AND user_id = $2
+            AND action = 'session' AND bucket = 'day'`,
+        [principal.tenantId, principal.userId],
+      );
+      expect(counters.rows[0]?.count).toBe(2);
+    } finally {
+      if (previousMinute === undefined) {
+        delete process.env.GUEST_SESSION_LIMIT_PER_MINUTE;
+      } else {
+        process.env.GUEST_SESSION_LIMIT_PER_MINUTE = previousMinute;
+      }
+      if (previousDay === undefined) {
+        delete process.env.GUEST_SESSION_LIMIT_PER_DAY;
+      } else {
+        process.env.GUEST_SESSION_LIMIT_PER_DAY = previousDay;
+      }
+    }
+  });
+
+  it("registers, recovers, rotates, and deletes an account without storing the raw code", async () => {
+    const principal = await createGuestPrincipal(
+      randomUUID().replaceAll("-", "").padEnd(64, "a"),
+      new Date(Date.now() + 60_000),
+    );
+    tenantIds.push(principal.tenantId);
+    const kit = await registerAccount(
+      principal,
+      "Release candidate",
+      randomUUID().replaceAll("-", "").padEnd(64, "b"),
+      new Date(Date.now() + 90 * 24 * 60 * 60 * 1_000),
+    );
+
+    expect(await getAccountProfile(kit.principal)).toEqual(kit.profile);
+    const stored = await getPool().query(
+      `SELECT recovery_secret_hash, recovery_secret_salt
+         FROM account_credentials WHERE user_id = $1`,
+      [principal.userId],
+    );
+    expect(JSON.stringify(stored.rows)).not.toContain(kit.recoveryCode);
+    const audit = await getPool().query(
+      "SELECT metadata FROM audit_events WHERE tenant_id = $1",
+      [principal.tenantId],
+    );
+    expect(JSON.stringify(audit.rows)).not.toContain(kit.recoveryCode);
+
+    const recovered = await signInWithRecovery(
+      kit.profile.accountHandle!,
+      kit.recoveryCode,
+      randomUUID().replaceAll("-", "").padEnd(64, "c"),
+      new Date(Date.now() + 90 * 24 * 60 * 60 * 1_000),
+    );
+    expect(recovered.tenantId).toBe(principal.tenantId);
+    const rotatedCode = await rotateRecoveryCode(recovered);
+    await expect(
+      signInWithRecovery(
+        kit.profile.accountHandle!,
+        kit.recoveryCode,
+        randomUUID().replaceAll("-", "").padEnd(64, "d"),
+        new Date(Date.now() + 60_000),
+      ),
+    ).rejects.toThrow("INVALID_RECOVERY_CREDENTIALS");
+    expect(await deleteRegisteredAccount(recovered, rotatedCode)).toBe(true);
+    expect(
+      await getPool().query("SELECT 1 FROM tenants WHERE id = $1", [
+        principal.tenantId,
+      ]),
+    ).toHaveProperty("rowCount", 0);
+  });
+
+  it("deletes expired guest data in a bounded retention batch", async () => {
+    const principal = await createGuestPrincipal(
+      randomUUID().replaceAll("-", "").padEnd(64, "e"),
+      new Date(Date.now() + 60_000),
+    );
+    tenantIds.push(principal.tenantId);
+    const session = await createInterviewSession(
+      principal,
+      {
+        role: "Platform Engineer",
+        seniority: "Staff",
+        focusAreas: ["operations"],
+        difficulty: "advanced",
+        provider: "demo",
+      },
+      "How do you operate an aging service safely?",
+    );
+    await getPool().query(
+      "UPDATE interview_sessions SET updated_at = now() - interval '2 days' WHERE id = $1",
+      [session.id],
+    );
+    await getPool().query(
+      "UPDATE auth_sessions SET expires_at = now() - interval '1 minute' WHERE id = $1",
+      [principal.authSessionId],
+    );
+    const previousDays = process.env.GUEST_RETENTION_DAYS;
+    process.env.GUEST_RETENTION_DAYS = "1";
+    try {
+      const result = await runRetentionBatch();
+      expect(result.sessions).toBeGreaterThanOrEqual(1);
+      expect(
+        await getPool().query(
+          "SELECT 1 FROM interview_sessions WHERE id = $1",
+          [session.id],
+        ),
+      ).toHaveProperty("rowCount", 0);
+      expect(
+        await getPool().query("SELECT 1 FROM tenants WHERE id = $1", [
+          principal.tenantId,
+        ]),
+      ).toHaveProperty("rowCount", 0);
+    } finally {
+      if (previousDays === undefined) {
+        delete process.env.GUEST_RETENTION_DAYS;
+      } else {
+        process.env.GUEST_RETENTION_DAYS = previousDays;
+      }
+    }
   });
 });
 

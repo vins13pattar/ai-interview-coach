@@ -7,6 +7,7 @@ import {
   apiError,
   assertMutationRequest,
   noStoreJson,
+  readJsonBody,
 } from "@/lib/server/http";
 
 export const runtime = "nodejs";
@@ -18,7 +19,9 @@ export async function POST(request: Request, context: Context) {
   try {
     assertMutationRequest(request);
     const sessionId = SessionIdSchema.parse((await context.params).id);
-    const consent = DictationConsentRequestSchema.parse(await request.json());
+    const consent = DictationConsentRequestSchema.parse(
+      await readJsonBody(request, 4_096),
+    );
     const principal = await requirePrincipal();
     await recordDictationConsent(principal, sessionId, consent);
     return noStoreJson({ recorded: true });

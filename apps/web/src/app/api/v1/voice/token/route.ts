@@ -22,6 +22,7 @@ import {
   assertMutationRequest,
   HttpError,
   noStoreJson,
+  readJsonBody,
 } from "@/lib/server/http";
 
 export const runtime = "nodejs";
@@ -42,7 +43,9 @@ export async function POST(request: Request) {
 
   try {
     assertMutationRequest(request);
-    const consent = VoiceConsentRequestSchema.parse(await request.json());
+    const consent = VoiceConsentRequestSchema.parse(
+      await readJsonBody(request, 4_096),
+    );
     principal = await requirePrincipal();
     const pending = await beginVoiceTokenGrant(principal, consent);
     grantId = pending.grantId;

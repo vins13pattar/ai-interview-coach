@@ -10,10 +10,24 @@ import {
 import { cookies } from "next/headers";
 
 const sessionCookieName = "interview_coach_session";
-const sessionLifetimeMs = 30 * 24 * 60 * 60 * 1_000;
+const dayMs = 24 * 60 * 60 * 1_000;
 
-function hashToken(token: string): string {
+export function hashSessionToken(token: string): string {
   return createHash("sha256").update(token).digest("hex");
+}
+
+export function createSessionCredentials(userKind: "guest" | "registered"): {
+  token: string;
+  tokenHash: string;
+  expiresAt: Date;
+} {
+  const lifetimeDays = userKind === "registered" ? 90 : 30;
+  const token = randomBytes(32).toString("base64url");
+  return {
+    token,
+    tokenHash: hashSessionToken(token),
+    expiresAt: new Date(Date.now() + lifetimeDays * dayMs),
+  };
 }
 
 function secureCookiesEnabled(): boolean {
@@ -25,13 +39,26 @@ export async function getOrCreatePrincipal(): Promise<AuthenticatedPrincipal> {
   const cookieStore = await cookies();
   const existingToken = cookieStore.get(sessionCookieName)?.value;
   if (existingToken) {
-    const principal = await findPrincipalByTokenHash(hashToken(existingToken));
+    const principal = await findPrincipalByTokenHash(
+      hashSessionToken(existingToken),
+    );
     if (principal) return principal;
   }
 
-  const token = randomBytes(32).toString("base64url");
-  const expiresAt = new Date(Date.now() + sessionLifetimeMs);
-  const principal = await createGuestPrincipal(hashToken(token), expiresAt);
+  const credentials = createSessionCredentials("guest");
+  const principal = await createGuestPrincipal(
+    credentials.tokenHash,
+    credentials.expiresAt,
+  );
+  await setSessionCookie(credentials.token, credentials.expiresAt);
+  return principal;
+}
+
+export async function setSessionCookie(
+  token: string,
+  expiresAt: Date,
+): Promise<void> {
+  const cookieStore = await cookies();
   cookieStore.set(sessionCookieName, token, {
     expires: expiresAt,
     httpOnly: true,
@@ -40,14 +67,24 @@ export async function getOrCreatePrincipal(): Promise<AuthenticatedPrincipal> {
     path: "/",
     priority: "high",
   });
-  return principal;
+}
+
+export async function clearSessionCookie(): Promise<void> {
+  const cookieStore = await cookies();
+  cookieStore.set(sessionCookieName, "", {
+    expires: new Date(0),
+    httpOnly: true,
+    sameSite: "lax",
+    secure: secureCookiesEnabled(),
+    path: "/",
+  });
 }
 
 export async function getPrincipal(): Promise<AuthenticatedPrincipal | null> {
   const cookieStore = await cookies();
   const existingToken = cookieStore.get(sessionCookieName)?.value;
   if (!existingToken) return null;
-  return findPrincipalByTokenHash(hashToken(existingToken));
+  return findPrincipalByTokenHash(hashSessionToken(existingToken));
 }
 
 export async function requirePrincipal(): Promise<AuthenticatedPrincipal> {

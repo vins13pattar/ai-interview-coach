@@ -30,11 +30,13 @@ import type { PoolClient, QueryResultRow } from "pg";
 
 import { decryptProviderSecret, encryptProviderSecret } from "./crypto";
 import { getPool } from "./pool";
+import { consumeUsageBudget } from "./usage";
 
 export type AuthenticatedPrincipal = {
   authSessionId: string;
   tenantId: string;
   userId: string;
+  userKind: "guest" | "registered";
   expiresAt: Date;
 };
 
@@ -132,14 +134,24 @@ export async function findPrincipalByTokenHash(
       id: string;
       tenant_id: string;
       user_id: string;
+      user_kind: "guest" | "registered";
       expires_at: Date;
     }
   >(
-    `UPDATE auth_sessions
-       SET last_seen_at = now()
-     WHERE token_hash = $1
-       AND expires_at > now()
-     RETURNING id, tenant_id, user_id, expires_at`,
+    `WITH refreshed AS (
+       UPDATE auth_sessions
+          SET last_seen_at = now()
+        WHERE token_hash = $1
+          AND expires_at > now()
+       RETURNING id, tenant_id, user_id, expires_at
+     )
+     SELECT refreshed.id,
+            refreshed.tenant_id,
+            refreshed.user_id,
+            refreshed.expires_at,
+            users.kind AS user_kind
+       FROM refreshed
+       JOIN users ON users.id = refreshed.user_id`,
     [tokenHash],
   );
   const row = result.rows[0];
@@ -148,6 +160,7 @@ export async function findPrincipalByTokenHash(
         authSessionId: row.id,
         tenantId: row.tenant_id,
         userId: row.user_id,
+        userKind: row.user_kind,
         expiresAt: row.expires_at,
       }
     : null;
@@ -181,12 +194,24 @@ export async function createGuestPrincipal(
     );
     await audit(
       client,
-      { authSessionId, tenantId, userId, expiresAt },
+      {
+        authSessionId,
+        tenantId,
+        userId,
+        userKind: "guest",
+        expiresAt,
+      },
       "identity.created",
       userId,
     );
     await client.query("COMMIT");
-    return { authSessionId, tenantId, userId, expiresAt };
+    return {
+      authSessionId,
+      tenantId,
+      userId,
+      userKind: "guest",
+      expiresAt,
+    };
   } catch (error) {
     await client.query("ROLLBACK");
     throw error;
@@ -206,6 +231,7 @@ export async function createInterviewSession(
   const client = await pool.connect();
   try {
     await client.query("BEGIN");
+    await consumeUsageBudget(client, principal, "session");
     const result = await client.query<SessionRow>(
       `INSERT INTO interview_sessions
         (id, tenant_id, user_id, status, role, seniority, focus_areas,
@@ -336,6 +362,7 @@ export async function beginTurnRequest(
     const session = await getInterviewSession(principal, sessionId, client);
     if (!session) throw new Error("SESSION_NOT_FOUND");
     if (session.status !== "active") throw new Error("SESSION_NOT_ACTIVE");
+    await consumeUsageBudget(client, principal, "turn");
 
     const requestId = randomUUID();
     await client.query(

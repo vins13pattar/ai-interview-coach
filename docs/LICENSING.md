@@ -1,18 +1,17 @@
-# Licensing decision required
+# Licensing decision
 
-A license has intentionally not been guessed for this project.
+The project is licensed under the **Apache License 2.0**. The unmodified license
+text is in [`LICENSE`](../LICENSE), and package metadata uses the SPDX identifier
+`Apache-2.0`.
 
-A public GitHub repository without a `LICENSE` is source-visible but does not
-grant users permission to copy, modify, or distribute the work. Before calling
-the release open source, the copyright holder should choose a license.
+The Apache license permits use, modification, and distribution while providing
+an explicit patent grant and preserving copyright and license notices.
 
-Common options:
+Alternatives considered:
 
-- **Apache-2.0** — permissive use with an explicit patent grant.
-- **MIT** — short and permissive.
-- **AGPL-3.0** — requires network service modifications to remain available
-  under the same license.
+- **MIT** — short and permissive, without Apache's express patent language.
+- **AGPL-3.0** — reciprocal terms for network service modifications.
 
-After the maintainer chooses, add the unmodified SPDX license text as `LICENSE`,
-set the matching `license` field in publishable package metadata, and update the
-README.
+Apache-2.0 was selected as the recommended permissive default for a reusable AI
+application foundation. Contributions are accepted under the project license
+unless a separate written agreement says otherwise.

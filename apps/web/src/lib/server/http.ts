@@ -134,6 +134,30 @@ export function apiError(error: unknown): NextResponse {
         429,
         "Too many live voice connection attempts. Wait a minute and retry.",
       ],
+      REQUEST_RATE_LIMITED: [
+        429,
+        "Too many requests. Wait a minute and try again.",
+      ],
+      DAILY_BUDGET_EXCEEDED: [
+        429,
+        "The daily hosted-alpha usage limit has been reached.",
+      ],
+      AUTH_RATE_LIMITED: [
+        429,
+        "Too many recovery attempts. Wait a minute and try again.",
+      ],
+      INVALID_RECOVERY_CREDENTIALS: [
+        401,
+        "The account handle or recovery code is invalid.",
+      ],
+      ACCOUNT_ALREADY_REGISTERED: [
+        409,
+        "This workspace is already registered.",
+      ],
+      REGISTERED_ACCOUNT_REQUIRED: [
+        409,
+        "A registered account is required for this action.",
+      ],
     };
     const known = knownErrors[error.message];
     if (known) {

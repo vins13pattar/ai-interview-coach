@@ -491,6 +491,168 @@ textarea:focus-visible,
   max-width: 1220px;
 }
 
+.account-panel {
+  background: #111725;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  display: grid;
+  gap: clamp(30px, 5vw, 72px);
+  grid-template-columns: minmax(240px, 0.55fr) minmax(0, 1.45fr);
+  margin: 0 auto 32px;
+  max-width: 1220px;
+  padding: clamp(28px, 5vw, 58px);
+}
+
+.account-intro .step-label {
+  color: var(--acid);
+  margin-bottom: 22px;
+}
+
+.account-intro h3 {
+  font-family: var(--display);
+  font-size: clamp(2rem, 4vw, 3.8rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin: 0 0 22px;
+}
+
+.account-intro > p:last-child,
+.account-warning,
+.danger-zone p,
+.recovery-kit p {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
+.account-actions,
+.account-actions form,
+.registered-account,
+.recovery-kit {
+  display: grid;
+  gap: 18px;
+}
+
+.account-columns {
+  display: grid;
+  gap: 36px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.account-actions h4 {
+  font-family: var(--display);
+  font-size: 1.45rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.account-actions label {
+  display: grid;
+  font-size: 0.68rem;
+  font-weight: 750;
+  gap: 8px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.account-actions input {
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.account-actions .button {
+  justify-self: start;
+}
+
+.account-warning {
+  border-left: 3px solid var(--acid);
+  margin: 0;
+  padding-left: 12px;
+}
+
+.registered-account > div:first-child {
+  display: grid;
+  gap: 7px;
+}
+
+.registered-account > div:first-child span,
+.recovery-kit > span {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.registered-account code,
+.recovery-kit code {
+  overflow-wrap: anywhere;
+}
+
+.registered-account-buttons {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+}
+
+.account-panel .button-secondary {
+  border-color: rgba(255, 255, 255, 0.56);
+  color: white;
+}
+
+.danger-zone {
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  margin-top: 10px;
+  padding-top: 18px;
+}
+
+.danger-zone summary {
+  cursor: pointer;
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.danger-zone form {
+  margin-top: 20px;
+  max-width: 520px;
+}
+
+.button-danger {
+  background: var(--red);
+  border-color: var(--red);
+  color: var(--ink);
+}
+
+.recovery-kit {
+  background: var(--acid);
+  color: var(--ink);
+  margin-top: 8px;
+  padding: 22px;
+}
+
+.recovery-kit > span,
+.recovery-kit p {
+  color: rgba(18, 19, 15, 0.7);
+}
+
+.recovery-kit code {
+  font-size: 0.88rem;
+}
+
+.recovery-kit .button-secondary {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.account-notice {
+  background: rgba(215, 255, 67, 0.12);
+  border-left: 3px solid var(--acid);
+  font-size: 0.8rem;
+  margin: 0;
+  padding: 12px;
+}
+
 .setup-grid {
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;
@@ -1273,6 +1435,11 @@ fieldset legend {
   color: var(--ink);
 }
 
+.account-panel .button-danger {
+  background: var(--red);
+  color: var(--ink);
+}
+
 footer {
   align-items: start;
   background: var(--ink);
@@ -1315,7 +1482,8 @@ footer p {
 
   .method,
   .studio-heading,
-  .setup-grid {
+  .setup-grid,
+  .account-panel {
     grid-template-columns: 1fr;
   }
 
@@ -1374,7 +1542,8 @@ footer p {
   .field-row,
   .provider-options,
   .report-columns,
-  .report-metadata {
+  .report-metadata,
+  .account-columns {
     grid-template-columns: 1fr;
   }
 
