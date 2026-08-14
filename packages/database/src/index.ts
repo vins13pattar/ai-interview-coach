@@ -6,6 +6,17 @@ export {
 } from "./crypto";
 export { databaseConfigured, getPool } from "./pool";
 export {
+  deleteAuthSession,
+  deleteRegisteredAccount,
+  getAccountProfile,
+  registerAccount,
+  rotateRecoveryCode,
+  signInWithRecovery,
+} from "./accounts";
+export type { AccountProfile, RecoveryKit } from "./accounts";
+export { runRetentionBatch } from "./retention";
+export type { RetentionResult } from "./retention";
+export {
   abortTurnRequest,
   beginVoiceTokenGrant,
   beginTurnRequest,

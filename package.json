@@ -2,6 +2,7 @@
   "name": "ai-interview-coach",
   "version": "0.1.0",
   "private": true,
+  "license": "Apache-2.0",
   "description": "Open-source, adaptive AI interview practice with natural conversation and recruiter-quality feedback.",
   "packageManager": "pnpm@11.17.0",
   "engines": {

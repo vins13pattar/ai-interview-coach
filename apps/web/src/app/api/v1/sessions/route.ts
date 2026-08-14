@@ -11,6 +11,7 @@ import {
   apiError,
   assertMutationRequest,
   noStoreJson,
+  readJsonBody,
 } from "@/lib/server/http";
 
 export const runtime = "nodejs";
@@ -41,7 +42,9 @@ export async function POST(request: Request) {
   }
   try {
     assertMutationRequest(request);
-    const input = CreateSessionRequestSchema.parse(await request.json());
+    const input = CreateSessionRequestSchema.parse(
+      await readJsonBody(request, 8_192),
+    );
     const principal = await getOrCreatePrincipal();
     const question = openingQuestion(
       input.role,

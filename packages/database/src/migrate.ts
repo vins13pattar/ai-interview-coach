@@ -44,7 +44,6 @@ async function migrate() {
   } finally {
     client.release();
     await pool.end();
-    await checkpointer.end();
   }
 }
 

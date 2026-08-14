@@ -9,11 +9,12 @@ validity claims behind their evidence gates.
 
 ## Next - hosted BYOK alpha
 
-- [ ] Select and add an open-source license
-- [ ] Deploy the Node/Next.js application to Vercel with scale-to-zero Neon
+- [x] Select Apache-2.0 and add an open-source license
+- [x] Deploy the Node/Next.js application to Vercel with scale-to-zero Neon
       PostgreSQL
 - [ ] Keep operator model keys and saved guest provider connections disabled
-- [ ] Add hosted rate limits, guest usage budgets, and automated retention
+- [x] Add PostgreSQL rate limits, guest/registered usage budgets, and automated
+      retention
 - [ ] Validate real BYOK text, cold-start resume, export, and complete deletion
 - [ ] Complete hosted security, accessibility, backup/restore, and browser smoke
       gates
@@ -30,7 +31,7 @@ validity claims behind their evidence gates.
 - [x] Evidence-backed dimension scores
 - [x] Recruiter-style five-turn report
 - [x] Product, architecture, security, and contributor documentation
-- [ ] Select and add an open-source license (tracked in the hosted-alpha gate)
+- [x] Select and add an open-source license
 
 ## Delivered — durable alpha
 
@@ -49,7 +50,8 @@ tests cover every object; deterministic and provider contract suites pass.
 Evidence: repository integration tests cover cross-tenant session and provider
 connection access, Playwright covers the complete durable candidate journey,
 and the Compose runtime applies migrations before admitting web traffic.
-Registered accounts and an external identity provider remain public-v1 work.
+Pseudonymous recovery-code accounts are implemented. Verified external identity
+remains future work.
 
 ## Implemented beta — real-time voice validation pending
 
@@ -85,7 +87,7 @@ browser/device evidence remain required before calling voice production-ready.
 - [ ] Runtime persistence/export for telemetry, token, cost, and completion
       reporting
 - [ ] Concurrent-tab, restart, reconnect, and report-regeneration matrix
-- [ ] Retention scheduler and complete derived-data inventory
+- [x] Retention scheduler and complete derived-data inventory
 - [ ] WCAG 2.2 AA evidence
 - [x] Repository-scoped threat model with explicit hosted/self-hosted assumptions
 - [x] Internal 145-file security scan and regression-backed remediation of all

@@ -672,6 +672,7 @@ export function InterviewStudio() {
             method: "POST",
             headers: {
               "content-type": "application/json",
+              "x-interview-coach-client": "web",
               ...(provider === "openai" && apiKey
                 ? { "x-provider-api-key": apiKey }
                 : {}),
@@ -722,7 +723,10 @@ export function InterviewStudio() {
           } else {
             const reportResponse = await fetch("/api/reports", {
               method: "POST",
-              headers: { "content-type": "application/json" },
+              headers: {
+                "content-type": "application/json",
+                "x-interview-coach-client": "web",
+              },
               body: JSON.stringify({
                 role,
                 seniority,

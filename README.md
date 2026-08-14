@@ -18,7 +18,7 @@ without an API key and supports an optional bring-your-own OpenAI key.
 > beta**. Durable text interviews, explicit workflow policy, six versioned role
 > rubrics, 156 deterministic evaluation cases, export, and verified deletion
 > are implemented. Real-provider voice reliability, qualified-human
-> calibration, registered accounts, accessibility certification, and
+> calibration, independent accessibility review, and
 > hiring-grade validation remain roadmap items. See the [PRD](docs/PRD.md) and
 > [roadmap](docs/ROADMAP.md).
 
@@ -64,6 +64,13 @@ your own key. The key is tab-scoped by default, sent in a request header, and
 not persisted. Self-hosters may explicitly enable encrypted per-user
 connections. Public and guest routes never fall back to an operator-funded
 provider key.
+
+Guest history is tied to a secure browser cookie for up to 30 days. The
+optional pseudonymous account flow creates an account handle and a one-time
+recovery code so candidates can return from another browser without supplying
+an email address. The recovery code is stored only as a scrypt hash; save it in
+a password manager because it cannot be retrieved. See
+[account recovery](docs/ACCOUNT_RECOVERY.md).
 
 ## Run with Docker
 
@@ -164,11 +171,10 @@ sole basis for employment decisions. Production adopters are responsible for
 candidate consent, retention rules, local employment law, accessibility, bias
 testing, and human review.
 
-## Open-source status
+## License
 
-Governance documents are included, but a project license has not yet been
-selected. Until a `LICENSE` is added, the repository is publicly readable but
-does **not** grant open-source reuse rights. See [licensing](docs/LICENSING.md).
+Licensed under [Apache License 2.0](LICENSE), including its explicit patent
+grant. See [licensing](docs/LICENSING.md) for the decision record.
 
 ## Contributing and security
 

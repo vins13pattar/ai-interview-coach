@@ -29,8 +29,11 @@ describe("provider secret encryption", () => {
   it("rejects tampered ciphertext", () => {
     vi.stubEnv("PROVIDER_ENCRYPTION_KEY", randomBytes(32).toString("base64"));
     const encrypted = encryptProviderSecret("fixture-tamper-detection-secret");
-    const replacement = encrypted.encryptedSecret.endsWith("A") ? "B" : "A";
-    const tampered = `${encrypted.encryptedSecret.slice(0, -1)}${replacement}`;
+    const parts = encrypted.encryptedSecret.split(".");
+    const authenticationTag = Buffer.from(parts[2]!, "base64url");
+    authenticationTag[0] = authenticationTag[0]! ^ 1;
+    parts[2] = authenticationTag.toString("base64url");
+    const tampered = parts.join(".");
 
     expect(() => decryptProviderSecret(tampered)).toThrow();
   });

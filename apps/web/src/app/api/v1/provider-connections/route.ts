@@ -19,6 +19,7 @@ import {
   assertMutationRequest,
   HttpError,
   noStoreJson,
+  readJsonBody,
 } from "@/lib/server/http";
 
 export const runtime = "nodejs";
@@ -48,7 +49,9 @@ export async function PUT(request: Request) {
   try {
     assertMutationRequest(request);
     assertEncryptionAvailable();
-    const input = ProviderConnectionInputSchema.parse(await request.json());
+    const input = ProviderConnectionInputSchema.parse(
+      await readJsonBody(request, 2_048),
+    );
     const principal = await getOrCreatePrincipal();
     return noStoreJson(await upsertProviderConnection(principal, input));
   } catch (error) {

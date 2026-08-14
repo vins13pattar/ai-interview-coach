@@ -40,7 +40,8 @@ does not process candidate data and is lower risk than the application runtime.
 
 1. Candidate transcripts, questions, extracted evidence, scores, coaching
    feedback, reports, role/level selections, and session history.
-2. Guest session cookies and their server-side SHA-256 token digests.
+2. Guest/registered session cookies, server-side SHA-256 token digests, opaque
+   account handles, and salted scrypt recovery hashes.
 3. Long-lived provider API keys supplied by the browser, deployment
    environment, or encrypted provider connection.
 4. Short-lived OpenAI Realtime client secrets and voice grant metadata.
@@ -177,12 +178,13 @@ evaluation fixtures, lockfiles, CI definitions, and generated documentation.
   personal data, India is the initial operating context, and DPDPA-oriented
   controls are required. GDPR-oriented controls may also apply by user
   geography. This is not legal certification.
-- No hosted retention period is approved. The current delete-driven retention
-  behavior is an alpha limitation, not a production default.
-- Current guest identity is acceptable only for private alpha/self-hosted use.
-  Internet-hosted production requires registered or organization-managed
-  identity, recovery, revocation, administrative boundaries, and abuse
-  controls.
+- Hosted guest sessions use a 30-day inactivity window and audit metadata uses
+  a 30-day default. A daily authenticated bounded job enforces expiry. Backup
+  retention and legal approval remain operator gates.
+- Optional pseudonymous recovery-code accounts support cross-browser access,
+  rotation, sign-out, and deletion without collecting email. This is not
+  verified identity; organization-managed identity and administrative
+  boundaries remain future requirements for employer deployments.
 - TLS termination, a secret manager, database encryption/backups, least
   privilege, rate limiting, monitoring, incident response, and provider data
   agreements are operator obligations not supplied by local Compose.
@@ -200,7 +202,8 @@ evaluation fixtures, lockfiles, CI definitions, and generated documentation.
 The durable API surface under `apps/web/src/app/api/v1` creates, lists, resumes,
 pauses, mutates, exports, and deletes sessions; it also manages provider
 connections and voice grants. Stateless `/api/interviews/turn` and
-`/api/reports` endpoints support the keyless demonstration.
+`/api/reports` endpoints support local keyless use and return `410` when the
+durable database is configured.
 
 Relevant attacker stories:
 
@@ -219,22 +222,24 @@ expiry checks, `HttpOnly`/`SameSite=Lax` cookies, UUID validation, Zod body
 limits, streamed request-size enforcement, tenant-and-user SQL predicates,
 uniform not-found behavior, origin checks, a non-simple mutation header,
 non-mutating cookie-less discovery, no-store responses, transaction-serialized
-voice grant limits, idempotency keys, and transactional uniqueness constraints.
+voice grant limits, PostgreSQL minute/day session and turn budgets, recovery
+attempt throttling, idempotency keys, and transactional uniqueness constraints.
 
 Important residual conditions:
 
 - `SESSION_COOKIE_SECURE=false` and default Compose credentials are safe only
   with the default loopback binding. Any non-loopback deployment must add TLS,
   secure cookies, and production credentials explicitly.
-- Guest creation and most text endpoints have no distributed rate limit. Public
-  and guest routes do not use operator-funded provider keys, but internet
-  hosting still requires identity, quotas, and edge limits to protect compute
-  and database capacity.
+- Per-user PostgreSQL quotas are cookie-scoped and can be bypassed by creating a
+  fresh guest identity. Public and guest routes do not use operator-funded
+  provider keys, but internet hosting still requires an edge/IP abuse control
+  to protect compute and database capacity.
 - Origin validation accepts requests without an `Origin` header because
   non-browser clients legitimately omit it. The custom header protects normal
   browser CSRF, but a stolen cookie remains sufficient for a direct client.
-- Guest sessions have no user-facing revocation or recovery mechanism beyond
-  cookie expiry/data deletion.
+- Guest sessions still have no recovery; candidates must register before losing
+  the guest cookie. Registered recovery material is intentionally displayed
+  once and cannot be retrieved by an operator.
 
 ### Provider credentials and outbound AI calls
 

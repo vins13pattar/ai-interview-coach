@@ -23,6 +23,7 @@ import {
   assertMutationRequest,
   HttpError,
   noStoreJson,
+  readJsonBody,
 } from "@/lib/server/http";
 
 export const runtime = "nodejs";
@@ -42,7 +43,9 @@ export async function POST(request: Request, context: Context) {
     const idempotencyKey = IdempotencyKeySchema.parse(
       request.headers.get("idempotency-key"),
     );
-    const input = SessionTurnRequestSchema.parse(await request.json());
+    const input = SessionTurnRequestSchema.parse(
+      await readJsonBody(request, 32_768),
+    );
     principal = await requirePrincipal();
     const pending = await beginTurnRequest(
       principal,

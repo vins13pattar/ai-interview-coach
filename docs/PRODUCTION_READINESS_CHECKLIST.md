@@ -16,6 +16,11 @@
 - [x] Repository-wide internal security scan: 145/145 files reviewed; eight
       medium findings remediated with focused regression coverage; no high or
       critical findings
+- [x] Apache-2.0 license and SPDX package metadata
+- [x] PostgreSQL guest/registered usage budgets and recovery-attempt throttling
+- [x] Bounded JSON request bodies and same-origin mutation header enforcement
+- [x] Authenticated, bounded retention implementation and daily Vercel schedule
+- [x] Pseudonymous registration, recovery rotation, sign-out, and account deletion
 
 ## Required before release candidate approval
 
@@ -30,6 +35,5 @@
 - [ ] Maintainer confirmation of hosting, identity, geography, and retention
       assumptions
 - [ ] Independent security review and dependency/container findings disposition
-- [ ] Hosted identity, retention, administrative access, and incident runbooks
-- [ ] License selection and `LICENSE`
+- [ ] Hosted administrative-access policy and incident runbooks
 - [ ] Maintainer approval to push, deploy, tag, or publish
