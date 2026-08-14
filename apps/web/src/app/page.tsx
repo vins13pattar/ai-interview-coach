@@ -126,7 +126,7 @@ export default function Home() {
 
       <section className="studio-section" id="studio">
         <div className="studio-heading">
-          <p className="eyebrow">Practice room / local demo</p>
+          <p className="eyebrow">Practice room / BYOK alpha</p>
           <h2 className="balanced-heading">Start Before You Feel Ready.</h2>
           <p>
             The demo evaluator runs without an API key. Bring an OpenAI key for

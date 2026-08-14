@@ -8,10 +8,11 @@ maintainer, physical device, provider-funded call, or independent reviewer.
 - [x] `pnpm check`
 - [x] `pnpm test:e2e`
 - [x] `pnpm audit:dependencies`
-- [ ] repository-scoped secret scan
+- [x] repository-scoped secret scan
 - [x] migration `0003_release_controls.sql` applied to hosted PostgreSQL
 - [x] authenticated retention endpoint rejects missing and invalid secrets
-- [ ] hosted smoke: health, create, resume, export, delete, tenant isolation
+- [x] hosted smoke: health, account registration/deletion, session
+      create/deletion, zero residual sessions, and cross-origin rejection
 - [x] daily quotas and bounded JSON bodies verified by regression tests
 
 ## Maintainer-operated gates

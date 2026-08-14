@@ -18,7 +18,7 @@ validity claims behind their evidence gates.
 - [ ] Validate real BYOK text, cold-start resume, export, and complete deletion
 - [ ] Complete hosted security, accessibility, backup/restore, and browser smoke
       gates
-- [ ] Publish the live URL with explicit public-alpha limitations
+- [x] Publish the live URL with explicit public-alpha limitations
 
 ## Now — alpha foundation
 
