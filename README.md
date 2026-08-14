@@ -3,6 +3,7 @@
 An open-source foundation for natural, adaptive AI interviews.
 
 [Project website](https://vinodspattar.in/ai-interview-coach/) ·
+[Try the hosted alpha](https://ai-interview-coach-sigma-nine.vercel.app/) ·
 [Product requirements](docs/PRD.md) ·
 [Architecture](docs/ARCHITECTURE.md) ·
 [Roadmap](docs/ROADMAP.md) ·

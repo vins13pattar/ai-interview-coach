@@ -166,7 +166,7 @@ unvalidated voice or hiring-quality claim remains visibly qualified.
 
 ### Phase 4 - launch and operations
 
-- [ ] Promote the tested preview artifact to production.
+- [x] Promote the CI-tested main revision to production.
 - [ ] Attach the custom domain and verify DNS, TLS, redirects, and `APP_ORIGIN`.
 - [ ] Add content-free runtime metrics for starts, completions, provider
       failures, latency, retries, fallback, export, deletion, and estimated
@@ -174,7 +174,7 @@ unvalidated voice or hiring-quality claim remains visibly qualified.
 - [ ] Create incident, provider outage, key exposure, deletion failure, backup,
       and restore runbooks.
 - [ ] Verify a Neon restore and a clean redeploy before announcing availability.
-- [ ] Update the project website and README with the live app URL, current
+- [x] Update the project website and README with the live app URL, current
       limitations, privacy window, and self-host instructions.
 
 Exit gate: production smoke tests pass, rollback is rehearsed, and monitoring
